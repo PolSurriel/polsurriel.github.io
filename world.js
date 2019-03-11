@@ -253,7 +253,7 @@ function world_update(){
 
           for (let i = 0; i < projectiles.length; i++) {
          
-            if(!projectiles[i].destroying && Collider2D.detector.circleToPolygon( projectiles[i].x, projectiles[i].y, projectiles[i].radio*2, pj.shield_on_draw )){
+            if(true && Collider2D.detector.circleToPolygon( projectiles[i].x, projectiles[i].y, projectiles[i].radio*2, pj.shield_on_draw )){
               
               pj.holding.push({
                 x: Math.random()* (55 - 17) + 17,

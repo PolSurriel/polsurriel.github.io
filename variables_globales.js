@@ -26,7 +26,7 @@ var hunted = 0;
 
 var ball;
 
-var dificultad = 3;
+var dificultad = 1;
 
 var game_over = false;
 var game_over_speed;
