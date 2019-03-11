@@ -233,14 +233,14 @@ function world_update(){
             if(!enemiesAway[i].destroying && Collider2D.detector.circleToPolygon( enemiesAway[i].x, enemiesAway[i].y, enemiesAway[i].radio, pj.shield_on_draw )){
               
               pj.holding.push({
-                x: Math.random()* (45 - 37) + 37,
-                y: Math.random()* (20 - 10) + 10
+                x: Math.random()* (55 - 27) + 27,
+                y: Math.random()* (30 - 10) + 10
               });
               
               if(pj.pu_doubleproj_caught){
                   pj.holding.push({
-                      x: Math.random()* (45 - 37) + 37,
-                      y: Math.random()* (20 - 10) + 10
+                    x: Math.random()* (55 - 27) + 27,
+                    y: Math.random()* (30 - 10) + 10
                   });
               }
               hunted++;
@@ -256,13 +256,13 @@ function world_update(){
             if(!projectiles[i].destroying && Collider2D.detector.circleToPolygon( projectiles[i].x, projectiles[i].y, projectiles[i].radio*2, pj.shield_on_draw )){
               
               pj.holding.push({
-                x: Math.random()* (45 - 37) + 37,
+                x: Math.random()* (55 - 17) + 17,
                 y: Math.random()* (20 - 10) + 10
               });
               
               if(pj.pu_doubleproj_caught){
                   pj.holding.push({
-                      x: Math.random()* (45 - 37) + 37,
+                      x: Math.random()* (55 - 17) + 17,
                       y: Math.random()* (20 - 10) + 10
                   });
               }
@@ -374,7 +374,7 @@ function world_draw(){
     textAlign(RIGHT);
     noStroke();
     textSize(UMI.toPixel(10));
-    text('DigitalHelheim - ENTI-UB AA1 Álgebra 1ro CDI Grupo A (Mañanas) / Alumnos: Pol Surriel y Eric García',window.innerWidth/2.02,-window.innerHeight/2.05);
+    text('DigitalHelheim - ENTI-UB AA1 Álgebra 1ro CDI Grupo A (Mañanas) / Alumnos: Pol Surriel y Eric Garcia',window.innerWidth/2.02,-window.innerHeight/2.05);
 
 
 
@@ -539,6 +539,25 @@ function hexagon_collisions(){
                 }else{
                     enemiesLines[j].x = enemiesLines[j].last_x;
                     enemiesLines[j].y = enemiesLines[j].last_y;
+                }
+                
+            }
+            
+        }
+
+        for (let j = 0; j < enemiesAway.length; j++) {
+            
+            dist = new Vector2D(enemiesAway[j].x-hexagons[i].x,enemiesAway[j].y-hexagons[i].y).getMagnitude();
+            if(dist < 130 && Collider2D.detector.circleToPolygon(enemiesAway[j].x,enemiesAway[j].y,enemiesAway[j].radio,hexagons[i].poly) ){
+                var newPos = Collider2D.reaction.circleToPolygon(enemiesAway[j].last_x,enemiesAway[j].last_y,  enemiesAway[j].x,enemiesAway[j].y,enemiesAway[j].radio,hexagons[i].poly);
+    
+                if(!isNaN(newPos.x)){
+                    enemiesAway[j].x = newPos.x;
+                    enemiesAway[j].y = newPos.y;
+                
+                }else{
+                    enemiesAway[j].x = enemiesAway[j].last_x;
+                    enemiesAway[j].y = enemiesAway[j].last_y;
                 }
                 
             }

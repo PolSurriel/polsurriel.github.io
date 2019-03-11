@@ -17,7 +17,7 @@ class Projectile extends RealObject {
         this.destroyEnemy = destroyEnemy;
 
         if(destroyEnemy == true){
-            this.radio *= 2;
+            this.radio *= 4;
         }
 
         this.speed = UMI.getSpeed(250);

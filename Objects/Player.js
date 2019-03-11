@@ -148,12 +148,12 @@ class Player extends RealObject {
           
             for (let i = 0; i < this.holding_on_draw.length; i++) {
                 
-                projectiles.push(new Projectile(this.holding_on_draw[i].x, this.holding_on_draw[i].y, new Vector2D(this.holding_on_draw[i].x-this.x, this.holding_on_draw[i].y-this.y, true).getUnitaryVector()));
-                var index = this.holding.indexOf(this.holding_on_draw[i]);
-                this.holding.splice(index, 1);
-                this.holding_on_draw.splice(index, 1);                
-                i--;
+                projectiles.push(new Projectile(this.holding_on_draw[i].x, this.holding_on_draw[i].y, new Vector2D(this.holding_on_draw[i].x-this.x, this.holding_on_draw[i].y-this.y,true).getUnitaryVector()));
             }
+
+            this.holding = new Array();
+            this.holding_on_draw = new Array();
+
 
                 
             
@@ -247,11 +247,10 @@ class Player extends RealObject {
             for (let i = 0; i < this.holding_on_draw.length; i++) {
                 
                 projectiles.push(new Projectile(this.holding_on_draw[i].x, this.holding_on_draw[i].y, new Vector2D(this.holding_on_draw[i].x-this.x, this.holding_on_draw[i].y-this.y,true).getUnitaryVector()));
-                var index = this.holding.indexOf(this.holding_on_draw[i]);
-                this.holding.splice(index, 1);
-                this.holding_on_draw.splice(index, 1);                
-                i--;
             }
+
+            this.holding = new Array();
+            this.holding_on_draw = new Array();
 
             
         }

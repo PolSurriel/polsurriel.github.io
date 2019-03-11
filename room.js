@@ -20,6 +20,8 @@ function room_setup(){
 
     hay_portal = false;
 
+    Camera.defaultZoom();
+
 }
 
 
@@ -374,7 +376,7 @@ function room_draw(){
     textAlign(RIGHT);
     noStroke();
     textSize(UMI.toPixel(10));
-    text('DigitalHelheim - ENTI-UB AA1 Álgebra 1ro CDI Grupo A (Mañanas) / Alumnos: Pol Surriel y Eric García',window.innerWidth/2.02,-window.innerHeight/2.05);
+    text('DigitalHelheim - ENTI-UB AA1 Álgebra 1ro CDI Grupo A (Mañanas) / Alumnos: Pol Surriel y Eric Garcia',window.innerWidth/2.02,-window.innerHeight/2.05);
 
     textAlign(LEFT);
     text(' PowerUps: '+pu_count+' Hunted: '+hunted,-window.innerWidth/2,-window.innerHeight/2.05);
