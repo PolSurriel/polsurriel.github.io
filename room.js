@@ -69,7 +69,7 @@ function room_update(){
     
 
 
-    //throne colision
+    
     if( Collider2D.detector.circleToRect(pj.x,pj.y,pj.radio,145,-105,30,40) ){
         
         on_world = true;
@@ -77,6 +77,8 @@ function room_update(){
         pj.y = 0;
         ball.destroy();
         world_setup();
+
+
     }
 
 
@@ -121,10 +123,14 @@ function room_update(){
         }
     }
 
+    // throne event
     if( Collider2D.detector.circleToRect(pj.x,pj.y,pj.radio,15,-230,60,80)){
         pj.z = 5;
+        display_controls = true;
+
     }else{
         if(!pj.jumping) pj.z = 0;
+        display_controls = false;
     }
 
 
@@ -389,8 +395,21 @@ function room_draw(){
     noStroke();
     textSize(UMI.toPixel(40));
     text('x'+score+'    ',window.innerWidth/2,-window.innerHeight/2.2);
+
+    if(display_controls && !game_over){
     
-    
+        drawingContext.shadowBlur = 50;
+        drawingContext.shadowColor = "orange";
+        
+        fill('white');
+        textAlign(LEFT);
+        noStroke();
+        textSize(UMI.toPixel(20));
+        text('Controls: \n Movement keys: A W D S / arrow keys \n Jump: Space \n Splash: Space (while jumping) ',UMI.toPixel(0),UMI.toPixel(0));
+        
+        
+
+    }
     
     drawingContext.shadowBlur = 0;
     

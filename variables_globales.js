@@ -68,6 +68,8 @@ var world_gameloop_phase = 1;
 
 var alone = false;
 
+var display_controls = false;
+
 var distance_to_destroy = 1000;
 
 function preload() {
