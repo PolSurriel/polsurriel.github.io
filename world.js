@@ -591,7 +591,7 @@ function check_game_over(){
         
         game_over = true;
         goToRoom();
-
+        score = 0;
 
     }else{
         pj.health--;
@@ -611,6 +611,6 @@ function goToRoom(){
     };
 
     room_setup();
-    score = 0;
+    
 
 }
