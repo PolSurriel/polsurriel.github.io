@@ -49,7 +49,7 @@ var hex_reg_y = 0.82;
 var music;
 var room_music;
 var bg;
-var bg_row;
+var bg_room;
 var bg_texture;
 var stairs;
 var power_up_speed_img;
@@ -74,7 +74,7 @@ function preload() {
     power_up_sound = new Sound('./src/get_power_up.mp3',1);
     music = new Sound('./src/disco-shmisco.mp3',0.5);
     room_music = new Sound('./src/room_music.mp3',0.5);;
-    bg_row = loadImage('./src/bg_row.png',100,100);
+    bg_room = loadImage('./src/bg_room_texture.png',100,100);
     pj.loadAssets();
     stairs = loadImage('./src/stairs.png');
     stairs_2 = loadImage('./src/stairs_2.png');

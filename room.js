@@ -257,8 +257,32 @@ function room_draw(){
     translate(width/2,height/2);
     scale(Camera.zoom);
     background(0);
+    var w = 405*1.2;
+    var h = 327*1.2;
 
-    image(bg_row, UMI.toPixel(-1200), UMI.toPixel(-1000), UMI.toPixel(2490), UMI.toPixel(1600));
+    relative_regulation_x = cameraReference.x-(cameraReference.x % w);
+    relative_regulation_y = cameraReference.y-(cameraReference.y % h);;
+
+    var x = -w/2;
+    var y = -h/2;
+
+    drawingContext.shadowBlur = 0;
+    var currentY = y;
+    var multiplerY = 0;
+    for (let j = 0; j < (window.innerWidth/UMI.toPixel(h))/2+1; j++) {
+        var multipler = 0;
+        for (let i = 0; i < (window.innerWidth/UMI.toPixel(w))/2+2; i++) {    
+        
+            image(bg_room, UMI.toPixel(Camera.translationX(-x-x*multipler+relative_regulation_x)), UMI.toPixel(Camera.translationY(currentY+relative_regulation_y)), UMI.toPixel(w), UMI.toPixel(h));
+            image(bg_room, UMI.toPixel(Camera.translationX(x+x*multipler+relative_regulation_x)), UMI.toPixel(Camera.translationY(currentY+relative_regulation_y)), UMI.toPixel(w), UMI.toPixel(h));
+            image(bg_room, UMI.toPixel(Camera.translationX(-x-x*multipler+relative_regulation_x)), UMI.toPixel(Camera.translationY(-currentY+relative_regulation_y)), UMI.toPixel(w), UMI.toPixel(h));
+            image(bg_room, UMI.toPixel(Camera.translationX(x+x*multipler+relative_regulation_x)), UMI.toPixel(Camera.translationY(-currentY+relative_regulation_y)), UMI.toPixel(w), UMI.toPixel(h));
+                
+            multipler+=2;
+        }
+        multiplerY+=2;
+        currentY = y+y*multiplerY;
+    }
     
     //
     image(stairs,UMI.toPixel(140),UMI.toPixel(-100), UMI.toPixel(40),UMI.toPixel(40));
