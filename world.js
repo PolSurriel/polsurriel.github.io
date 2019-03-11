@@ -8,7 +8,7 @@ function world_setup(){
     
 
     pj.portal_opened = true;
-    pj.portal_x = -40;
+    pj.portal_x = -60;
     pj.portal_y = 0;
 
     pj.z = 0;
