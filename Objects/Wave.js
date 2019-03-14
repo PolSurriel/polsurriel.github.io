@@ -14,18 +14,21 @@ class Wave extends RealObject {
     x2;
     y2;
 
+    dist;
+
     constructor(x, y,direction){
         super(x, y);
         this.x_initial = x;
         this.y_initial = y;
         this.direction = direction;
 
-        this.speed = UMI.getSpeed(100);
+        this.speed = UMI.getSpeed(130);
         
         //UMI.realObjects.push(this);
         //UMI.LogicObjects.push(this);
 
         this.distanceVector = new Vector2D(0,0);
+
     }
 
     update(){
@@ -41,12 +44,18 @@ class Wave extends RealObject {
         this.y += this.direction.y*this.speed;
 
 
+        
+        
+
         this.x1 = this.x+this.distanceVector.y;
         this.y1 = this.y+(-1)*this.distanceVector.x;
-
+        
         this.x2 = this.x+(-1)*this.distanceVector.y;
         this.y2 = this.y+this.distanceVector.x;
         
+            
+        
+
 
     }
 
@@ -55,8 +64,8 @@ class Wave extends RealObject {
         stroke('red');
         // a cada punto se le sumas los 2 vectores perpendiculares de la distancia que ha reorrido la onda,
         // de esta manera se hallan los 2 puntos para dibujar la onda sabiendo sus extremos
-        line(UMI.toPixel(Camera.translationX(this.x+this.distanceVector.y)),UMI.toPixel(Camera.translationY(this.y+(-1)*this.distanceVector.x)),
-                        UMI.toPixel(Camera.translationX(this.x+(-1)*this.distanceVector.y)),UMI.toPixel(Camera.translationY(this.y+this.distanceVector.x)));
+        line(UMI.toPixel(Camera.translationX(this.x1)),UMI.toPixel(Camera.translationY(this.y1)),
+                        UMI.toPixel(Camera.translationX(this.x2)),UMI.toPixel(Camera.translationY(this.y2)));
         stroke('white');
     }
 

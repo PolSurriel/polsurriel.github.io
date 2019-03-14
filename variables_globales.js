@@ -60,16 +60,16 @@ var pu_5_w_l2 = new Wiggle(80,180,3);
 // var poly = [[-10,10], [-30, 50], [40, 30], [55,31]];
 var poly = [[-10,6], [-30, 50], [40, 30],[50, -10] ];
 
-var hexagons = Array(100);
-var enemies = new Array(100);
-var enemiesAway = new Array(100);
-var enemiesProjectiles = new Array(100);
-var enemiesLines = new Array(100);
-var projectiles = new Array(100);
-var linesShoot = new Array(100);
-var enemiesWaves = new Array(100);
-var waves = new Array(100);
-var particles = new Array(400);
+var hexagons = Array(30);
+var enemies = new Array(60);
+var enemiesAway = new Array(60);
+var enemiesProjectiles = new Array(60);
+var enemiesLines = new Array(60);
+var projectiles = new Array(60);
+var linesShoot = new Array(60);
+var enemiesWaves = new Array(60);
+var waves = new Array(60);
+var particles = new Array(100);
 
 enemies.setAllNull();
 enemiesAway.setAllNull();

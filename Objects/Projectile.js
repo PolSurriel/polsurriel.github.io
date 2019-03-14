@@ -35,10 +35,7 @@ class Projectile extends RealObject {
         this.x += this.direction.x*this.speed;
         this.y += this.direction.y*this.speed;
 
-        if(this.rebounds > 3){
-            projectiles.destroy( projectiles.indexOf(this) );
-            
-        }
+      
 
     }
 

@@ -146,16 +146,21 @@ function world_update(){
       for (let i = 0; i < linesShoot.length; i++) {
        if(linesShoot[i] != null){
 
-            if(!pj.jumping && Collider2D.detector.circleToLine( pj.x, pj.y, pj.radio*1.4, linesShoot[i].x, linesShoot[i].y,
+            if(!pj.jumping && Collider2D.detector.pointToCircle(pj.x,pj.y,linesShoot[i].x,linesShoot[i].y,20)
+                && Collider2D.detector.circleToLine( pj.x, pj.y, pj.radio*1.4, linesShoot[i].x, linesShoot[i].y,
                 linesShoot[i].x+linesShoot[i].direction.x*linesShoot[i].size, linesShoot[i].y+linesShoot[i].direction.y*linesShoot[i].size ) ){
                 check_game_over();
                 linesShoot.destroy(i);
             }
 
+            if(linesShoot[i]!=null && new Vector2D(pj.x-linesShoot[i].x,pj.y-linesShoot[i].y).getMagnitude() > distance_to_destroy ){
+                linesShoot.destroy( i );
+            }
+
             for (let j = 0; j < hexagons.length; j++) {
         
                 if(linesShoot[i] != null && hexagons[j] != null && Collider2D.detector.circleToPolygon( linesShoot[i].x, linesShoot[i].y, 3,hexagons[j].poly ) ){
-                    linesShoot[i]= null;
+                    linesShoot.destroy(i);
                 }
 
             }
@@ -258,6 +263,18 @@ function world_update(){
           }
 
           for (let i = 0; i < projectiles.length; i++) {
+
+            if (projectiles[i]!= null) {
+    
+                if(projectiles[i].rebounds > 3){
+                    projectiles.destroy( i );
+                }
+                
+                if( new Vector2D(pj.x-projectiles[i].x,pj.y-projectiles[i].y).getMagnitude() > distance_to_destroy ){
+                    projectiles.destroy( i );
+                }
+
+            }
          
             if(projectiles[i]!= null && Collider2D.detector.circleToPolygon( projectiles[i].x, projectiles[i].y, projectiles[i].radio*2, pj.shield_on_draw )){
               
@@ -272,6 +289,8 @@ function world_update(){
                       y: Math.random()* (20 - 10) + 10
                   });
               }
+
+              
   
               score += 100;
               projectiles.destroy(i);

@@ -25,10 +25,7 @@ class LineShoot extends RealObject {
         this.x += this.direction.x*this.speed;
         this.y += this.direction.y*this.speed;        
 
-        if(this.rebounds > 3){
-            linesShoot.destroy( linesShoot.indexOf(this) );
-            
-        }
+        
 
     }
 
