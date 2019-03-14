@@ -41,6 +41,20 @@ var pj = new Player(-60, 0);
 var cameraReference;
 var score = 0;
 
+var pu_1_w = new Wiggle(-210,80,1);
+var pu_1_w_l2 = new Wiggle(-210,80,3);
+
+var pu_2_w = new Wiggle(-18,80,1);
+var pu_2_w_l2 = new Wiggle(-18,80,3);
+
+var pu_3_w = new Wiggle(172,80,1);
+var pu_3_w_l2 = new Wiggle(172,80,3);
+
+var pu_4_w = new Wiggle(-120,180,1);
+var pu_4_w_l2 = new Wiggle(-120,180,3);
+
+var pu_5_w = new Wiggle(80,180,1);
+var pu_5_w_l2 = new Wiggle(80,180,3);
 
 
 // var poly = [[-10,10], [-30, 50], [40, 30], [55,31]];
@@ -102,11 +116,16 @@ var bg;
 var bg_room;
 var bg_texture;
 var stairs;
-var power_up_speed_img;
-var power_up_duplicate_img;
-var power_up_health_img
-var power_up_random_img;
-var power_up_shield_img;
+var power_up_speed_img_layer_1;
+var power_up_speed_img_layer_2;
+var power_up_duplicate_img_layer_1;
+var power_up_duplicate_img_layer_2;
+var power_up_health_img_layer_1;
+var power_up_health_img_layer_2;
+var power_up_random_img_layer_1;
+var power_up_random_img_layer_2;
+var power_up_shield_img_layer_1;
+var power_up_shield_img_layer_2;
 var throne_img;
 var power_up_sound;
 var button_red_img;
@@ -130,14 +149,19 @@ function preload() {
     pj.loadAssets();
     stairs = loadImage('./src/stairs.png');
     stairs_2 = loadImage('./src/stairs_2.png');
-    power_up_speed_img = loadImage('./src/power_up_speed.png');
-    power_up_duplicate_img = loadImage('./src/power_up_duplicate.png'); 
-    power_up_health_img = loadImage('./src/power_up_health.png');
+    power_up_speed_img_layer_1 = loadImage('./src/power_up_speed_layer_1.png');
+    power_up_speed_img_layer_2 = loadImage('./src/power_up_speed_layer_2.png');
+    power_up_duplicate_img_layer_1 = loadImage('./src/power_up_duplicate_layer_1.png'); 
+    power_up_duplicate_img_layer_2 = loadImage('./src/power_up_duplicate_layer_2.png'); 
+    power_up_health_img_layer_1 = loadImage('./src/power_up_health_layer_1.png');
+    power_up_health_img_layer_2 = loadImage('./src/power_up_health_layer_2.png');
     throne_img = loadImage('./src/throne.png'); 
     bg_texture = loadImage('./src/bg_texture.png');
 
-    power_up_random_img= loadImage('./src/power_up_random.png');
-    power_up_shield_img= loadImage('./src/power_up_shield.png');
+    power_up_random_img_layer_1= loadImage('./src/power_up_random_layer_1.png');
+    power_up_random_img_layer_2= loadImage('./src/power_up_random_layer_2.png');
+    power_up_shield_img_layer_1= loadImage('./src/power_up_shield_layer_1.png');
+    power_up_shield_img_layer_2= loadImage('./src/power_up_shield_layer_2.png');
   
   }
 

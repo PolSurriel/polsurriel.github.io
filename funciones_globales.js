@@ -31,6 +31,7 @@
   }
 
 
+
   function update_all(){
     cameraReference.update();
     enemies.update();

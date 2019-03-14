@@ -65,6 +65,20 @@ function room_gameloop(){
 
 function room_update(){
 
+    pu_1_w.update();
+    pu_1_w_l2.update();
+    
+    pu_2_w.update();    
+    pu_2_w_l2.update();
+    
+    pu_3_w.update();
+    pu_3_w_l2.update();
+
+    pu_4_w.update();    
+    pu_4_w_l2.update();
+    
+    pu_5_w.update();
+    pu_5_w_l2.update();
 
     update_all();
 
@@ -344,7 +358,8 @@ function room_draw(){
 
      fill('white');
      if(!pj.pu_speed_caught){
-         image(power_up_speed_img, UMI.toPixel(-210),UMI.toPixel(80), UMI.toPixel(40),UMI.toPixel(40));
+        image(power_up_speed_img_layer_1, UMI.toPixel(pu_1_w.x),UMI.toPixel(pu_1_w.y), UMI.toPixel(40),UMI.toPixel(40));
+        image(power_up_speed_img_layer_2, UMI.toPixel(pu_1_w_l2.x),UMI.toPixel(pu_1_w_l2.y), UMI.toPixel(40),UMI.toPixel(40));
          textSize(UMI.toPixel(12));
          text('Speed x1.5', UMI.toPixel(-190), UMI.toPixel(125));
          textSize(UMI.toPixel(9));
@@ -353,7 +368,8 @@ function room_draw(){
  
      
      if(!pj.pu_doubleproj_caught){
-         image(power_up_duplicate_img, UMI.toPixel(-18),UMI.toPixel(80), UMI.toPixel(40),UMI.toPixel(40));
+         image(power_up_duplicate_img_layer_1, UMI.toPixel(pu_2_w.x),UMI.toPixel(pu_2_w.y), UMI.toPixel(40),UMI.toPixel(40));
+         image(power_up_duplicate_img_layer_2, UMI.toPixel(pu_2_w_l2.x),UMI.toPixel(pu_2_w_l2.y), UMI.toPixel(40),UMI.toPixel(40));
          textSize(UMI.toPixel(12));
          text('Duplicate projectiles', UMI.toPixel(0), UMI.toPixel(125));
          textSize(UMI.toPixel(9));
@@ -362,7 +378,8 @@ function room_draw(){
  
      
      if(!pj.pu_health_caught){
-         image(power_up_health_img, UMI.toPixel(172),UMI.toPixel(80), UMI.toPixel(40),UMI.toPixel(40));
+         image(power_up_health_img_layer_1, UMI.toPixel(pu_3_w.x),UMI.toPixel(pu_3_w.y), UMI.toPixel(40),UMI.toPixel(40));
+         image(power_up_health_img_layer_2, UMI.toPixel(pu_3_w_l2.x),UMI.toPixel(pu_3_w_l2.y), UMI.toPixel(40),UMI.toPixel(40));
          textSize(UMI.toPixel(12));
          text('Health x2', UMI.toPixel(190), UMI.toPixel(125));
          textSize(UMI.toPixel(9));
@@ -377,7 +394,8 @@ function room_draw(){
 
 
     if(!pj.pu_shield_caught){
-        image(power_up_shield_img, UMI.toPixel(-120),UMI.toPixel(180), UMI.toPixel(40),UMI.toPixel(40));
+        image(power_up_shield_img_layer_1, UMI.toPixel(pu_4_w.x),UMI.toPixel(pu_4_w.y), UMI.toPixel(40),UMI.toPixel(40));
+        image(power_up_shield_img_layer_2, UMI.toPixel(pu_4_w_l2.x),UMI.toPixel(pu_4_w_l2.y), UMI.toPixel(40),UMI.toPixel(40));
         textSize(UMI.toPixel(12));
         text('Unlimited shield', UMI.toPixel(-100), UMI.toPixel(225));
         textSize(UMI.toPixel(9));
@@ -385,7 +403,8 @@ function room_draw(){
     }
 
     if(!pj.pu_random_caught && !(pj.pu_health_caught && pj.pu_doubleproj_caught && pj.pu_speed_caught && pj.pu_shield_caught)){
-        image(power_up_random_img, UMI.toPixel(80),UMI.toPixel(180), UMI.toPixel(40),UMI.toPixel(40));
+        image(power_up_random_img_layer_1, UMI.toPixel(pu_5_w.x),UMI.toPixel(pu_5_w.y), UMI.toPixel(40),UMI.toPixel(40));
+        image(power_up_random_img_layer_2, UMI.toPixel(pu_5_w_l2.x),UMI.toPixel(pu_5_w_l2.y), UMI.toPixel(40),UMI.toPixel(40));
         textSize(UMI.toPixel(12));
         text('Random choice', UMI.toPixel(100), UMI.toPixel(225));
         textSize(UMI.toPixel(9));
@@ -427,15 +446,11 @@ function room_draw(){
     fill(255,255,255,100);
     textAlign(RIGHT);
     noStroke();
-    textSize(UMI.toPixel(10));
-    text('DigitalHelheim - ENTI-UB AA1 Álgebra 1ro CDI Grupo A (Mañanas) / Alumnos: Pol Surriel y Eric Garcia',window.innerWidth/2.02,-window.innerHeight/2.05);
+    textSize(12);
+    text('DigitalHelheim - ENTI-UB AA1 Álgebra 1º CDI Grupo A (Mañanas) / Alumnos: Pol Surriel y Eric Garcia',window.innerWidth/2.02,-window.innerHeight/2.05);
 
     textAlign(LEFT);
     text(' PowerUps: '+pu_count+' Hunted: '+hunted,-window.innerWidth/2,-window.innerHeight/2.05);
-
-
-    
-
 
 
 }
