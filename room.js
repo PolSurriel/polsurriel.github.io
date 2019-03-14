@@ -205,7 +205,7 @@ function room_update(){
     if(!(pj.pu_health_caught && pj.pu_doubleproj_caught && pj.pu_speed_caught && pj.pu_shield_caught) && !pj.pu_random_caught && score >= 500){
         if(Collider2D.detector.circleToCircle(pj.x,pj.y,65, 200, pj.radio,30)){
             pj.pu_random_caught = true;
-            score -= 700;
+            score -= 500;
             pj.health = 2;
             pu_count++;
             power_up_sound.play();
