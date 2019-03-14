@@ -89,7 +89,8 @@ function world_update(){
             for (let j = 0; j < enemies.length; j++) {
             
                 if(enemies[j] != null && projectiles[i] != null && Collider2D.detector.circleToCircle(projectiles[i].x,projectiles[i].y,enemies[j].x,enemies[j].y,projectiles[i].radio,enemies[j].radio) ){
-                    enemies[j]= null;
+                    enemies.destroy(j)
+                    
                     projectiles.destroy(i);
 
                     score += 100;
@@ -99,7 +100,7 @@ function world_update(){
 
             for (let j = 0; j < enemiesLines.length; j++) {
                 if( enemiesLines[j] != null && projectiles[i] != null  && Collider2D.detector.circleToCircle(projectiles[i].x,projectiles[i].y,enemiesLines[j].x,enemiesLines[j].y,projectiles[i].radio*2.3,enemiesLines[j].radio) ){
-                    enemiesLines[j]= null;
+                    enemiesLines.destroy(j);
                     projectiles.destroy(i);
 
                     score += 150;
@@ -109,7 +110,7 @@ function world_update(){
 
             for (let j = 0; j < enemiesProjectiles.length; j++) {
                 if(enemiesProjectiles[j] != null && projectiles[i] != null  && projectiles[i].destroyEnemy && Collider2D.detector.circleToCircle(projectiles[i].x,projectiles[i].y,enemiesProjectiles[j].x,enemiesProjectiles[j].y,projectiles[i].radio*2,enemiesProjectiles[j].radio) ){
-                    enemiesProjectiles[j]= null;
+                    enemiesProjectiles.destroy(j);
                     projectiles.destroy(i);
 
                     score += 120;
@@ -119,7 +120,7 @@ function world_update(){
 
             for (let j = 0; j < enemiesWaves.length; j++) {
                 if(enemiesWaves[j] != null && projectiles[i] != null  && Collider2D.detector.circleToCircle(projectiles[i].x,projectiles[i].y,enemiesWaves[j].x,enemiesWaves[j].y,projectiles[i].radio,enemiesWaves[j].radio) ){
-                    enemiesWaves[j]= null;
+                    enemiesWaves.destroy(j);
                 projectiles.destroy(i);
 
                 score += 120;
@@ -405,6 +406,7 @@ function create_hexagon(x, y){
 
 
 function generar_enemigos(n,na,np,nl, nw){
+
     
     if(enemies.added < n){
 
