@@ -450,6 +450,8 @@ function ball_update(){
 
     }
 
+    ball.update();
+
 
     //throne colision
     if( Collider2D.detector.circleToRect(ball.x,ball.y,ball.radio,10,-230,70,30)){

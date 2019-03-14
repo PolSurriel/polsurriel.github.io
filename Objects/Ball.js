@@ -9,6 +9,9 @@ class Ball extends RealObject{
     last_x;
     last_y;
 
+
+    moving = false; 
+
     constructor(x,y, radio){
         super(x,y);
         this.radio = radio;
@@ -21,6 +24,8 @@ class Ball extends RealObject{
     setForce(vector){
         this.forecVector = vector;
         this.forecVector.convertToUnitary();
+        this.moving = true;
+
     }
 
     update() {
@@ -28,13 +33,15 @@ class Ball extends RealObject{
         this.last_x = this.x;
         this.last_y = this.y;
 
-        if(this.forecVector){
+        if(this.moving == true){
+            console.log('oh god damm you are sexy');
             this.x += this.forecVector.x * this.force;
             this.y += this.forecVector.y * this.force;
             this.force -= this.gravity_force;
+            
             if(this.force <= 0){
                 this.force = this.default_force;
-                this.forecVector = false;
+                this.moving = false;
             }
         }
 
