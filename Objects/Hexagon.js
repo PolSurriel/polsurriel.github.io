@@ -13,12 +13,12 @@ class Hexagon extends RealObject {
 
         
         this.poly = poly;
-        hexagons.push(this);
+        hexagons.addObj(this);
 
         this.speed = UMI.getSpeed(800);
 
-        this.center.x = this.poly[0][0] - Math.abs(this.poly[3][0] - this.poly[0][0])/2; 
-        this.center.y = this.poly[0][1];
+        this.center.x = poly[0][0] - Math.abs(poly[3][0] - poly[0][0])/2; 
+        this.center.y = poly[0][1];
         
 
     }
@@ -26,6 +26,7 @@ class Hexagon extends RealObject {
 
     
     update(){
+
 
         if(this.opacity < 255){
             this.opacity += this.speed;
@@ -40,7 +41,7 @@ class Hexagon extends RealObject {
         }
 
         if( new Vector2D(pj.x-this.x,pj.y-this.y).getMagnitude() > distance_to_destroy ){
-            this.destroy();
+            hexagons.destroy( hexagons.indexOf(this) );
         }
             
     }

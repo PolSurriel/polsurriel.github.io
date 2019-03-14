@@ -6,7 +6,7 @@ class LogicObject {
     constructor (x,y){
         this.x = x;
         this.y = y;
-        UMI.LogicObjects.push(this);
+        //UMI.LogicObjects.addObj(this);
         
     }
 

@@ -43,7 +43,7 @@ class FollowerReference {
         this.y = obj.y;
         this.following = obj;
 
-        UMI.LogicObjects.push(this);
+        //UMI.LogicObjects.push(this);
 
         this.speed_d = UMI.getSpeed(1);
 

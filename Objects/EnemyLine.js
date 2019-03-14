@@ -33,7 +33,7 @@ class EnemyLine extends RealObject {
     }
 
     shootPlayer(){
-        linesShoot.push(new LineShoot(this.x, this.y, new Vector2D(pj.x-this.x, pj.y-this.y).getUnitaryVector()));        
+        linesShoot.addObj(new LineShoot(this.x, this.y, new Vector2D(pj.x-this.x, pj.y-this.y).getUnitaryVector()));        
     }
 
     setSpeed(){
@@ -77,7 +77,7 @@ class EnemyLine extends RealObject {
             this.forceVector = vectorToPlayer.getUnitaryVector();
             this.forceVector.rotate(this.last_rotation);
         } else if(vectorToPlayer.getMagnitude() > this.maxDistance) {
-            this.destroy();
+            enemiesLines.destroy( enemiesLines.indexOf(this) );
         } else {
             this.forceVector = vectorToPlayer.getUnitaryVector();
             this.speed = UMI.getSpeed(Math.random() * (this.normalSpeed - 100) + 100);              
@@ -98,7 +98,7 @@ class EnemyLine extends RealObject {
         this.last_y = this.y;
 
         if( new Vector2D(pj.x-this.x,pj.y-this.y).getMagnitude() > distance_to_destroy ){
-            this.destroy();
+            enemiesLines.destroy( enemiesLines.indexOf(this) );
         }
         this.move();
     }

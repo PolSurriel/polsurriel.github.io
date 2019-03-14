@@ -1,4 +1,5 @@
 function room_setup(){
+    destroy_all();
     cameraReference = new FollowerReference({x:0,y:0});
     Camera.setObjectReference(cameraReference);
 
@@ -21,6 +22,10 @@ function room_setup(){
     hay_portal = false;
 
     Camera.defaultZoom();
+
+    if(pj.pu_health_caught){
+        pj.health = 2;
+    }
 
 }
 
@@ -57,9 +62,7 @@ function room_gameloop(){
 function room_update(){
 
 
-    UMI.LogicObjects.forEach(obj => {
-        obj.update();
-    });
+    update_all();
 
     pj.update();
 
@@ -327,12 +330,14 @@ function room_draw(){
     image(throne_img,UMI.toPixel(0),UMI.toPixel(-240), UMI.toPixel(100),UMI.toPixel(100));
     
 
-    UMI.realObjects.forEach(obj => {
-        obj.draw();
-    });
+    draw_all();
 
 
      // DRAW POWER UPS
+     drawingContext.shadowBlur = 0;
+     drawingContext.shadowColor = "blue";
+     noStroke();
+
      fill('white');
      if(!pj.pu_speed_caught){
          image(power_up_speed_img, UMI.toPixel(-210),UMI.toPixel(80), UMI.toPixel(40),UMI.toPixel(40));

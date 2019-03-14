@@ -26,27 +26,21 @@ function world_gameloop(){
 //UPDATE
 function world_update(){
 
-    for (let i = 0; i < UMI.realObjects.length; i++) {
-        if(UMI.realObjects[i].destroying){
-            UMI.realObjects[i].destroy();
-            i--;
-        }
-        
-    }
-
+    
     
     //hexagons collisions
     hexagon_collisions();
 
     var tries = 0;
-    while(hexagons.length < 15 && tries < 10){
+    while(hexagons.added < 15 && tries < 50){
+
         var x_on_create = Math.random() * ((pj.x+500) - (pj.x-500)) + (pj.x-500);
         var y_on_create = Math.random() * ((pj.y+500) - (pj.y-500)) + (pj.y-500);
 
 
         var positionValid = true;
         for (let i = 0; i < hexagons.length && positionValid; i++) {
-            positionValid = ( Math.abs(hexagons[i].x - x_on_create) > 100 && Math.abs(hexagons[i].y - y_on_create) > 100 )
+            if(hexagons[i] != null) positionValid = ( Math.abs(hexagons[i].x - x_on_create) > 100 && Math.abs(hexagons[i].y - y_on_create) > 100 )
             
         }
         if(positionValid &&  Math.abs(pj.x - x_on_create) > 100 && Math.abs(pj.y - y_on_create) > 100) {
@@ -62,9 +56,7 @@ function world_update(){
 
 
 
-    UMI.LogicObjects.forEach(obj => {
-        if(!obj.destroying) obj.update();
-    });
+    update_all();
 
     //PJ COLISIONS
     if(!pj.jumping){
@@ -73,9 +65,9 @@ function world_update(){
         //ENEMIES
         for (let i = 0; i < enemies.length; i++) {
             
-            if( !pj.jumping && !enemies[i].destroying && Collider2D.detector.circleToCircle(pj.x,pj.y,enemies[i].x,enemies[i].y,pj.radio,enemies[i].radio) ){
+            if( !pj.jumping && enemies[i]!= null && Collider2D.detector.circleToCircle(pj.x,pj.y,enemies[i].x,enemies[i].y,pj.radio,enemies[i].radio) ){
                 check_game_over();
-                enemies[i].destroying = true;
+                enemies.destroy(i);
             }
         }
 
@@ -84,91 +76,101 @@ function world_update(){
 
       //PROJECTILES COLISION
 
-      projectiles.forEach(projectile => {
+      for (let i = 0; i < projectiles.length; i++) {
 
-        if(!pj.jumping && Collider2D.detector.circleToCircle( pj.x, pj.y,projectile.x, projectile.y, pj.radio,projectile.radio ) ){
-            check_game_over();
+       
+        if(projectiles[i] != null){
+            if(!pj.jumping && Collider2D.detector.circleToCircle( pj.x, pj.y,projectiles[i].x, projectiles[i].y, pj.radio,projectiles[i].radio ) ){
+                check_game_over();
+                
+                projectiles.destroy(i);
+            }
+
+            for (let j = 0; j < enemies.length; j++) {
             
-            projectile.destroying = true;
+                if(enemies[j] != null && projectiles[i] != null && Collider2D.detector.circleToCircle(projectiles[i].x,projectiles[i].y,enemies[j].x,enemies[j].y,projectiles[i].radio,enemies[j].radio) ){
+                    enemies[j]= null;
+                    projectiles.destroy(i);
+
+                    score += 100;
+
+                }
+            }
+
+            for (let j = 0; j < enemiesLines.length; j++) {
+                if( enemiesLines[j] != null && projectiles[i] != null  && Collider2D.detector.circleToCircle(projectiles[i].x,projectiles[i].y,enemiesLines[j].x,enemiesLines[j].y,projectiles[i].radio*2.3,enemiesLines[j].radio) ){
+                    enemiesLines[j]= null;
+                    projectiles.destroy(i);
+
+                    score += 150;
+
+                }
+            }
+
+            for (let j = 0; j < enemiesProjectiles.length; j++) {
+                if(enemiesProjectiles[j] != null && projectiles[i] != null  && projectiles[i].destroyEnemy && Collider2D.detector.circleToCircle(projectiles[i].x,projectiles[i].y,enemiesProjectiles[j].x,enemiesProjectiles[j].y,projectiles[i].radio*2,enemiesProjectiles[j].radio) ){
+                    enemiesProjectiles[j]= null;
+                    projectiles.destroy(i);
+
+                    score += 120;
+
+                }
+            }
+
+            for (let j = 0; j < enemiesWaves.length; j++) {
+                if(enemiesWaves[j] != null && projectiles[i] != null  && Collider2D.detector.circleToCircle(projectiles[i].x,projectiles[i].y,enemiesWaves[j].x,enemiesWaves[j].y,projectiles[i].radio,enemiesWaves[j].radio) ){
+                    enemiesWaves[j]= null;
+                projectiles.destroy(i);
+
+                score += 120;
+
+                }
+            }
+            
+            for (let j = 0; j < hexagons.length; j++) {
+                if(hexagons[j] != null && projectiles[i] != null  && Collider2D.detector.circleToPolygon( projectiles[i].x, projectiles[i].y, projectiles[i].radio,hexagons[j].poly ) ){
+                    projectiles[i].direction.x = -projectiles[i].direction.x; 
+                    projectiles[i].direction.y = -projectiles[i].direction.y; 
+                    projectiles[i].rebounds++;
+                }
+
+            }
+
         }
+          
+      }
 
-        enemies.forEach(enemy => {
-            if(Collider2D.detector.circleToCircle(projectile.x,projectile.y,enemy.x,enemy.y,projectile.radio,enemy.radio) ){
-              enemy.destroying = true;
-              projectile.destroying = true;
 
-              score += 100;
 
+      for (let i = 0; i < linesShoot.length; i++) {
+       if(linesShoot[i] != null){
+
+            if(!pj.jumping && Collider2D.detector.circleToLine( pj.x, pj.y, pj.radio*1.4, linesShoot[i].x, linesShoot[i].y,
+                linesShoot[i].x+linesShoot[i].direction.x*linesShoot[i].size, linesShoot[i].y+linesShoot[i].direction.y*linesShoot[i].size ) ){
+                check_game_over();
+                linesShoot.destroy(i);
             }
-        });
 
-        enemiesLines.forEach(enemy => {
-            if( Collider2D.detector.circleToCircle(projectile.x,projectile.y,enemy.x,enemy.y,projectile.radio*2.3,enemy.radio) ){
-              enemy.destroying = true;
-              projectile.destroying = true;
-
-              score += 150;
-
-            }
-        });
-
-        enemiesProjectiles.forEach(enemy => {
-            if( projectile.destroyEnemy && Collider2D.detector.circleToCircle(projectile.x,projectile.y,enemy.x,enemy.y,projectile.radio*2,enemy.radio) ){
-              enemy.destroying = true;
-              projectile.destroying = true;
-
-              score += 120;
-
-            }
-        });
-
-        enemiesWaves.forEach(enemy => {
-            if( Collider2D.detector.circleToCircle(projectile.x,projectile.y,enemy.x,enemy.y,projectile.radio,enemy.radio) ){
-              enemy.destroying = true;
-              projectile.destroying = true;
-
-              score += 120;
-
-            }
-        });
+            for (let j = 0; j < hexagons.length; j++) {
         
-        hexagons.forEach(hexagon => {
-            if( Collider2D.detector.circleToPolygon( projectile.x, projectile.y, projectile.radio,hexagon.poly ) ){
-                projectile.direction.x = -projectile.direction.x; 
-                projectile.direction.y = -projectile.direction.y; 
-                projectile.rebounds++;
+                if(linesShoot[i] != null && hexagons[j] != null && Collider2D.detector.circleToPolygon( linesShoot[i].x, linesShoot[i].y, 3,hexagons[j].poly ) ){
+                    linesShoot[i]= null;
+                }
+
             }
-
-
-        });
-
-          
-          
-      });
-
-      linesShoot.forEach(shoot => {
-        if(!pj.jumping && Collider2D.detector.circleToPoint( pj.x, pj.y, pj.radio, shoot.x, shoot.y ) ){
-            check_game_over();
         }
 
-
-        hexagons.forEach(hexagon => {
-            if( Collider2D.detector.circleToPolygon( shoot.x, shoot.y, 3,hexagon.poly ) ){
-                shoot.destroying = true;
-            }
-
-        });
-
           
-      });
+      }
 
       
-      waves.forEach(wave => {
-        if(!pj.jumping && Collider2D.detector.circleToLine( pj.x, pj.y, pj.radio*2, wave.x1, wave.y1,wave.x2, wave.y2 ) ){
+      for (let i = 0; i < waves.length; i++) {
+        if(waves[i] != null && !pj.jumping && Collider2D.detector.circleToLine( pj.x, pj.y, pj.radio*2, waves[i].x1, waves[i].y1,waves[i].x2, waves[i].y2 ) ){
             check_game_over();
+            waves.destroy(i);
         }
 
-      });
+      }
   
   
   
@@ -191,7 +193,9 @@ function world_update(){
             pj.portal_opened = true;
             
             var positionValid = false;
-            while(!positionValid){
+            var tries = 0;
+            while(!positionValid && tries <= 50){
+                tries ++;
                 
                 var x_on_create = Math.random() * ((500) - (400)) + (400);
                 var y_on_create = Math.random() * ((500) - (400)) + (400);
@@ -204,9 +208,10 @@ function world_update(){
                 positionValid = true;
                 
                 for (let i = 0; i < hexagons.length && positionValid; i++) {
-                    positionValid = ( Math.abs(hexagons[i].x - x_on_create) > 300 || Math.abs(hexagons[i].y - y_on_create) > 300 );
+                    if (hexagons[i]) positionValid = ( Math.abs(hexagons[i].x - x_on_create) > 300 || Math.abs(hexagons[i].y - y_on_create) > 300 );
                 
                 }
+
 
                     
                 
@@ -230,22 +235,22 @@ function world_update(){
       if (pj.shield_active){
         for (let i = 0; i < enemiesAway.length; i++) {
          
-            if(!enemiesAway[i].destroying && Collider2D.detector.circleToPolygon( enemiesAway[i].x, enemiesAway[i].y, enemiesAway[i].radio, pj.shield_on_draw )){
+            if(enemiesAway[i]!= null && Collider2D.detector.circleToPolygon( enemiesAway[i].x, enemiesAway[i].y, enemiesAway[i].radio, pj.shield_on_draw )){
               
-              pj.holding.push({
+              pj.holding.addObj({
                 x: Math.random()* (55 - 27) + 27,
                 y: Math.random()* (30 - 10) + 10
               });
               
               if(pj.pu_doubleproj_caught){
-                  pj.holding.push({
+                  pj.holding.addObj({
                     x: Math.random()* (55 - 27) + 27,
                     y: Math.random()* (30 - 10) + 10
                   });
               }
               hunted++;
               score += 20;
-              enemiesAway[i].destroying = true;
+              enemiesAway.destroy(i);
       
     
             }
@@ -253,22 +258,22 @@ function world_update(){
 
           for (let i = 0; i < projectiles.length; i++) {
          
-            if(!projectiles[i].destroying && Collider2D.detector.circleToPolygon( projectiles[i].x, projectiles[i].y, projectiles[i].radio*2, pj.shield_on_draw )){
+            if(projectiles[i]!= null && Collider2D.detector.circleToPolygon( projectiles[i].x, projectiles[i].y, projectiles[i].radio*2, pj.shield_on_draw )){
               
-              pj.holding.push({
+              pj.holding.addObj({
                 x: Math.random()* (55 - 17) + 17,
                 y: Math.random()* (20 - 10) + 10
               });
               
               if(pj.pu_doubleproj_caught){
-                  pj.holding.push({
+                  pj.holding.addObj({
                       x: Math.random()* (55 - 17) + 17,
                       y: Math.random()* (20 - 10) + 10
                   });
               }
   
               score += 100;
-              projectiles[i].destroying = true;
+              projectiles.destroy(i);
       
     
             }
@@ -346,10 +351,7 @@ function world_draw(){
     
     }
 
-    UMI.realObjects.forEach(obj => {
-      if(!obj.destroying) obj.draw();
-    });
-
+    draw_all();
   
 
     
@@ -373,7 +375,7 @@ function world_draw(){
     fill(255,255,255,100);
     textAlign(RIGHT);
     noStroke();
-    textSize(UMI.toPixel(10));
+    textSize(10);
     text('DigitalHelheim - ENTI-UB AA1 Álgebra 1ro CDI Grupo A (Mañanas) / Alumnos: Pol Surriel y Eric Garcia',window.innerWidth/2.02,-window.innerHeight/2.05);
 
 
@@ -404,7 +406,7 @@ function create_hexagon(x, y){
 
 function generar_enemigos(n,na,np,nl, nw){
     
-    if(enemies.length < n){
+    if(enemies.added < n){
 
         if(Math.floor((Math.random() * 100) + 1) == 1){
 
@@ -415,12 +417,13 @@ function generar_enemigos(n,na,np,nl, nw){
             var distY = Math.abs(y_on_create-pj.y);
 
             if(distX > 200 && distY > 200){
-                enemies.push(new Enemy(x_on_create, y_on_create));
+                enemies.addObj(new Enemy(x_on_create, y_on_create));
+                
             } 
         }
     }
 
-    if(enemiesAway.length < na){
+    if(enemiesAway.added < na){
 
         if(Math.floor((Math.random() * 10) + 1) == 1){
 
@@ -432,12 +435,12 @@ function generar_enemigos(n,na,np,nl, nw){
             var distY = Math.abs(y_on_create-pj.y);
 
             if(distX > 200 && distY > 200){
-                enemiesAway.push(new EnemyAway(x_on_create, y_on_create));
+                enemiesAway.addObj(new EnemyAway(x_on_create, y_on_create));
             } 
         }
     }
 
-    if(enemiesProjectiles.length < np){
+    if(enemiesProjectiles.added < np){
 
         if(Math.floor((Math.random() * 50) + 1) == 1){
 
@@ -448,12 +451,12 @@ function generar_enemigos(n,na,np,nl, nw){
             var distY = Math.abs(y_on_create-pj.y);
             
             if(distX > 200 && distY > 200){
-                enemiesProjectiles.push(new EnemyProjectile(x_on_create, y_on_create));
+                enemiesProjectiles.addObj(new EnemyProjectile(x_on_create, y_on_create));
             } 
         }
     }
 
-    if(enemiesLines.length < nl){
+    if(enemiesLines.added < nl){
 
         if(Math.floor((Math.random() * 50) + 1) == 1){
 
@@ -464,12 +467,12 @@ function generar_enemigos(n,na,np,nl, nw){
             var distY = Math.abs(y_on_create-pj.y);
             
             if(distX > 200 && distY > 200){
-                enemiesLines.push(new EnemyLine(x_on_create, y_on_create));
+                enemiesLines.addObj(new EnemyLine(x_on_create, y_on_create));
             } 
         }
     }
 
-    if(enemiesWaves.length < nw){
+    if(enemiesWaves.added < nw){
 
         if(Math.floor((Math.random() * 50) + 1) == 1){
 
@@ -480,7 +483,7 @@ function generar_enemigos(n,na,np,nl, nw){
             var distY = Math.abs(y_on_create-pj.y);
             
             if(distX > 200 && distY > 200){
-                enemiesWaves.push(new EnemyWave(x_on_create, y_on_create));
+                enemiesWaves.addObj(new EnemyWave(x_on_create, y_on_create));
             } 
         }
     }
@@ -491,6 +494,7 @@ function generar_enemigos(n,na,np,nl, nw){
 function hexagon_collisions(){
     for (let i = 0; i < hexagons.length; i++) {
 
+        if(hexagons[i] != null){
         var dist = new Vector2D(pj.x-hexagons[i].x,pj.y-hexagons[i].y).getMagnitude();
         if(dist < 170 && Collider2D.detector.circleToPolygon(pj.x,pj.y,pj.radio*2,hexagons[i].poly) ){
             var newPos = Collider2D.reaction.circleToPolygon(pj.last_x,pj.last_y,  pj.x,pj.y,pj.radio*2,hexagons[i].poly);
@@ -508,82 +512,91 @@ function hexagon_collisions(){
 
 
         for (let j = 0; j < enemies.length; j++) {
-            
-            dist = new Vector2D(enemies[j].x-hexagons[i].x,enemies[j].y-hexagons[i].y).getMagnitude();
-            if(dist < 130 && Collider2D.detector.circleToPolygon(enemies[j].x,enemies[j].y,enemies[j].radio,hexagons[i].poly) ){
-                var newPos = Collider2D.reaction.circleToPolygon(enemies[j].last_x,enemies[j].last_y,  enemies[j].x,enemies[j].y,enemies[j].radio,hexagons[i].poly);
-    
-                if(!isNaN(newPos.x)){
-                    enemies[j].x = newPos.x;
-                    enemies[j].y = newPos.y;
-                
-                }else{
-                    enemies[j].x = enemies[j].last_x;
-                    enemies[j].y = enemies[j].last_y;
+            if(enemies[j] != null){
+                dist = new Vector2D(enemies[j].x-hexagons[i].x,enemies[j].y-hexagons[i].y).getMagnitude();
+                if(dist < 130 && Collider2D.detector.circleToPolygon(enemies[j].x,enemies[j].y,enemies[j].radio,hexagons[i].poly) ){
+                    var newPos = Collider2D.reaction.circleToPolygon(enemies[j].last_x,enemies[j].last_y,  enemies[j].x,enemies[j].y,enemies[j].radio,hexagons[i].poly);
+        
+                    if(!isNaN(newPos.x)){
+                        enemies[j].x = newPos.x;
+                        enemies[j].y = newPos.y;
+                    
+                    }else{
+                        enemies[j].x = enemies[j].last_x;
+                        enemies[j].y = enemies[j].last_y;
+                    }
+                    
                 }
-                
             }
             
         }
 
         for (let j = 0; j < enemiesLines.length; j++) {
             
-            dist = new Vector2D(enemiesLines[j].x-hexagons[i].x,enemiesLines[j].y-hexagons[i].y).getMagnitude();
-            if(dist < 130 && Collider2D.detector.circleToPolygon(enemiesLines[j].x,enemiesLines[j].y,enemiesLines[j].radio,hexagons[i].poly) ){
-                var newPos = Collider2D.reaction.circleToPolygon(enemiesLines[j].last_x,enemiesLines[j].last_y,  enemiesLines[j].x,enemiesLines[j].y,enemiesLines[j].radio,hexagons[i].poly);
-    
-                if(!isNaN(newPos.x)){
-                    enemiesLines[j].x = newPos.x;
-                    enemiesLines[j].y = newPos.y;
-                
-                }else{
-                    enemiesLines[j].x = enemiesLines[j].last_x;
-                    enemiesLines[j].y = enemiesLines[j].last_y;
+            if(enemiesLines[j] != null){
+                dist = new Vector2D(enemiesLines[j].x-hexagons[i].x,enemiesLines[j].y-hexagons[i].y).getMagnitude();
+                if(dist < 130 && Collider2D.detector.circleToPolygon(enemiesLines[j].x,enemiesLines[j].y,enemiesLines[j].radio,hexagons[i].poly) ){
+                    var newPos = Collider2D.reaction.circleToPolygon(enemiesLines[j].last_x,enemiesLines[j].last_y,  enemiesLines[j].x,enemiesLines[j].y,enemiesLines[j].radio,hexagons[i].poly);
+        
+                    if(!isNaN(newPos.x)){
+                        enemiesLines[j].x = newPos.x;
+                        enemiesLines[j].y = newPos.y;
+                    
+                    }else{
+                        enemiesLines[j].x = enemiesLines[j].last_x;
+                        enemiesLines[j].y = enemiesLines[j].last_y;
+                    }
+                    
                 }
-                
             }
             
         }
 
         for (let j = 0; j < enemiesAway.length; j++) {
-            
-            dist = new Vector2D(enemiesAway[j].x-hexagons[i].x,enemiesAway[j].y-hexagons[i].y).getMagnitude();
-            if(dist < 130 && Collider2D.detector.circleToPolygon(enemiesAway[j].x,enemiesAway[j].y,enemiesAway[j].radio,hexagons[i].poly) ){
-                var newPos = Collider2D.reaction.circleToPolygon(enemiesAway[j].last_x,enemiesAway[j].last_y,  enemiesAway[j].x,enemiesAway[j].y,enemiesAway[j].radio,hexagons[i].poly);
-    
-                if(!isNaN(newPos.x)){
-                    enemiesAway[j].x = newPos.x;
-                    enemiesAway[j].y = newPos.y;
+            if(enemiesAway[j] != null){
                 
-                }else{
-                    enemiesAway[j].x = enemiesAway[j].last_x;
-                    enemiesAway[j].y = enemiesAway[j].last_y;
+                dist = new Vector2D(enemiesAway[j].x-hexagons[i].x,enemiesAway[j].y-hexagons[i].y).getMagnitude();
+                if(dist < 130 && Collider2D.detector.circleToPolygon(enemiesAway[j].x,enemiesAway[j].y,enemiesAway[j].radio,hexagons[i].poly) ){
+                    var newPos = Collider2D.reaction.circleToPolygon(enemiesAway[j].last_x,enemiesAway[j].last_y,  enemiesAway[j].x,enemiesAway[j].y,enemiesAway[j].radio,hexagons[i].poly);
+        
+                    if(!isNaN(newPos.x)){
+                        enemiesAway[j].x = newPos.x;
+                        enemiesAway[j].y = newPos.y;
+                    
+                    }else{
+                        enemiesAway[j].x = enemiesAway[j].last_x;
+                        enemiesAway[j].y = enemiesAway[j].last_y;
+                    }
+                    
                 }
-                
             }
             
         }
 
         for (let j = 0; j < enemiesProjectiles.length; j++) {
             
-            dist = new Vector2D(enemiesProjectiles[j].x-hexagons[i].x,enemiesProjectiles[j].y-hexagons[i].y).getMagnitude();
-            if(dist < 130 && Collider2D.detector.circleToPolygon(enemiesProjectiles[j].x,enemiesProjectiles[j].y,enemiesProjectiles[j].radio,hexagons[i].poly) ){
-                var newPos = Collider2D.reaction.circleToPolygon(enemiesProjectiles[j].last_x,enemiesProjectiles[j].last_y,  enemiesProjectiles[j].x,enemiesProjectiles[j].y,enemiesProjectiles[j].radio,hexagons[i].poly);
-    
-                if(!isNaN(newPos.x)){
-                    enemiesProjectiles[j].x = newPos.x;
-                    enemiesProjectiles[j].y = newPos.y;
-                
-                }else{
-                    enemiesProjectiles[j].x = enemiesProjectiles[j].last_x;
-                    enemiesProjectiles[j].y = enemiesProjectiles[j].last_y;
+            if(enemiesProjectiles[j] != null){
+
+                dist = new Vector2D(enemiesProjectiles[j].x-hexagons[i].x,enemiesProjectiles[j].y-hexagons[i].y).getMagnitude();
+                if(dist < 130 && Collider2D.detector.circleToPolygon(enemiesProjectiles[j].x,enemiesProjectiles[j].y,enemiesProjectiles[j].radio,hexagons[i].poly) ){
+                    var newPos = Collider2D.reaction.circleToPolygon(enemiesProjectiles[j].last_x,enemiesProjectiles[j].last_y,  enemiesProjectiles[j].x,enemiesProjectiles[j].y,enemiesProjectiles[j].radio,hexagons[i].poly);
+        
+                    if(!isNaN(newPos.x)){
+                        enemiesProjectiles[j].x = newPos.x;
+                        enemiesProjectiles[j].y = newPos.y;
+                    
+                    }else{
+                        enemiesProjectiles[j].x = enemiesProjectiles[j].last_x;
+                        enemiesProjectiles[j].y = enemiesProjectiles[j].last_y;
+                    }
+                    
                 }
                 
             }
-            
         }
 
     }
+}
 }
 
 function check_game_over(){
@@ -601,16 +614,13 @@ function check_game_over(){
 function goToRoom(){
 
     on_world = false;
-        
 
-    for (let i = 0; i < UMI.realObjects.length; i++ ) {
-        if(UMI.realObjects[i] != pj){
-            UMI.realObjects[i].destroy();
-            i--;
-        } 
-    };
+    destroy_all();
 
     room_setup();
-    
 
 }
+
+
+
+

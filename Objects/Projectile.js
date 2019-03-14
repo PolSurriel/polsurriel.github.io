@@ -23,8 +23,8 @@ class Projectile extends RealObject {
         this.speed = UMI.getSpeed(250);
         
 
-        UMI.realObjects.push(this);
-        UMI.LogicObjects.push(this);
+        //UMI.realObjects.addObj(this);
+        //UMI.LogicObjects.addObj(this);
 
         
 
@@ -36,7 +36,7 @@ class Projectile extends RealObject {
         this.y += this.direction.y*this.speed;
 
         if(this.rebounds > 3){
-            this.destroy();
+            projectiles.destroy( projectiles.indexOf(this) );
             
         }
 

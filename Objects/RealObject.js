@@ -9,8 +9,8 @@ class RealObject {
     constructor (x,y){
         this.x = x;
         this.y = y;
-        UMI.realObjects.push(this);
-        UMI.LogicObjects.push(this);
+        //UMI.realObjects.push(this);
+        //UMI.LogicObjects.push(this);
         this.id = lastId++;
     }
 
@@ -29,9 +29,9 @@ class RealObject {
 
     destroy(){
         
-        UMI.realObjects.splice(UMI.realObjects.indexOf(this), 1);
-        UMI.LogicObjects.splice(UMI.LogicObjects.indexOf(this), 1);
-        delete this;
+        //UMI.realObjects.splice(UMI.realObjects.indexOf(this), 1);
+        //UMI.LogicObjects.splice(UMI.LogicObjects.indexOf(this), 1);
+        //delete this;
     }
 
 }

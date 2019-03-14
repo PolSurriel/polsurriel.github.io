@@ -27,7 +27,7 @@ class EnemyWave extends RealObject {
     }
 
     shootPlayer(){
-        if(waves.length < 5) waves.push(new Wave(this.x, this.y, new Vector2D(pj.x-this.x, pj.y-this.y).getUnitaryVector()));        
+        if(waves.added < 5) waves.addObj(new Wave(this.x, this.y, new Vector2D(pj.x-this.x, pj.y-this.y).getUnitaryVector()));        
     }
 
     setSpeed(){
@@ -71,7 +71,7 @@ class EnemyWave extends RealObject {
             this.forceVector = vectorToPlayer.getUnitaryVector();
             this.forceVector.rotate(this.last_rotation);
         } else if(vectorToPlayer.getMagnitude() > this.maxDistance) {
-            this.destroy();
+            enemiesWaves.destroy( enemiesWaves.indexOf(this) );
         } else {
             this.forceVector = vectorToPlayer.getUnitaryVector();
             //this.speed = UMI.getSpeed(Math.random() * (80 - 40) + 40);              
@@ -90,7 +90,7 @@ class EnemyWave extends RealObject {
     update() {
         this.move();
         if( new Vector2D(pj.x-this.x,pj.y-this.y).getMagnitude() > distance_to_destroy ){
-            this.destroy();
+            enemiesWaves.destroy( enemiesWaves.indexOf(this) );
         }
     }
 

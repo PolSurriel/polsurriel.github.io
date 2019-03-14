@@ -1,3 +1,39 @@
+Array.prototype.update = function (){
+  for (let i = 0; i < this.length; i++) 
+      if(this[i] != null) this[i].update();
+}
+
+Array.prototype.draw = function (){
+  for (let i = 0; i < this.length; i++) 
+      if(this[i] != null) this[i].draw();
+}
+
+Array.prototype.destroy = function (i){
+  this[i] = null;
+  this.added--;
+}
+
+Array.prototype.addObj = function (obj){
+  
+  for (let i = 0; i < this.length; i++){
+      if(this[i] == null){
+          this[i] = obj;
+          this.added ++;
+          break;
+      }
+
+  } 
+}
+
+Array.prototype.setAllNull = function (){
+  for (let i = 0; i < this.length; i++) {
+      this[i] = null;
+  }
+  this.added = 0;
+}
+
+Array.prototype.added = 0;
+
 document.addEventListener('contextmenu', event => event.preventDefault());
 
 // using UMI.js
@@ -6,19 +42,33 @@ var cameraReference;
 var score = 0;
 
 
-var hexagons = Array();
 
 // var poly = [[-10,10], [-30, 50], [40, 30], [55,31]];
 var poly = [[-10,6], [-30, 50], [40, 30],[50, -10] ];
 
-var enemies = new Array();
-var enemiesAway = new Array();
-var enemiesProjectiles = new Array();
-var enemiesLines = new Array();
-var projectiles = new Array();
-var linesShoot = new Array();
+var hexagons = Array(100);
+var enemies = new Array(100);
+var enemiesAway = new Array(100);
+var enemiesProjectiles = new Array(100);
+var enemiesLines = new Array(100);
+var projectiles = new Array(100);
+var linesShoot = new Array(100);
+var enemiesWaves = new Array(100);
+var waves = new Array(100);
+var particles = new Array(400);
 
-var enemiesWaves = new Array();
+enemies.setAllNull();
+enemiesAway.setAllNull();
+enemiesProjectiles.setAllNull();
+enemiesLines.setAllNull();
+projectiles.setAllNull();
+linesShoot.setAllNull();
+enemies.setAllNull();
+enemiesWaves.setAllNull();
+waves.setAllNull();
+hexagons.setAllNull();
+particles.setAllNull();
+
 
 var pu_count = 0;
 var hunted = 0;
@@ -62,7 +112,7 @@ var power_up_sound;
 var button_red_img;
 var stairs_2;
 
-var waves = new Array();
+
 
 var world_gameloop_phase = 1;
 

@@ -53,7 +53,7 @@ class EnemyAway extends RealObject {
             this.forceVector = vectorToPlayer.getUnitaryVector().getInverseVector();
             this.speed = UMI.getSpeed(Math.random() * (80 - 40) + 40);
         } else if(vectorToPlayer.getMagnitude() > this.maxDistance) {
-            this.destroy();
+            enemiesAway.destroy( enemiesAway.indexOf(this) );
         } else {
             if (this.rotationCompt > 0) {
                 this.rotationCompt--;

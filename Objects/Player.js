@@ -109,6 +109,16 @@ class Player extends RealObject {
         }
 
         this.shield_on_draw = new Array(this.shield.length);
+        this.holding = new Array(100);
+        this.holding.setAllNull();
+        this.holding_on_draw = new Array(100);
+        this.holding_on_draw.setAllNull();
+
+
+        this.fixedParticles = new Array(400);
+        this.fixedParticles.setAllNull();
+        
+        
 
     }
 
@@ -148,11 +158,11 @@ class Player extends RealObject {
           
             for (let i = 0; i < this.holding_on_draw.length; i++) {
                 
-                projectiles.push(new Projectile(this.holding_on_draw[i].x, this.holding_on_draw[i].y, new Vector2D(this.holding_on_draw[i].x-this.x, this.holding_on_draw[i].y-this.y,true).getUnitaryVector()));
+                if(this.holding_on_draw[i] != null) projectiles.addObj(new Projectile(this.holding_on_draw[i].x, this.holding_on_draw[i].y, new Vector2D(this.holding_on_draw[i].x-this.x, this.holding_on_draw[i].y-this.y,true).getUnitaryVector()));
             }
 
-            this.holding = new Array();
-            this.holding_on_draw = new Array();
+            this.holding.setAllNull();
+            this.holding_on_draw.setAllNull();
 
 
                 
@@ -187,15 +197,21 @@ class Player extends RealObject {
         }  
 
         if(this.particleState >= this.particlePointToGenerate/2){
-            this.fixedParticles.push(new Particle((Math.random() * (r +r) - r) - r, (Math.random() * (r +r) - r)-r, this.z, this.directionVector.getAngle(), this.health, (this.pu_speed_caught) ? 2:1));
+            this.fixedParticles.addObj(new Particle((Math.random() * (r +r) - r) - r, (Math.random() * (r +r) - r)-r, this.z, this.directionVector.getAngle(), this.health, (this.pu_speed_caught) ? 2:1));
         }
 
-        this.fixedParticles.forEach(particle => {
-            particle.reference_x = this.x+r;
-            particle.reference_y = this.y+r;
-            particle.z = this.z;
+        for (let i = 0; i < this.fixedParticles.length; i++) {
+         
+            if(this.fixedParticles[i] != null){
+                this.fixedParticles[i].reference_x = this.x+r;
+                this.fixedParticles[i].reference_y = this.y+r;
+                this.fixedParticles[i].z = this.z;
 
-        });
+                if(this.fixedParticles[i].opacity <= 0) this.fixedParticles.destroy(i);
+
+            }
+
+        }
         
 
 
@@ -246,7 +262,7 @@ class Player extends RealObject {
 
             for (let i = 0; i < this.holding_on_draw.length; i++) {
                 
-                projectiles.push(new Projectile(this.holding_on_draw[i].x, this.holding_on_draw[i].y, new Vector2D(this.holding_on_draw[i].x-this.x, this.holding_on_draw[i].y-this.y,true).getUnitaryVector()));
+                if (holding_on_draw != null) projectiles.addObj(new Projectile(this.holding_on_draw[i].x, this.holding_on_draw[i].y, new Vector2D(this.holding_on_draw[i].x-this.x, this.holding_on_draw[i].y-this.y,true).getUnitaryVector()));
             }
 
             this.holding = new Array();
@@ -283,16 +299,21 @@ class Player extends RealObject {
 
             for (let i = 0; i < this.holding.length; i++) {
 
-                this.holding_on_draw[i] = new Array(2);
+                if(this.holding[i] != null){
+                    this.holding_on_draw[i] = new Array(2);
+    
+                    var x = (this.holding[i].x);
+                    var y = (this.holding[i].y);
+                    
+                    var cos = Math.cos(this.orientation);
+                    var sin =  Math.sin(this.orientation);
+    
+                    this.holding_on_draw[i].x = this.x + cos * x - sin * y;
+                    this.holding_on_draw[i].y = this.y + sin * x + cos * y;  
 
-                var x = (this.holding[i].x);
-                var y = (this.holding[i].y);
-                
-                var cos = Math.cos(this.orientation);
-                var sin =  Math.sin(this.orientation);
-
-                this.holding_on_draw[i].x = this.x + cos * x - sin * y;
-                this.holding_on_draw[i].y = this.y + sin * x + cos * y;  
+                }else {
+                    this.holding_on_draw[i] = null;
+                }
 
                 
             }
@@ -460,7 +481,8 @@ class Player extends RealObject {
             noStroke();
             fill('orange');
             this.holding_on_draw.forEach(thing => {
-                ellipse(UMI.toPixel(Camera.translationX(thing.x)), UMI.toPixel(Camera.translationY(thing.y)), UMI.toPixel(EnemyAway.radio*2), UMI.toPixel(EnemyAway.radio*2));
+                
+                if (thing != null) ellipse(UMI.toPixel(Camera.translationX(thing.x)), UMI.toPixel(Camera.translationY(thing.y)), UMI.toPixel(EnemyAway.radio*2), UMI.toPixel(EnemyAway.radio*2));
             
             });
         }

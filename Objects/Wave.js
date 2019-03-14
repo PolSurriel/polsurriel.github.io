@@ -22,8 +22,8 @@ class Wave extends RealObject {
 
         this.speed = UMI.getSpeed(100);
         
-        UMI.realObjects.push(this);
-        UMI.LogicObjects.push(this);
+        //UMI.realObjects.push(this);
+        //UMI.LogicObjects.push(this);
 
         this.distanceVector = new Vector2D(0,0);
     }
@@ -34,7 +34,7 @@ class Wave extends RealObject {
         this.distanceVector.y = this.y - this.y_initial;
 
         if( new Vector2D(pj.x-this.x,pj.y-this.y).getMagnitude() > distance_to_destroy ){
-            this.destroy();
+            waves.destroy( waves.indexOf(this) );
         }
 
         this.x += this.direction.x*this.speed;
@@ -61,10 +61,10 @@ class Wave extends RealObject {
     }
 
     destroy(){
-        UMI.realObjects.splice(UMI.realObjects.indexOf(this), 1);
-        UMI.LogicObjects.splice(UMI.LogicObjects.indexOf(this), 1);
-        waves.splice(waves.indexOf(this), 1);
-        delete this;
+        //UMI.realObjects.splice(UMI.realObjects.indexOf(this), 1);
+        //UMI.LogicObjects.splice(UMI.LogicObjects.indexOf(this), 1);
+        //waves.splice(waves.indexOf(this), 1);
+        //delete this;
     }
 
 }

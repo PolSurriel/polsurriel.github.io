@@ -8,14 +8,15 @@ class LineShoot extends RealObject {
 
     size = 20;
 
+
     constructor(x, y,direction){
         super(x, y);
         this.direction = direction;
 
-        this.speed = UMI.getSpeed(200);
+        this.speed = UMI.getSpeed(230);
         
-        UMI.realObjects.push(this);
-        UMI.LogicObjects.push(this);        
+        //UMI.realObjects.addObj(this);
+        //UMI.LogicObjects.addObj(this);        
 
     }
 
@@ -25,7 +26,7 @@ class LineShoot extends RealObject {
         this.y += this.direction.y*this.speed;        
 
         if(this.rebounds > 3){
-            this.destroy();
+            linesShoot.destroy( linesShoot.indexOf(this) );
             
         }
 

@@ -32,10 +32,11 @@ class EnemyProjectile extends RealObject {
 
         this.rotationCompt = 0;
 
+
     }
 
     shootPlayer(){
-        projectiles.push(new Projectile(this.x, this.y, new Vector2D(pj.x-this.x, pj.y-this.y, false).getUnitaryVector()));        
+        projectiles.addObj(new Projectile(this.x, this.y, new Vector2D(pj.x-this.x, pj.y-this.y, false).getUnitaryVector()));        
     }
 
     setSpeed(){
@@ -79,7 +80,7 @@ class EnemyProjectile extends RealObject {
             this.forceVector = vectorToPlayer.getUnitaryVector();
             this.forceVector.rotate(this.last_rotation);
         } else if(vectorToPlayer.getMagnitude() > this.maxDistance) {
-            this.destroy();
+            enemiesProjectiles.destroy( enemiesProjectiles.indexOf(this) );
         } else {
             this.forceVector = vectorToPlayer.getUnitaryVector();
             this.speed = UMI.getSpeed(Math.random() * (this.normalSpeed - 100) + 100);              
@@ -99,7 +100,7 @@ class EnemyProjectile extends RealObject {
         this.last_x = this.x;
         this.last_y = this.y;
         if( new Vector2D(pj.x-this.x,pj.y-this.y).getMagnitude() > distance_to_destroy ){
-            this.destroy();
+            enemiesProjectiles.destroy( enemiesProjectiles.indexOf(this) );
         }
         this.move();
     }

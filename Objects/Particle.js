@@ -31,6 +31,8 @@ class Particle extends RealObject {
 
         this.setSpeed();
 
+        particles.addObj(this);
+
        
     }
 
@@ -39,7 +41,7 @@ class Particle extends RealObject {
         this.size -= this.sizeSpeed;
         this.opacity -= this.opSpeed;
 
-        if (this.opacity <= 0) this.destroy();
+        if (this.opacity <= 0) particles.destroy( particles.indexOf(this) );
 
 
     }

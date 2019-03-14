@@ -31,3 +31,50 @@
   }
 
 
+  function update_all(){
+    cameraReference.update();
+    enemies.update();
+    enemiesAway.update();
+    enemiesWaves.update();
+    enemiesLines.update();
+    projectiles.update();
+    hexagons.update();
+    waves.update();
+    linesShoot.update();
+    enemiesProjectiles.update();
+
+    pj.update();
+    particles.update();
+
+}
+
+function draw_all(){
+
+    enemies.draw();
+    enemiesAway.draw();
+    enemiesWaves.draw();
+    enemiesLines.draw();
+    projectiles.draw();
+    hexagons.draw();
+    waves.draw();
+    linesShoot.draw();
+    enemiesProjectiles.draw();
+
+    pj.draw();
+    particles.draw();
+}
+
+function destroy_all(){
+    enemies.setAllNull();
+    enemiesAway.setAllNull();
+    enemiesProjectiles.setAllNull();
+    enemiesLines.setAllNull();
+    projectiles.setAllNull();
+    linesShoot.setAllNull();
+    enemies.setAllNull();
+    enemiesWaves.setAllNull();
+    waves.setAllNull();
+    hexagons.setAllNull();
+    enemiesProjectiles.setAllNull();
+    particles.setAllNull();
+}

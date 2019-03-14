@@ -31,8 +31,8 @@ class UMI {
 
     static FPS = 60;
 
-    static realObjects = new Array();
-    static LogicObjects = new Array();
+    //static realObjects = new Array();
+    //static LogicObjects = new Array();
 
 
     static DEFAULT_UMI_UNIT_ON_PIXELS = 800;
