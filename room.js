@@ -27,6 +27,10 @@ function room_setup(){
         pj.health = 2;
     }
 
+    pj.holding.setAllNull();
+    pj.holding_on_draw.setAllNull();
+    pj.shield_active = false;
+
 }
 
 
@@ -440,6 +444,9 @@ function room_draw(){
 
 function ball_update(){
 
+    
+    ball.update();
+
     if( Collider2D.detector.circleToCircle(ball.x,ball.y,pj.x,pj.y,ball.radio,pj.radio) ){
         var newPos = Collider2D.reaction.circleToCircle(ball.x,ball.y,pj.x,pj.y,ball.radio,pj.radio);
 
@@ -450,7 +457,6 @@ function ball_update(){
 
     }
 
-    ball.update();
 
 
     //throne colision
@@ -476,6 +482,7 @@ function ball_update(){
     }
 
 
+    //wall collision
     if(UMI.toPixel(ball.x) <= -window.innerWidth/2+UMI.toPixel(ball.radio) ){
         ball.setForce(new Vector2D ( ball.last_x-ball.x , ball.last_y-ball.y ));
         ball.x = ball.last_x;

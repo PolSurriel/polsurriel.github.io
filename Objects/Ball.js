@@ -34,7 +34,7 @@ class Ball extends RealObject{
         this.last_y = this.y;
 
         if(this.moving == true){
-            console.log('oh god damm you are sexy');
+            
             this.x += this.forecVector.x * this.force;
             this.y += this.forecVector.y * this.force;
             this.force -= this.gravity_force;
