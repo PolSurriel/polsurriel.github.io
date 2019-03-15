@@ -40,9 +40,7 @@ class Hexagon extends RealObject {
 
         }
 
-        if( new Vector2D(pj.x-this.x,pj.y-this.y).getMagnitude() > distance_to_destroy ){
-            hexagons.destroy( hexagons.indexOf(this) );
-        }
+        
             
     }
 

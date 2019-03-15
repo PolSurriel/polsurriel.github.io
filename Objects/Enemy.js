@@ -53,9 +53,6 @@ class Enemy extends RealObject {
         this.last_x = this.x;
         this.last_y = this.y;
 
-        if( new Vector2D(pj.x-this.x,pj.y-this.y).getMagnitude() > distance_to_destroy ){
-            enemies.destroy( enemies.indexOf(this) );
-        }
         this.move();
     }
 

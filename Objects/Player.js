@@ -145,6 +145,11 @@ class Player extends RealObject {
     }
 
     update(){ 
+
+        for (let i = 0; i < particles.length; i++) {
+            if (particles[i] != null && particles[i].opacity <= 0) particles.destroy( i );
+            
+        }
         
         if(!this.jumping && !this.shield_active && Mouse.left.clicked){
             this.shield_init_sound.play();

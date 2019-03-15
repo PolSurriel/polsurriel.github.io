@@ -515,6 +515,10 @@ function generar_enemigos(n,na,np,nl, nw){
 function hexagon_collisions(){
     for (let i = 0; i < hexagons.length; i++) {
 
+        if(hexagons[i] != null && new Vector2D(pj.x-hexagons[i].x,pj.y-hexagons[i].y).getMagnitude() > distance_to_destroy ){
+            hexagons.destroy( i );
+        }
+
         if(hexagons[i] != null){
         var dist = new Vector2D(pj.x-hexagons[i].x,pj.y-hexagons[i].y).getMagnitude();
         if(dist < 170 && Collider2D.detector.circleToPolygon(pj.x,pj.y,pj.radio*2,hexagons[i].poly) ){
@@ -534,6 +538,7 @@ function hexagon_collisions(){
 
         for (let j = 0; j < enemies.length; j++) {
             if(enemies[j] != null){
+
                 dist = new Vector2D(enemies[j].x-hexagons[i].x,enemies[j].y-hexagons[i].y).getMagnitude();
                 if(dist < 130 && Collider2D.detector.circleToPolygon(enemies[j].x,enemies[j].y,enemies[j].radio,hexagons[i].poly) ){
                     var newPos = Collider2D.reaction.circleToPolygon(enemies[j].last_x,enemies[j].last_y,  enemies[j].x,enemies[j].y,enemies[j].radio,hexagons[i].poly);
@@ -547,6 +552,10 @@ function hexagon_collisions(){
                         enemies[j].y = enemies[j].last_y;
                     }
                     
+                }
+
+                if( new Vector2D(pj.x-enemies[j].x,pj.y-enemies[j].y).getMagnitude() > distance_to_destroy ){
+                    enemies.destroy( j );
                 }
             }
             
