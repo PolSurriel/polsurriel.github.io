@@ -166,8 +166,7 @@ class Player extends RealObject {
                 if(this.holding_on_draw[i] != null){
                 
                     projectiles.addObj(new Projectile(this.holding_on_draw[i].x, this.holding_on_draw[i].y, new Vector2D(this.holding_on_draw[i].x-this.x, this.holding_on_draw[i].y-this.y,true).getUnitaryVector()));
-                    this.holding_on_draw.destroy(i);
-                    this.holding.destroy(i);
+                    
                 }
             }
 
@@ -274,14 +273,11 @@ class Player extends RealObject {
                 
                 if (this.holding_on_draw[i] != null) {
                     projectiles.addObj(new Projectile(this.holding_on_draw[i].x, this.holding_on_draw[i].y, new Vector2D(this.holding_on_draw[i].x-this.x, this.holding_on_draw[i].y-this.y,true).getUnitaryVector()));
-                    this.holding_on_draw.destroy(i);
-                    this.holding.destroy(i);
                 }
             }
 
-            this.holding = new Array();
-            this.holding_on_draw = new Array();
-
+            this.holding.setAllNull();
+            this.holding_on_draw.setAllNull();
             
         }
 
