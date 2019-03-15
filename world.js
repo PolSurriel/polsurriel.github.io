@@ -45,11 +45,9 @@ function world_update(){
         var positionValid = true;
         for (let i = 0; i < hexagons.length && positionValid; i++) {
             if(hexagons[i] != null) positionValid = ( Math.abs(hexagons[i].x - x_on_create) > 100 && Math.abs(hexagons[i].y - y_on_create) > 100 )
-            
         }
         if(positionValid &&  Math.abs(pj.x - x_on_create) > 100 && Math.abs(pj.y - y_on_create) > 100) {
             new Hexagon(x_on_create,y_on_create, create_hexagon(x_on_create,y_on_create) );
-
         }
 
         tries ++;

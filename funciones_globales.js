@@ -56,13 +56,13 @@ function draw_all(){
     enemiesWaves.draw();
     enemiesLines.draw();
     projectiles.draw();
-    hexagons.draw();
     waves.draw();
     linesShoot.draw();
     enemiesProjectiles.draw();
-
+    
     pj.draw();
     particles.draw();
+    hexagons.draw();
 }
 
 function destroy_all(){
