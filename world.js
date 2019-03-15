@@ -13,6 +13,10 @@ function world_setup(){
 
     pj.z = 0;
 
+    
+    particles.setAllNull();
+    pj.fixedParticles.setAllNull();
+
 }
 
 //gameloop

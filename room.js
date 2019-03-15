@@ -31,6 +31,9 @@ function room_setup(){
     pj.holding_on_draw.setAllNull();
     pj.shield_active = false;
 
+
+    particles.setAllNull();
+    pj.fixedParticles.setAllNull();
 }
 
 
