@@ -47,4 +47,20 @@
 
 <body>
 </body>
+
+<script>
+  setTimeout(() => {
+
+    var es_chrome = navigator.userAgent.toLowerCase().indexOf('chrome') > -1;
+    if(!es_chrome){
+      document.getElementById('p5_loading').innerHTML = '';
+      alert("Este juego utiliza características compatibles sólo con Google Chrome");
+    }
+
+
+    
+  }, 1000);
+
+
+</script>
 </html>

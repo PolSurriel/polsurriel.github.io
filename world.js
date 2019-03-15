@@ -171,7 +171,7 @@ function world_update(){
 
       
       for (let i = 0; i < waves.length; i++) {
-        if(waves[i] != null && !pj.jumping && Collider2D.detector.circleToLine( pj.x, pj.y, pj.radio*2, waves[i].x1, waves[i].y1,waves[i].x2, waves[i].y2 ) ){
+        if(waves[i] != null && !pj.jumping && Collider2D.detector.circleToLine( pj.x, pj.y, pj.radio, waves[i].x1, waves[i].y1,waves[i].x2, waves[i].y2 ) ){
             check_game_over();
             waves.destroy(i);
         }
