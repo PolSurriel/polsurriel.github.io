@@ -22,7 +22,7 @@ class Wave extends RealObject {
         this.y_initial = y;
         this.direction = direction;
 
-        this.speed = UMI.getSpeed(190);
+        this.speed = UMI.getSpeed(230);
         
         //UMI.realObjects.push(this);
         //UMI.LogicObjects.push(this);
