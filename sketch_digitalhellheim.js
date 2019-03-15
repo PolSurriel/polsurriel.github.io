@@ -17,7 +17,7 @@ function setup(){
   hexagon_height = Math.abs(hexagon_reference[2][1]-hexagon_reference[4][1]);
   hexagon_width = Math.abs(hexagon_reference[0][0]-hexagon_reference[3][0]);
 
-  console.log('VERSION ESTABLE 1.0');
+  console.log('VERSION ESTABLE 1.3');
     
 }
 
