@@ -267,7 +267,7 @@ class Player extends RealObject {
 
             for (let i = 0; i < this.holding_on_draw.length; i++) {
                 
-                if (holding_on_draw != null) projectiles.addObj(new Projectile(this.holding_on_draw[i].x, this.holding_on_draw[i].y, new Vector2D(this.holding_on_draw[i].x-this.x, this.holding_on_draw[i].y-this.y,true).getUnitaryVector()));
+                if (this.holding_on_draw != null) projectiles.addObj(new Projectile(this.holding_on_draw[i].x, this.holding_on_draw[i].y, new Vector2D(this.holding_on_draw[i].x-this.x, this.holding_on_draw[i].y-this.y,true).getUnitaryVector()));
             }
 
             this.holding = new Array();
