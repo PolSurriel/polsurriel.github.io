@@ -257,24 +257,29 @@ function world_update(){
               hunted++;
               score += 20;
               enemiesAway.destroy(i);
+
+              
+              console.log('CAPTION')
       
+              
     
             }
           }
 
           for (let i = 0; i < projectiles.length; i++) {
 
-            if (projectiles[i]!= null) {
+         
     
-                if(projectiles[i].rebounds > 3){
-                    projectiles.destroy( i );
-                }
-                
-                if( new Vector2D(pj.x-projectiles[i].x,pj.y-projectiles[i].y).getMagnitude() > distance_to_destroy ){
-                    projectiles.destroy( i );
-                }
-
+            if(projectiles[i]!= null && projectiles[i].rebounds > 3){
+                projectiles.destroy( i );
             }
+            
+            if(projectiles[i]!= null && new Vector2D(pj.x-projectiles[i].x,pj.y-projectiles[i].y).getMagnitude() > distance_to_destroy ){
+                projectiles.destroy( i );
+            }
+
+
+            
          
             if(projectiles[i]!= null && Collider2D.detector.circleToPolygon( projectiles[i].x, projectiles[i].y, projectiles[i].radio*2, pj.shield_on_draw )){
               
@@ -290,10 +295,15 @@ function world_update(){
                   });
               }
 
+              console.log(pj.holding);
+
               
   
               score += 100;
               projectiles.destroy(i);
+
+              
+              console.log('CAPTION')
       
     
             }
