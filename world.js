@@ -227,9 +227,6 @@ function world_update(){
             pj.portal_y = y_on_create;
 
 
-            console.log(pj.x, x_on_create);
-            console.log(pj.y, y_on_create);
-
     
         
     }
@@ -258,9 +255,6 @@ function world_update(){
               score += 20;
               enemiesAway.destroy(i);
 
-              
-              console.log('CAPTION')
-      
               
     
             }
@@ -301,7 +295,6 @@ function world_update(){
               projectiles.destroy(i);
 
               
-              console.log('CAPTION')
       
     
             }
