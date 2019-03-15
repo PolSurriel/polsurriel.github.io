@@ -129,7 +129,7 @@ function world_update(){
             }
             
             for (let j = 0; j < hexagons.length; j++) {
-                if(hexagons[j] != null && projectiles[i] != null  && Collider2D.detector.circleToPolygon( projectiles[i].x, projectiles[i].y, projectiles[i].radio,hexagons[j].poly ) ){
+                if(hexagons[j] != null && projectiles[i] != null && Collider2D.detector.pointToCircle(projectiles[i].x, projectiles[i].y, hexagons[j].x, hexagons[j].y, 180)  && Collider2D.detector.circleToPolygon( projectiles[i].x, projectiles[i].y, projectiles[i].radio,hexagons[j].poly ) ){
                     projectiles[i].direction.x = -projectiles[i].direction.x; 
                     projectiles[i].direction.y = -projectiles[i].direction.y; 
                     projectiles[i].rebounds++;
@@ -159,7 +159,7 @@ function world_update(){
 
             for (let j = 0; j < hexagons.length; j++) {
         
-                if(linesShoot[i] != null && hexagons[j] != null && Collider2D.detector.circleToPolygon( linesShoot[i].x, linesShoot[i].y, 3,hexagons[j].poly ) ){
+                if(linesShoot[i] != null && hexagons[j] != null && Collider2D.detector.pointToCircle(linesShoot[i].x,linesShoot[i].y, hexagons[j].x, hexagons[j].y, 180) && Collider2D.detector.circleToPolygon( linesShoot[i].x, linesShoot[i].y, 3,hexagons[j].poly ) ){
                     linesShoot.destroy(i);
                 }
 
@@ -446,7 +446,7 @@ function generar_enemigos(n,na,np,nl, nw){
 
     if(enemiesAway.added < na){
 
-        if(Math.floor((Math.random() * 10) + 1) == 1){
+        if(Math.floor((Math.random() * 5) + 1) == 1){
 
             var x_on_create = Math.random() * ((pj.x+500) - (pj.x-500)) + (pj.x-500);
             var y_on_create = Math.random() * ((pj.y+500) - (pj.y-500)) + (pj.y-500);
@@ -540,7 +540,7 @@ function hexagon_collisions(){
             if(enemies[j] != null){
 
                 dist = new Vector2D(enemies[j].x-hexagons[i].x,enemies[j].y-hexagons[i].y).getMagnitude();
-                if(dist < 130 && Collider2D.detector.circleToPolygon(enemies[j].x,enemies[j].y,enemies[j].radio,hexagons[i].poly) ){
+                if(dist < 170 && Collider2D.detector.circleToPolygon(enemies[j].x,enemies[j].y,enemies[j].radio,hexagons[i].poly) ){
                     var newPos = Collider2D.reaction.circleToPolygon(enemies[j].last_x,enemies[j].last_y,  enemies[j].x,enemies[j].y,enemies[j].radio,hexagons[i].poly);
         
                     if(!isNaN(newPos.x)){
@@ -565,7 +565,7 @@ function hexagon_collisions(){
             
             if(enemiesLines[j] != null){
                 dist = new Vector2D(enemiesLines[j].x-hexagons[i].x,enemiesLines[j].y-hexagons[i].y).getMagnitude();
-                if(dist < 130 && Collider2D.detector.circleToPolygon(enemiesLines[j].x,enemiesLines[j].y,enemiesLines[j].radio,hexagons[i].poly) ){
+                if(dist < 170 && Collider2D.detector.circleToPolygon(enemiesLines[j].x,enemiesLines[j].y,enemiesLines[j].radio,hexagons[i].poly) ){
                     var newPos = Collider2D.reaction.circleToPolygon(enemiesLines[j].last_x,enemiesLines[j].last_y,  enemiesLines[j].x,enemiesLines[j].y,enemiesLines[j].radio,hexagons[i].poly);
         
                     if(!isNaN(newPos.x)){
@@ -586,7 +586,7 @@ function hexagon_collisions(){
             if(enemiesAway[j] != null){
                 
                 dist = new Vector2D(enemiesAway[j].x-hexagons[i].x,enemiesAway[j].y-hexagons[i].y).getMagnitude();
-                if(dist < 130 && Collider2D.detector.circleToPolygon(enemiesAway[j].x,enemiesAway[j].y,enemiesAway[j].radio,hexagons[i].poly) ){
+                if(dist < 170 && Collider2D.detector.circleToPolygon(enemiesAway[j].x,enemiesAway[j].y,enemiesAway[j].radio,hexagons[i].poly) ){
                     var newPos = Collider2D.reaction.circleToPolygon(enemiesAway[j].last_x,enemiesAway[j].last_y,  enemiesAway[j].x,enemiesAway[j].y,enemiesAway[j].radio,hexagons[i].poly);
         
                     if(!isNaN(newPos.x)){
@@ -608,7 +608,7 @@ function hexagon_collisions(){
             if(enemiesProjectiles[j] != null){
 
                 dist = new Vector2D(enemiesProjectiles[j].x-hexagons[i].x,enemiesProjectiles[j].y-hexagons[i].y).getMagnitude();
-                if(dist < 130 && Collider2D.detector.circleToPolygon(enemiesProjectiles[j].x,enemiesProjectiles[j].y,enemiesProjectiles[j].radio,hexagons[i].poly) ){
+                if(dist < 190 && Collider2D.detector.circleToPolygon(enemiesProjectiles[j].x,enemiesProjectiles[j].y,enemiesProjectiles[j].radio,hexagons[i].poly) ){
                     var newPos = Collider2D.reaction.circleToPolygon(enemiesProjectiles[j].last_x,enemiesProjectiles[j].last_y,  enemiesProjectiles[j].x,enemiesProjectiles[j].y,enemiesProjectiles[j].radio,hexagons[i].poly);
         
                     if(!isNaN(newPos.x)){
@@ -618,6 +618,28 @@ function hexagon_collisions(){
                     }else{
                         enemiesProjectiles[j].x = enemiesProjectiles[j].last_x;
                         enemiesProjectiles[j].y = enemiesProjectiles[j].last_y;
+                    }
+                    
+                }
+                
+            }
+        }
+
+        for (let j = 0; j < enemiesWaves.length; j++) {
+            
+            if(enemiesWaves[j] != null){
+
+                dist = new Vector2D(enemiesWaves[j].x-hexagons[i].x,enemiesWaves[j].y-hexagons[i].y).getMagnitude();
+                if(dist < 190 && Collider2D.detector.circleToPolygon(enemiesWaves[j].x,enemiesWaves[j].y,enemiesWaves[j].radio,hexagons[i].poly) ){
+                    var newPos = Collider2D.reaction.circleToPolygon(enemiesWaves[j].last_x,enemiesWaves[j].last_y,  enemiesWaves[j].x,enemiesWaves[j].y,enemiesWaves[j].radio,hexagons[i].poly);
+        
+                    if(!isNaN(newPos.x)){
+                        enemiesWaves[j].x = newPos.x;
+                        enemiesWaves[j].y = newPos.y;
+                    
+                    }else{
+                        enemiesWaves[j].x = enemiesProjectiles[j].last_x;
+                        enemiesWaves[j].y = enemiesProjectiles[j].last_y;
                     }
                     
                 }
