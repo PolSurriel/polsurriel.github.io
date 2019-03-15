@@ -51,7 +51,7 @@ function room_gameloop(){
         textSize(UMI.toPixel(200));
         text('<3', UMI.toPixel(window.innerWidth/2.5), UMI.toPixel(window.innerHeight/3));
 
-        game_over_status+= game_over_speed;
+        game_over_status+= game_over_speed*2;
         if(game_over_status >= 255){
             game_over = false;
         }
