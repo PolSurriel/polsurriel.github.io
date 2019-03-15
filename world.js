@@ -280,6 +280,7 @@ function world_update(){
 
 
             
+            
          
             if(projectiles[i]!= null && Collider2D.detector.circleToPolygon( projectiles[i].x, projectiles[i].y, projectiles[i].radio*2, pj.shield_on_draw )){
               
@@ -295,9 +296,6 @@ function world_update(){
                   });
               }
 
-              console.log(pj.holding);
-
-              
   
               score += 100;
               projectiles.destroy(i);

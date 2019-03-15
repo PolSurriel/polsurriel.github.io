@@ -163,7 +163,12 @@ class Player extends RealObject {
           
             for (let i = 0; i < this.holding_on_draw.length; i++) {
                 
-                if(this.holding_on_draw[i] != null) projectiles.addObj(new Projectile(this.holding_on_draw[i].x, this.holding_on_draw[i].y, new Vector2D(this.holding_on_draw[i].x-this.x, this.holding_on_draw[i].y-this.y,true).getUnitaryVector()));
+                if(this.holding_on_draw[i] != null){
+                
+                    projectiles.addObj(new Projectile(this.holding_on_draw[i].x, this.holding_on_draw[i].y, new Vector2D(this.holding_on_draw[i].x-this.x, this.holding_on_draw[i].y-this.y,true).getUnitaryVector()));
+                    this.holding_on_draw.destroy(i);
+                    this.holding.destroy(i);
+                }
             }
 
             this.holding.setAllNull();
@@ -267,7 +272,11 @@ class Player extends RealObject {
 
             for (let i = 0; i < this.holding_on_draw.length; i++) {
                 
-                if (this.holding_on_draw[i] != null) projectiles.addObj(new Projectile(this.holding_on_draw[i].x, this.holding_on_draw[i].y, new Vector2D(this.holding_on_draw[i].x-this.x, this.holding_on_draw[i].y-this.y,true).getUnitaryVector()));
+                if (this.holding_on_draw[i] != null) {
+                    projectiles.addObj(new Projectile(this.holding_on_draw[i].x, this.holding_on_draw[i].y, new Vector2D(this.holding_on_draw[i].x-this.x, this.holding_on_draw[i].y-this.y,true).getUnitaryVector()));
+                    this.holding_on_draw.destroy(i);
+                    this.holding.destroy(i);
+                }
             }
 
             this.holding = new Array();
