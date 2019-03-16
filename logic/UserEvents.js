@@ -64,74 +64,100 @@ class Keyboard {
 
 }
 
-window.onmousedown = function (e) {
-    Mouse.left.clicked = true;
+class TouchPad {
+
 }
 
-window.onmouseup = function (e) {
-    Mouse.left.clicked = false;
-}
 
-window.onkeydown = function (e){
 
-    switch(e.keyCode) {
-        case Keyboard.left.code:
-        case Keyboard.left.secondaryCode:
-            Keyboard.left.pressed = true;
-            break;
+if(!isMobileDevice()){
 
-        case Keyboard.top.code:
-        case Keyboard.top.secondaryCode:
-            Keyboard.top.pressed = true;
+    window.onmousedown = function (e) {
+        Mouse.left.clicked = true;
+    }
+
+    window.onmouseup = function (e) {
+        Mouse.left.clicked = false;
+    }
+
+    window.onkeydown = function (e){
+
+        switch(e.keyCode) {
+            case Keyboard.left.code:
+            case Keyboard.left.secondaryCode:
+                Keyboard.left.pressed = true;
+                break;
+
+            case Keyboard.top.code:
+            case Keyboard.top.secondaryCode:
+                Keyboard.top.pressed = true;
+                
+                break;
+            case Keyboard.right.code:
+            case Keyboard.right.secondaryCode:
+                Keyboard.right.pressed = true;
             
-            break;
-        case Keyboard.right.code:
-        case Keyboard.right.secondaryCode:
-            Keyboard.right.pressed = true;
-        
-            break;
-        case Keyboard.bottom.code:
-        case Keyboard.bottom.secondaryCode:
-            Keyboard.bottom.pressed = true;
-            break;
-        case Keyboard.jump.code:
-            Keyboard.jump.pressed = true;
-            break;
-      }
+                break;
+            case Keyboard.bottom.code:
+            case Keyboard.bottom.secondaryCode:
+                Keyboard.bottom.pressed = true;
+                break;
+            case Keyboard.jump.code:
+                Keyboard.jump.pressed = true;
+                break;
+        }
 
 
-}
+    }
 
-window.onkeyup = function (e){
+    window.onkeyup = function (e){
 
-    switch(e.keyCode) {
-        case Keyboard.left.code:
-        case Keyboard.left.secondaryCode:
-            Keyboard.left.pressed = false;
-            break;
+        switch(e.keyCode) {
+            case Keyboard.left.code:
+            case Keyboard.left.secondaryCode:
+                Keyboard.left.pressed = false;
+                break;
 
-        case Keyboard.top.code:
-        case Keyboard.top.secondaryCode:
-            Keyboard.top.pressed = false;
+            case Keyboard.top.code:
+            case Keyboard.top.secondaryCode:
+                Keyboard.top.pressed = false;
+                
+                break;
+            case Keyboard.right.code:
+            case Keyboard.right.secondaryCode:
+                Keyboard.right.pressed = false;
             
-            break;
-        case Keyboard.right.code:
-        case Keyboard.right.secondaryCode:
-            Keyboard.right.pressed = false;
-        
-            break;
-        case Keyboard.bottom.code:
-        case Keyboard.bottom.secondaryCode:
-            Keyboard.bottom.pressed = false;
-        
-            break;
-        case Keyboard.jump.code:
-            pj.can_splash = true; //esto tiene sus razones
-            Keyboard.jump.pressed = false;
-            break;
+                break;
+            case Keyboard.bottom.code:
+            case Keyboard.bottom.secondaryCode:
+                Keyboard.bottom.pressed = false;
+            
+                break;
+            case Keyboard.jump.code:
+                pj.can_splash = true; //esto tiene sus razones
+                Keyboard.jump.pressed = false;
+                break;
 
-      }
-    
+        }
+        
+
+
+    }
+
+
+
+
+}else {
+
+    function onJump (e){
+
+    }
+
+    function touchPadEvent (e){
+        console.log(e.type);
+    }
+
+
 
 
 }

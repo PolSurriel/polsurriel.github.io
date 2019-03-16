@@ -2,6 +2,19 @@
   function windowResized() {
     resizeCanvas(windowWidth, windowHeight);
     UMI.setup();
+
+    if(isMobileDevice()){
+      
+      var w = Math.floor(UMI.toPixel(120));
+        
+        
+      button.style.width = w+'px';
+      button.style.height = w+'px';
+      button.style.opacity = 0.3;
+      button.style.marginLeft = window.innerWidth - window.innerWidth*0.2;
+      button.style.marginTop = window.innerHeight - window.innerHeight*0.2;
+      
+    }
     
   }
 

@@ -19,6 +19,18 @@ function setup(){
 
   console.log('VERSION ESTABLE 1.3');
     
+/*
+  document.getElementById('screen').innerHTML += `
+    
+      <div style="position:fixed; width:`+Math.floor(UMI.toPixel(10))+`px; height:`+Math.floor(UMI.toPixel(10))+`px; background-color:red;" >
+      </div>
+    
+    `;
+
+
+    */
+
+    
 }
 
 
