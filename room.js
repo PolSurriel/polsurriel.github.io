@@ -436,7 +436,7 @@ function room_draw(){
         textAlign(LEFT);
         noStroke();
         textSize(UMI.toPixel(20));
-        text('Controls: \n Movement keys: A W D S / arrow keys \n Jump: Space \n Splash: Space (while jumping) ',UMI.toPixel(0),UMI.toPixel(0));
+        text('Controls: \n Movement keys: A W D S / arrow keys \n Jump: Space \n Splash: Space (while jumping) \n Click: Active shield',UMI.toPixel(0),UMI.toPixel(0));
         
         
 
