@@ -1,0 +1,1123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>AA3 UX Analysis App</title>
+    <style>
+    
+    body{
+        background-color: beige;
+    }
+
+    h6 { color: #111;
+        font-family: 'Helvetica Neue', sans-serif; 
+        font-size: 120px; 
+        font-weight: bold; 
+        letter-spacing: 1px; 
+        line-height: 1; 
+        text-align: center; 
+    }
+
+    h5 { margin-top: -400px; color: #111; font-family: 'Open Sans', sans-serif; font-size: 30px; font-weight: 300; line-height: 32px; margin: 0 0 72px; text-align: center; }
+    
+    h1 { color: #ff4411; font-size: 48px; font-family: 'Signika', sans-serif; padding-bottom: 10px; }
+    div h1 { color: #ff4411; font-size: 48px; font-family: 'Signika', sans-serif; padding-bottom: 10px; }
+
+    div *{
+        color: #200668; font-family: 'Helvetica Neue', sans-serif; font-size: 16px; line-height: 24px; margin: 0 0 24px; text-align: justify; text-justify: inter-word; 
+    }
+
+    </style>
+</head>
+
+<div id="r"></div>
+
+<body>
+
+
+    <h6>
+        Playtesting - Analysis of quantitative data
+    </h6>
+
+    <h5>AA3, UX i anàlisi de jocs. 1º CDI Matí - Pol Surriel, Eric Garcia y Víctor Garcinuno</h5>
+    <br>
+    <center>
+        <img style="margin-top: -100px; width: 400px; height: 100px;" src="https://www.citilab.eu/wp-content/uploads/2016/06/logo-enti.png" alt="">
+
+    </center>
+
+    <h1>Import local data</h1>
+    <div style="background-color:rgb(100, 216, 216); padding:10px; border-radius: 10px; margin-bottom:10px; width: 99%; float:right;margin-bottom:30px">
+        <div style="float:left; margin:10px;">
+            <h2>Demographic data</h2>
+            <input id="dd" type="file" id="file" />
+        </div>
+
+        <div style="float:left; margin:10px;">
+            <h2>Death reaction</h2>
+            <input id="dr" type="file" id="file" />
+        </div>
+
+        <div style="float:left; margin:10px;">
+            <h2>Flow channel</h2>
+            <input id="fc" type="file" id="file" />
+        </div>
+
+        <div style="float:left; margin:10px;">
+            <h2>Dif changes</h2>
+            <input id="dc" type="file" id="file" />
+        </div>
+
+        <div style="float:left; margin:10px;">
+            <h2>Power up's</h2>
+            <input id="pu" type="file" id="file" />
+        </div>    
+        <br>
+        <br>
+    </div>
+    
+    <button onclick="load()">Load data</button>  
+    
+<br>
+<br>
+    
+
+
+
+    <script>
+
+        function loadFilterForm(chart_id, to, onchangefunc){
+            document.getElementById(to).innerHTML += `
+            <div style="background-color:#adccff; padding:20px; border-radius:10px; ">
+                <input onchange="`+onchangefunc+`" type="radio" name="`+chart_id+`_target_" id="`+chart_id+`_target_IN" value="IN" checked> IN
+                <input onchange="`+onchangefunc+`" type="radio" name="`+chart_id+`_target_" id="`+chart_id+`_target_OUT" value="OUT"> OUT
+                <input onchange="`+onchangefunc+`" type="radio" name="`+chart_id+`_target_" id="`+chart_id+`_target_ALL" value="ALL"> All
+
+                // Gender <select onchange="`+onchangefunc+`" id="`+chart_id+`_gender">
+                    <option value="ALL">All</option>
+                    <option value="H">H</option>
+                    <option value="M">M</option>
+                    <option value="O">O</option>
+                    <option value="P">P</option>
+
+                </select>
+
+
+
+                // Activity <select onchange="`+onchangefunc+`" id="`+chart_id+`_activity">
+                        <option value="ALL">All</option>
+                        <option value="A">A</option>
+                        <option value="B">B</option>
+                        <option value="C">C</option>
+                        <option value="D">D</option>
+                        <option value="N">N</option>
+
+                    
+                    </select>
+
+                // Style <select onchange="`+onchangefunc+`" id="`+chart_id+`_style">
+                        <option value="ALL">All</option>
+                        <option value="A">A (solo)</option>
+                        <option value="B">B (acompañado)</option>
+                        <option value="C">C (ambas)</option>
+
+                    
+                    </select>
+
+                <br>
+                primary behavior  .---->
+                <input onchange="`+onchangefunc+`" type="checkbox" id="`+chart_id+`_primary_A" > A
+                <input onchange="`+onchangefunc+`" type="checkbox" id="`+chart_id+`_primary_T" > T
+                <input onchange="`+onchangefunc+`" type="checkbox" id="`+chart_id+`_primary_S" > S
+                <input onchange="`+onchangefunc+`" type="checkbox" id="`+chart_id+`_primary_E" > E
+                <input onchange="`+onchangefunc+`" type="checkbox" id="`+chart_id+`_primary_N" > N
+                <input onchange="`+onchangefunc+`" type="checkbox" id="`+chart_id+`_primary_L" > L
+
+                <br>
+                secondary behavior --> 
+                <input onchange="`+onchangefunc+`" type="checkbox" id="`+chart_id+`_secondary_A" > A
+                <input onchange="`+onchangefunc+`" type="checkbox" id="`+chart_id+`_secondary_T" > T
+                <input onchange="`+onchangefunc+`" type="checkbox" id="`+chart_id+`_secondary_S" > S
+                <input onchange="`+onchangefunc+`" type="checkbox" id="`+chart_id+`_secondary_E" > E
+                <input onchange="`+onchangefunc+`" type="checkbox" id="`+chart_id+`_secondary_N" > N
+                <input onchange="`+onchangefunc+`" type="checkbox" id="`+chart_id+`_secondary_L" > L
+                
+
+                <br>
+                Age <input id="`+chart_id+`_age" type="number"> <button onclick="`+onchangefunc+`">done</button>
+                <br>
+                List of users <input id="`+chart_id+`_user_list" type="text"> <button onclick="`+onchangefunc+`">done</button>
+            </div>
+                `;
+        }
+
+
+        String.prototype.replaceAt=function(index, replacement) {
+            return this.substr(0, index) + replacement+ this.substr(index + replacement.length);
+        }
+        
+        String.prototype.replaceAll = function(search, replacement) {
+            var target = this;
+            return target.split(search).join(replacement);
+        };
+
+        window.data = new Object();
+        window.dataLoaded = false;
+        
+
+        function print(t){
+            document.getElementById("r").innerHTML += t;
+        }
+
+        function printcl(){
+            document.getElementById("r").innerHTML = t;
+        }
+
+
+
+        function readSingleFileDD(evt) {
+            //Retrieve the first (and only!) File from the FileList object
+            var f = evt.target.files[0]; 
+
+            if (f) {
+            var r = new FileReader();
+            r.onload = function(e) { 
+                var contents = e.target.result;
+                contents = contents.replaceAll("\"", '');
+                contents = contents.replaceAll("\r", '');
+
+                var contentArray = contents.split("\n");
+                window.dataLoaded = true;
+
+                window.data.size = contentArray.length;
+                for (let i = 0; i < contentArray.length; i++) {
+                    var userInfo = contentArray[i].split(",");
+                    window.data["user"+(i+1)] = {
+                        DD:{
+                            target:userInfo[1],
+                            gender:userInfo[2],
+                            age:userInfo[3],
+                            gameActivity:userInfo[4],
+                            friendly:userInfo[5],
+                            primary:userInfo[6],
+                            secondary:userInfo[7]
+
+                        }
+                    }
+                    
+                }
+
+
+
+
+                
+            }
+            r.readAsText(f);
+            } else { 
+                alert("Failed to load file");
+            }
+        }
+
+        function readSingleFileDR(evt) {
+            //Retrieve the first (and only!) File from the FileList object
+            var f = evt.target.files[0]; 
+
+            if (f) {
+            var r = new FileReader();
+            r.onload = function(e) { 
+                var contents = e.target.result;
+                var cambiar = false;
+                for (let i = 0; i < contents.length; i++) {
+                    if ( contents[i] == '"' ) cambiar = !cambiar;
+
+                    if(cambiar && contents[i] == ',')
+                        contents=contents.replaceAt(i,'.');
+                    
+                }
+
+                contents = contents.replaceAll("\"", '');
+                contents = contents.replaceAll("\r", '');
+                
+                var contentArray = contents.split("\n");
+
+                for (let i = 0; i < contentArray.length; i++) {
+                    var info = contentArray[i].split(",");
+                    if (!data["user"+info[0]].DR)
+                        data["user"+info[0]].DR = new Array ();
+
+                    data["user"+info[0]].DR.push({
+                        time:info[1],
+                        time10Base:info[2],
+                        reaction:info[3],
+                        frustration:info[4],
+                        points:info[5]
+                    });
+                } 
+            }
+            r.readAsText(f);
+            } else { 
+                alert("Failed to load file");
+            }
+        }
+
+        function readSingleFileFC(evt) {
+            //Retrieve the first (and only!) File from the FileList object
+            var f = evt.target.files[0]; 
+
+            if (f) {
+            var r = new FileReader();
+            r.onload = function(e) { 
+                var contents = e.target.result;
+                var cambiar = false;
+                for (let i = 0; i < contents.length; i++) {
+                    if ( contents[i] == '"' ) cambiar = !cambiar;
+
+                    if(cambiar && contents[i] == ',')
+                        contents=contents.replaceAt(i,'.');
+                    
+                }
+
+                contents = contents.replaceAll("\"", '');
+                contents = contents.replaceAll("\r", '');
+
+                var contentArray = contents.split("\n");
+
+                for (let i = 0; i < contentArray.length; i++) {
+                    var info = contentArray[i].split(",");
+                    if (!data["user"+info[0]].FC){
+                        data["user"+info[0]].FC = new Array ();
+                    }
+
+                    data["user"+info[0]].FC.push({
+                        lvl:info[1]
+                    });                    
+                } 
+            }
+            r.readAsText(f);
+            } else { 
+                alert("Failed to load file");
+            }
+        }
+
+        function readSingleFileDC(evt) {
+            //Retrieve the first (and only!) File from the FileList object
+            var f = evt.target.files[0]; 
+
+            if (f) {
+            var r = new FileReader();
+            r.onload = function(e) { 
+                var contents = e.target.result;
+                var cambiar = false;
+                for (let i = 0; i < contents.length; i++) {
+                    if ( contents[i] == '"' ) cambiar = !cambiar;
+
+                    if(cambiar && contents[i] == ',')
+                        contents=contents.replaceAt(i,'.');
+                    
+                }
+
+                contents = contents.replaceAll("\"", '');
+                contents = contents.replaceAll("\r", '');
+                var contentArray = contents.split("\n");
+
+                for (let i = 0; i < contentArray.length; i++) {
+                    var info = contentArray[i].split(",");
+                    if (!data["user"+info[0]].DC){
+                        data["user"+info[0]].DC = new Array ();
+                    }
+
+                    data["user"+info[0]].DC.push({
+                        time:info[1],
+                        dif:info[2],
+                        time10Base:info[3]
+                    });                    
+                } 
+            }
+            r.readAsText(f);
+            } else { 
+                alert("Failed to load file");
+            }
+        }
+
+        function readSingleFilePU(evt) {
+            //Retrieve the first (and only!) File from the FileList object
+            var f = evt.target.files[0]; 
+
+            if (f) {
+            var r = new FileReader();
+            r.onload = function(e) { 
+                var contents = e.target.result;
+                var cambiar = false;
+                for (let i = 0; i < contents.length; i++) {
+                    if ( contents[i] == '"' ) cambiar = !cambiar;
+
+                    if(cambiar && contents[i] == ',')
+                        contents=contents.replaceAt(i,'.');
+                    
+                }
+                contents = contents.replaceAll("\"", '');
+                contents = contents.replaceAll("\r", '');
+                var contentArray = contents.split("\n");
+
+                for (let i = 0; i < contentArray.length; i++) {
+                    var info = contentArray[i].split(",");
+                    if (!data["user"+info[0]].PU){
+                        data["user"+info[0]].PU = new Array ();
+                    }
+
+                    data["user"+info[0]].PU.push({
+                        time:info[1],
+                        time10Base:info[2],
+                        pu:info[3]
+                    });                    
+                } 
+
+            }
+            r.readAsText(f);
+            } else { 
+                alert("Failed to load file");
+            }
+        }
+
+        document.getElementById('dd').addEventListener('change', readSingleFileDD, false);
+        document.getElementById('dr').addEventListener('change', readSingleFileDR, false);
+        document.getElementById('fc').addEventListener('change', readSingleFileFC, false);
+        document.getElementById('dc').addEventListener('change', readSingleFileDC, false);
+        document.getElementById('pu').addEventListener('change', readSingleFilePU, false);
+
+    
+
+    </script>
+
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script>
+
+        google.charts.load('current', {packages: ['corechart']});
+
+
+        function load(){
+
+            dd_change();
+            pu_chart_change();
+            fc_chart_change();
+            points_chart_change();
+            dif_chart_change();
+            
+        }
+
+        
+        var xmlhttp = new XMLHttpRequest();
+        var url = "data.json";
+
+        xmlhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                window.data = JSON.parse(this.responseText);
+                load();
+            }
+        };
+        xmlhttp.open("GET", url, true);
+        xmlhttp.send();
+
+
+        
+
+        function drawDemographic(){
+
+            for (let i = 0; i < window.demo_data.length; i++) {
+                
+                google.charts.setOnLoadCallback(function () {
+
+                var data = google.visualization.arrayToDataTable(window.demo_data[i].data);
+
+                var options = {
+                backgroundColor: { fill:'transparent' },
+                title: window.demo_data[i].title
+                };
+
+                var chart = new google.visualization.PieChart(document.getElementById(window.demo_data[i].id));
+
+                chart.draw(data, options);
+            });                
+            }
+
+
+            
+        }
+
+        function drawPUGraphic(){
+            
+            google.charts.setOnLoadCallback(function () {
+
+                var data = google.visualization.arrayToDataTable(window.PU_data);
+
+                var options = {
+                backgroundColor: { fill:'transparent' },
+                title: 'Power Ups gotten'
+                };
+
+                var chart = new google.visualization.PieChart(document.getElementById('pu_chart'));
+
+                chart.draw(data, options);
+            });
+
+        }
+
+        function drawPointsAvergeGraphic(){
+            
+            google.charts.setOnLoadCallback(function () {
+
+                var data = google.visualization.arrayToDataTable(window.points_averge);
+
+                var options = {
+                backgroundColor: { fill:'transparent' },
+                title: 'Points per death averge'
+                };
+
+                var chart = new google.visualization.PieChart(document.getElementById('points_averge_chart'));
+
+                chart.draw(data, options);
+            });
+
+        }
+
+        function drawFCGraphic(){
+
+            google.charts.setOnLoadCallback(function () {
+                var data = google.visualization.arrayToDataTable(window.FC_data);
+
+                var options = {
+                title: 'Flow Channel',
+                curveType: 'function',
+                hAxis: {title: 'Time',  titleTextStyle: {color: '#333'}},
+                backgroundColor: { fill:'transparent' },
+
+                legend: { position: 'bottom' }
+                };
+
+                //var chart = new google.visualization.AreaChart(document.getElementById('fc_chart'));
+                var chart = new google.visualization.LineChart(document.getElementById('fc_chart'));
+
+                chart.draw(data, options);
+            });
+
+        }        
+
+        function drawPUinTime(){
+            
+            google.charts.setOnLoadCallback(function () {
+                
+                var data = google.visualization.arrayToDataTable(window.pu_time_data);
+
+                var options = {
+                title: "PoweUp's in time",
+                hAxis: {title: 'Time',  titleTextStyle: {color: '#333'}},
+                backgroundColor: { fill:'transparent' },
+
+                vAxis: {minValue: 0,viewWindow:{
+                    max:1,
+                    min:0
+                }},
+                legend: { position: 'bottom' }
+
+                };
+
+                var chart = new google.visualization.LineChart(document.getElementById('pu_time_chart'));                
+
+                chart.draw(data, options);
+            });
+        }
+        
+
+        function drawPointsPerDeath(){
+            
+            google.charts.setOnLoadCallback(function () {
+                var data = google.visualization.arrayToDataTable(window.points_per_death_data);
+
+                var options = {
+                title: window.drTitle,
+                hAxis: {title: 'Time',  titleTextStyle: {color: '#333'}},
+                vAxis: {minValue: 0},
+                backgroundColor: { fill:'transparent' },
+                legend: { position: 'bottom' }
+
+                };
+
+                var chart = new google.visualization.LineChart(document.getElementById('points_chart'));                
+
+                chart.draw(data, options);
+            });
+        }
+
+
+        function drawDifChanges(){
+            
+            google.charts.setOnLoadCallback(function () {
+                var data = google.visualization.arrayToDataTable(window.dif_data);
+
+                var options = {
+                title: "Dif changes",
+                backgroundColor: { fill:'transparent' },
+                hAxis: {title: 'Time',  titleTextStyle: {color: '#333'}},
+                vAxis: {minValue: 0,viewWindow:{
+                    max:4,
+                    min:0
+                }},
+                legend: { position: 'bottom' }
+
+                };
+
+                var chart = new google.visualization.LineChart(document.getElementById('dif_chart'));                
+
+                chart.draw(data, options);
+            });
+        }
+
+    </script>
+
+
+
+
+
+
+
+
+
+<h1>Demography</h1>
+<div   style="  width: 100%; margin: 10px; float:right;">
+    <div style="float:left;" id="target_chart"       style="width: 100px; height: 500px;"></div>
+    <div style="float:left;" id="gender_chart"       style="width: 100px; height: 500px;"></div>
+    <div style="float:left;" id="age_chart"          style="width: 100px; height: 500px;"></div>
+    <div style="float:left;" id="frecuency_chart"    style="width: 100px; height: 500px;"></div>
+    <div style="float:left;" id="friendly_chart"     style="width: 100px; height: 500px;"></div>
+    <div style="float:left;" id="primary_behavior"   style="width: 100px; height: 500px;"></div>
+    <div style="float:left;" id="secondary_behavior" style="width: 100px; height: 500px;"></div>
+        
+</div>
+
+
+
+
+
+<br>
+<br>
+<h1>Power Up's graphics</h1>
+
+
+<div id="pu_chart" style="width: 900px; height: 500px;"></div>
+<div id="pu_time_chart" style="width: 100%; height: 200px;"></div>
+
+
+<div style="background-color:rgb(100, 216, 216); padding:10px; border-radius: 10px; margin-bottom:10px;">
+    List of times <input id="pu_chart_times" type="text"> <button onclick="pu_chart_change()">done</button>
+</div>
+
+<div id="pu_chart_form"></div>
+
+
+
+
+
+
+<br>
+<br>
+<h1>Flow channel graphics</h1>
+
+<div id="fc_chart" style="width: 100%; height: 500px;"></div>
+<div id="fc_chart_form">
+        
+</div>
+
+
+
+
+<br>
+<br>
+<h1>Death graphics</h1>
+<div id="points_averge_chart" style="width: 900px; height: 500px;"></div>    
+<div id="points_chart" style="width: 100%; height: 500px;"></div>
+<div id="points_chart_form">
+<div style="background-color:rgb(100, 216, 216); padding:10px; border-radius: 10px; margin-bottom:10px;">
+
+Data _:
+    <input onchange="points_chart_change()" type="radio" name="`+chart_id+`_target_" id="DR_info_POINTS" value="POINTS" checked> Points
+    <input onchange="points_chart_change()" type="radio" name="`+chart_id+`_target_" id="DR_info_REACTION" value="REACTION"> Reaction
+    <input onchange="points_chart_change()" type="radio" name="`+chart_id+`_target_" id="DR_info_FRUSTRATION" value="FRUSTRATION"> Frustration
+</div>
+        
+</div>
+
+
+
+
+
+
+<br>
+<br>
+<h1>Difficulty graphics</h1>
+
+<div id="dif_chart" style="width: 100%; height: 500px;"></div>    
+<div id="dif_chart_form">
+    
+</div>
+<script>
+
+    function get(id){
+        return document.getElementById(id);
+    }
+
+    function getFormState(form_id){
+        var form_state = {
+            target: (get(form_id+"_target_IN").checked) ? "IN": (get(form_id+"_target_OUT").checked) ? "OUT":"ALL",
+            gender: get(form_id+"_gender").options[get(form_id+"_gender").selectedIndex].text,
+            activity:get(form_id+"_activity").options[get(form_id+"_activity").selectedIndex].text,
+            style:get(form_id+"_style").options[get(form_id+"_style").selectedIndex].text,
+            primary:[],
+            secondary:[],
+            users:get(form_id+"_user_list").value.replaceAll(' ','').split(','),
+            age:get(form_id+"_age").value
+        }
+
+
+        if(get(form_id+"_primary_A").checked) form_state.primary.push("A");
+        if(get(form_id+"_primary_T").checked) form_state.primary.push("T");
+        if(get(form_id+"_primary_S").checked) form_state.primary.push("S");
+        if(get(form_id+"_primary_E").checked) form_state.primary.push("E");
+        if(get(form_id+"_primary_N").checked) form_state.primary.push("N");
+        if(get(form_id+"_primary_L").checked) form_state.primary.push("L");
+
+        if(get(form_id+"_secondary_A").checked) form_state.primary.push("A");
+        if(get(form_id+"_secondary_T").checked) form_state.primary.push("T");
+        if(get(form_id+"_secondary_S").checked) form_state.primary.push("S");
+        if(get(form_id+"_secondary_E").checked) form_state.primary.push("E");
+        if(get(form_id+"_secondary_N").checked) form_state.primary.push("N");
+        if(get(form_id+"_secondary_L").checked) form_state.primary.push("L");
+
+        return form_state;
+    }
+
+function validate_user(form_state, user, userIndex){
+    if (form_state.target != "ALL" && form_state.target != user.DD.target)
+        return false;
+    
+    if (form_state.gender != "All" && form_state.gender != user.DD.gender)
+        return false;
+
+    if (form_state.activity != "All" && form_state.activity != user.DD.gameActivity)
+        return false;
+
+    if (form_state.style != "All" && form_state.style.charAt(0) != user.DD.friendly.charAt(0))
+        return false;
+
+    if(form_state.users[0] != "" && !form_state.users.includes(userIndex+1+""))
+        return false;
+
+
+    if(form_state.primary.length != 0)
+        for (let i = 0; i < form_state.primary.length; i++)
+            if(!user.DD.primary.includes(form_state.primary[i]))
+                return false;
+
+    if(form_state.secondary.length != 0)
+        for (let i = 0; i < form_state.secondary.length; i++)
+            if(!user.DD.secondary.includes(form_state.secondary[i]))
+                return false;
+        
+
+    if(form_state.age && form_state.age != 0 && form_state.age != user.DD.age)
+        return false;
+
+    return true;
+}
+
+function pu_chart_change(){
+
+    window.pu_time_data = [['Time']];
+
+
+        for (let i = 0; i < 18; i+=1/100)
+            window.pu_time_data.push([Math.trunc(i*100)/100]);
+
+
+
+    var form_state = getFormState("pu_chart");
+    var times = get("pu_chart_times").value.replaceAll(' ','').split(',');
+
+    window.PU_data = [ ['PowerUp', 'Times gotten'] ];
+
+
+    for (let i = 0; i < window.data.size; i++) {
+        var info = window.data["user"+(i+1)].PU;
+        if(info && validate_user(form_state, window.data["user"+(i+1)],i))
+            for (let j = 0; j < info.length; j++) {
+                var name = JSON.stringify(info[j].pu);
+                
+                if(times[0] == "" || times.includes((j+1)+"")){
+
+                    var found = false;
+                    for (let d = 0; d < window.PU_data.length; d++) {
+                        
+                        if(window.PU_data[d][0] == name){
+                            window.PU_data[d][1]++;
+                            found = true;
+                            break;
+                        }
+                    }
+
+                    if(!found)
+                        window.PU_data.push([name, 1]);
+                    
+                }
+
+                if(!window.pu_time_data[0].includes(name)){
+                    window.pu_time_data[0].push(name);
+                    for (let index = 1; index < window.pu_time_data.length; index++) {
+                        while(window.pu_time_data[index].length < window.pu_time_data[0].length){
+                            window.pu_time_data[index].push(0);
+                        }
+                    }
+                }
+
+                var timeFound = false;
+                for (let i = 1; i < window.pu_time_data.length; i++) {
+                    if (window.pu_time_data[i][0] == info[j].time10Base){
+                        timeFound = true;
+                        window.pu_time_data[i][window.pu_time_data[0].indexOf(name)] += 1;
+                        break;
+                    }
+                }
+
+                if(!timeFound){
+                    window.pu_time_data.push(new Array (window.pu_time_data[0].length));
+                    window.pu_time_data[window.pu_time_data.length-1][0] = info[j].time10Base;
+                    
+                    for (let ind = 1; ind < window.pu_time_data[window.pu_time_data.length-1].length; ind++) {
+                        window.pu_time_data[window.pu_time_data.length-1][ind] = 0;
+                        
+                    }
+
+                    window.pu_time_data[window.pu_time_data.length-1][window.pu_time_data[0].indexOf(name)] = 1;
+
+                    for (let index = 1; index < window.pu_time_data.length; index++) {
+                        while(window.pu_time_data[index].length < window.pu_time_data[window.pu_time_data.length-1].length){
+                            window.pu_time_data[index].push(0);
+                        }
+                    }
+                }
+            }
+
+            
+    }
+
+    drawPUGraphic();
+    drawPUinTime();
+
+}
+
+function fc_chart_change(){
+
+    var form_state = getFormState("fc_chart");
+
+    window.FC_data = [['Time']];
+
+    for (let i = 0; i < 18; i++)
+        window.FC_data.push([i]);
+
+    for (let i = 0; i < window.data.size; i++) {
+        var info = window.data["user"+(i+1)].FC;
+        var DD = window.data["user"+(i+1)].DD;
+        var name = (i+1)+"-"+DD.target+"-"+DD.gender+DD.age+DD.gameActivity+DD.friendly+"-";
+        for (let s = 0; s < DD.primary.length; s++)
+            name+= DD.primary[s];
+        name += '-';
+        for (let s = 0; s < DD.secondary.length; s++)
+            name+= DD.secondary[s];
+
+        if(info && validate_user(form_state, window.data["user"+(i+1)],i)){
+            window.FC_data[0].push(name);
+            for (let j = 0; j < info.length; j++) {
+                window.FC_data[j+1].push(Number(info[j].lvl));
+            }
+        }
+    }
+
+    drawFCGraphic();
+}
+
+window.drTitle = "";
+
+function points_chart_change(){
+
+    window.points_averge = [
+        ['Points interval', 'Times gotten'],
+        ["0-1.000",0],
+        ["1.000-2.000",0],
+        ["2.000-3.000",0],
+        ["3.000-5.000",0],
+        ["5.000-7.000",0],
+        ["7.000-10.000",0],
+        ["+10.000",0]
+    ];
+
+    var form_state = getFormState("points_chart");
+
+    var info = "";
+    var infoType ="";
+
+    if(get("DR_info_POINTS").checked){
+        info = "POINTS";
+        window.drTitle = "Points per death";
+        infoType = "points";
+    } 
+    else if(get("DR_info_REACTION").checked){
+        info = "REACTION";
+        window.drTitle = "Reaction por death";
+        infoType = "reaction";
+    }
+    else if(get("DR_info_FRUSTRATION").checked){
+        info = "FRUSTRATION";
+        window.drTitle = "Frustration per death";
+        infoType = "frustration";
+    }
+
+
+    window.points_per_death_data = [
+                ['Time']
+                ];
+
+                
+    for (let i = 0; i < 18; i+=1/100)
+        window.points_per_death_data.push([i]);
+
+    for (let i = 0; i < window.data.size; i++) {
+        var info = window.data["user"+(i+1)].DR;
+        var DD = window.data["user"+(i+1)].DD;
+        var name = (i+1)+"-"+DD.target+"-"+DD.gender+DD.age+DD.gameActivity+DD.friendly+"-";
+        for (let s = 0; s < DD.primary.length; s++)
+            name+= DD.primary[s];
+        name += '-';
+        for (let s = 0; s < DD.secondary.length; s++)
+            name+= DD.secondary[s];
+
+        if(info && validate_user(form_state, window.data["user"+(i+1)],i)){
+            window.points_per_death_data[0].push(name);
+            for (let a = 1; a < window.points_per_death_data.length; a++) {
+                var found = false;
+
+                for (let f = 0; f < info.length; f++) {
+                    
+                    if(info[f].time10Base == Math.trunc(window.points_per_death_data[a][0]*100)/100){
+                        found = true;
+                        window.points_per_death_data[a].push(info[f][infoType]);
+                        
+                        var points = info[f].points;
+                        var i_to_incement = 0;
+                        if (points < 1000) ;
+                        else if (points < 2000)  i_to_incement = 1;
+                        else if (points < 3000)  i_to_incement = 2;
+                        else if (points < 5000)  i_to_incement = 3;
+                        else if (points < 7000)  i_to_incement = 4;
+                        else if (points < 10000) i_to_incement = 5;
+                        else i_to_incement = 6;
+                        
+                        window.points_averge[i_to_incement][1]+= 1;
+
+                        break;
+                    }
+                    
+                }
+                
+                if(!found)
+                    window.points_per_death_data[a].push(0);
+                
+            }
+            window.points_per_death_data[0]
+        }
+    }
+
+
+
+
+
+    drawPointsPerDeath();
+    drawPointsAvergeGraphic();
+
+}
+
+
+function dd_change(){
+
+    window.demo_data = [{id:"target_chart",         data:[["A","B"],["IN",0],["OUT",0]], title:"Users in target"},
+                        {id:"gender_chart",         data:[["A","B"],["H",0],["M",0],["O",0],["P",0]], title:"Gender"},
+                        {id:"age_chart",            data:[["A","B"]], title:"Age"},
+                        {id:"frecuency_chart",      data:[["A","B"],["Daily",1],["1-2 days a week",0],["2-3  days a week",0],["3-5  days a week",0],["Don't play",0],], title:"Frecuency playing"},
+                        {id:"friendly_chart",       data:[["A","B"],["Alone",0],["Accompanied",0],["Both",0] ], title:"Friendly"},
+                        {id:"primary_behavior",     data:[["A","B"]], title:"Primary behaivor"},
+                        {id:"secondary_behavior",   data:[["A","B"]], title:"Secondary behaivor"},];
+
+
+
+    for (let i = 0; i < window.data.size; i++) {
+        var DD = window.data["user"+(i+1)].DD;
+
+        if(DD.target == "IN")
+            window.demo_data[0].data[1][1] += 1;
+        else
+            window.demo_data[0].data[2][1] += 1;
+
+
+        if(DD.gender == "H")
+            window.demo_data[1].data[1][1] += 1;
+        else if (DD.gender == "M")
+            window.demo_data[1].data[2][1] += 1;
+        else if (DD.gender == "O")
+            window.demo_data[1].data[3][1] += 1;
+        else if (DD.gender == "P")
+            window.demo_data[1].data[4][1] += 1;
+
+        var found = false;
+        for (let i = 1; i < window.demo_data[2].data.length; i++) {
+            if(window.demo_data[2].data[i][0] == DD.age){
+                window.demo_data[2].data[i][1] += 1;
+                found = true;
+                break;
+            }
+        }
+
+        if(!found){
+            window.demo_data[2].data.push([DD.age, 1]);
+        }
+
+
+        if(DD.gameActivity == "A")
+            window.demo_data[3].data[1][1] == 1;
+        else if(DD.gameActivity == "B")
+            window.demo_data[3].data[2][1] += 1;
+        else if(DD.gameActivity == "C")
+            window.demo_data[3].data[3][1] += 1;
+        else if(DD.gameActivity == "D")
+            window.demo_data[3].data[4][1] += 1;
+        else if(DD.gameActivity == "N")
+            window.demo_data[3].data[5][1] += 1;
+
+        if(DD.friendly == "A")
+            window.demo_data[4].data[1][1] += 1;
+        else if(DD.friendly == "B")
+            window.demo_data[4].data[2][1] += 1;
+        else if(DD.friendly == "C")
+            window.demo_data[4].data[3][1] += 1;
+
+
+        
+        for (let l = 0; l < DD.primary.length; l++) {
+            var type = DD.primary.charAt(l);
+            
+            var found = false;
+            for (let i = 1; i < window.demo_data[5].data.length; i++) {
+                if(window.demo_data[5].data[i][0] == type){
+                    window.demo_data[5].data[i][1] += 1;
+                    found = true;
+                    break;
+                }
+            }
+
+            if(!found){
+                window.demo_data[5].data.push([type, 1]);
+            }     
+        }
+
+   
+
+        for (let l = 0; l < DD.secondary.length; l++) {
+            var type = DD.secondary.charAt(l);
+            
+            var found = false;
+            for (let i = 1; i < window.demo_data[6].data.length; i++) {
+                if(window.demo_data[6].data[i][0] == type){
+                    window.demo_data[6].data[i][1] += 1;
+                    found = true;
+                    break;
+                }
+            }
+
+            if(!found){
+                window.demo_data[6].data.push([type, 1]);
+            }     
+        }
+
+
+
+
+
+    }
+    
+
+
+    drawDemographic();
+}
+
+function dif_chart_change(){
+
+    window.dif_data = [['Time']];
+    
+    var form_state = getFormState("dif_chart");
+            
+    for (let i = 0; i < 18; i+=1/100)
+        window.dif_data.push([i]);
+
+    for (let i = 0; i < window.data.size; i++) {
+        var info = window.data["user"+(i+1)].DC;
+        var DD = window.data["user"+(i+1)].DD;
+        var name = (i+1)+"-"+DD.target+"-"+DD.gender+DD.age+DD.gameActivity+DD.friendly+"-";
+        for (let s = 0; s < DD.primary.length; s++)
+            name+= DD.primary[s];
+        name += '-';
+        for (let s = 0; s < DD.secondary.length; s++)
+            name+= DD.secondary[s];
+        var lastDif = 1;
+
+        if(info && validate_user(form_state, window.data["user"+(i+1)],i)){
+            window.dif_data[0].push(name);
+            for (let a = 1; a < window.dif_data.length; a++) {
+                var found = false;
+
+                for (let f = 0; f < info.length; f++) {
+                    
+                    if(info[f].time10Base == Math.trunc(window.dif_data[a][0]*100)/100){
+                        found = true;
+                        lastDif = Number(info[f].dif);
+                        window.dif_data[a].push(lastDif);
+                        break;
+                    }
+                    
+                }
+                
+                if(!found)
+                    window.dif_data[a].push(lastDif);
+                
+            }
+            window.dif_data[0]
+        }
+    }
+
+
+    drawDifChanges();
+}
+
+
+
+loadFilterForm("pu_chart","pu_chart_form" ,"pu_chart_change()");
+loadFilterForm("fc_chart","fc_chart_form","fc_chart_change()");
+loadFilterForm("points_chart","points_chart_form","points_chart_change()");
+loadFilterForm("dif_chart","dif_chart_form","dif_chart_change()");
+
+window.onresize = function(){
+    load();
+}
+
+
+</script>
+
+</body>
+</html>
