@@ -1,0 +1,115 @@
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <script>
+  window.isMobileDevice = function () {
+    return (typeof window.orientation !== "undefined") || (navigator.userAgent.indexOf('IEMobile') !== -1);
+  };
+  </script>
+  
+  
+  
+  <!-- PLEASE NO CHANGES BELOW THIS LINE (UNTIL I SAY SO) -->
+  <script defer src=libraries/p5.sound.min.js></script>
+  <script type="text/javascript" src="libraries/p5.min.js"></script>
+  <script type="text/javascript" src="./Objects/Object3D.js"></script>
+  <script type="text/javascript" src="./logic/Brush.js"></script>
+  <script type="text/javascript" src="./Objects/Fractal.js"></script>
+  <script type="text/javascript" src="./editor.js"></script>
+  <script type="text/javascript" src="./logic/GameEntities/Collider.js"></script>
+  <script type="text/javascript" src="logic/Math/Matrix.js"></script>
+  <script type="text/javascript" src="logic/AbstractEntities/Wiggle1D.js"></script>
+  <script type="text/javascript" src="logic/Bezier.js"></script>
+  <script type="text/javascript" src="Objects/Particles/WindParticle.js"></script>
+  <script type="text/javascript" src="logic/Hermite.js"></script>
+  <script type="text/javascript" src="logic/Interpolation.js"></script>
+  <script type="text/javascript" src="logic/TrailFollower.js"></script>
+  <script type="text/javascript" src="./logic/GameEntities/UMI.js"></script>
+  <script type="text/javascript" src="./logic/Math/Vector2D.js"></script>
+  <script type="text/javascript" src="./logic/Math/SuperVector.js"></script>
+  <script type="text/javascript" src="./Objects/Player/AirPlane.js"></script>
+  <script type="text/javascript" src="./logic/AbstractEntities/FollowerReference.js"></script>
+  <script type="text/javascript" src="./Objects/Particles/Particle.js"></script>
+  <script type="text/javascript" src="./Objects/Particles/Quemadura.js"></script>
+  <script type="text/javascript" src="logic/Trail.js"></script>
+  <script type="text/javascript" src="./logic/GameEntities/Camera.js"></script>
+  <script type="text/javascript" src="./Objects/Sound.js"></script>
+  <script type="text/javascript" src="./Objects/Cursor.js"></script>
+  <script type="text/javascript" src="./Objects/Cloth.js"></script>
+  <script type="text/javascript" src="./logic/AbstractEntities/Increment.js"></script>
+  <script type="text/javascript" src="./Objects/Wind.js"></script>
+  <script type="text/javascript" src="./Objects/Plane.js"></script>
+  <script type="text/javascript" src="./logic/AbstractEntities/Wiggle.js"></script>
+  <script type="text/javascript" src="./Objects/Particles/Particle2.js"></script>
+  <script type="text/javascript" src="./Objects/Particles/Lightning.js"></script>
+  <script type="text/javascript" src="./Objects/Particles/LittleLighting.js"></script>
+  <script type="text/javascript" src="./Objects/Particles/Particle3.js"></script>
+  <script type="text/javascript" src="./Objects/Particles/Chispa.js"></script>
+  <script type="text/javascript" src="./Objects/Particles/DamageNumber.js"></script>
+  <script type="text/javascript" src="logic/SpringType1.js"></script>
+  <script type="text/javascript" src="logic/Spring.js"></script>
+  <script type="text/javascript" src="logic/GameEntities/UI.js"></script>
+  <script type="text/javascript" src="Objects/PolygonalObject.js"></script>
+  <script type="text/javascript" src="Objects/Sticker.js"></script>
+  
+  <script type="text/javascript" src="./config.js"></script>
+  <script type="text/javascript" src="./variables_globales.js"></script>
+  <script type="text/javascript" src="./funciones_globales.js"></script>
+  <script type="text/javascript" src="./logic/UserEvents.js"></script>
+  <script type="text/javascript" src="./taskmanager.js"></script>
+
+  <script type="text/javascript" src="sketch_papersply.js"></script>
+  <!-- OK, YOU CAN MAKE CHANGES BELOW THIS LINE AGAIN -->
+
+  <!-- This line removes any default padding and style.
+       You might only need one of these values set. -->
+  <style> body { padding: 0; margin: 0; } 
+  
+  </style>
+</head>
+
+<body id="screen">
+    
+</body>
+
+<script>
+  setTimeout(() => {
+
+    var es_chrome = navigator.userAgent.toLowerCase().indexOf('chrome') > -1;
+    if(!es_chrome){
+      document.getElementById('p5_loading').innerHTML = '';
+      alert("Este juego utiliza características compatibles sólo con Google Chrome");
+    }
+
+  }, 1000);
+
+
+  
+
+
+if(isMobileDevice()){
+  
+  var myElement = document.getElementById('screen');
+
+  // create a simple instance
+  // by default, it only adds horizontal recognizers
+  window.touchPad = new Hammer(myElement);
+
+  // let the pan gesture support all directions.
+  // this will block the vertical scrolling on a touch-device while on the element
+  touchPad.get('pan').set({ direction: Hammer.DIRECTION_ALL });
+
+  // listen to events...
+  touchPad.on("panleft panright panup pandown tap press", function(e) {
+    touchPadEvent(e);
+
+
+  });
+  
+
+}
+  
+</script>
+</html>
