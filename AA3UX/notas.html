@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+    <div id="r"></div>
+
+    <script>
+
+        String.prototype.replaceAll = function(search, replacement) {
+            var target = this;
+            return target.replace(new RegExp(search, 'g'), replacement);
+        };
+        
+    
+        var txt = `AMARILLOx48
+*AMARILLOx48
+*AMARILLOx22 MARRONx5 AMARILLOx21
+*AMARILLOx20 MARRONx1 MOSCUROx7 AMARILLOx20
+*AMARILLOx19 MOSCUROx11 MARRONx1 AMARILLOx17
+*AMARILLOx17 MARRONx1 MOSCUROx13 MARRONx1 AMARILLOx16
+*AMARILLOx17 MOSCUROx4 MMOSCUROx3 MOSCUROx8 AMARILLOx16
+*AMARILLOx16 MOSCUROx2 MMOSCUROx6 MOSCUROx2 MMOSCUROx5 MOSCUROx2 AMARILLOx15
+*AMARILLOx16 MOSCUROx2 MMOSCUROx6 MOSCUROx1 MMOSCUROx7 MOSCUROx1 AMARILLOx15
+*AMARILLOx15 MARRONx1 MOSCUROx8 MMOSCUROx9 AMARILLOx15
+*AMARILLOx15 MOSCUROx9 MMOSCUROx9 AMARILLOx15
+*AMARILLOx15 MOSCUROx1 MMOSCUROx2 MOSCUROx1 MARRONx8 MMOSCUROx6 AMARILLOx15
+*AMARILLOx15 MOSCUROx1 MMOSCUROx1 MARRONx12 MOSCUROx1 MMOSCUROx3 AMARILLOx15
+*AMARILLOx15 MOSCUROx2 MARRONx14 MMOSCUROx3 AMARILLOx14
+*AMARILLOx15 MOSCUROx2 MARRONx14 MMOSCUROx3 AMARILLOx14
+*AMARILLOx15 MOSCUROx2 MARRONx15 MMOSCUROx2 AMARILLOx14
+*AMARILLOx15 MOSCUROx2 MARRONx2 MOSCUROx3 MARRONx3 MOSCUROx3 MARRONx1 MOSCUROx1 MARRONx2 MMOSCUROx1 MARRONx1 AMARILLOx14
+*AMARILLOx16 MOSCUROx1 MARRONx2 MOSCUROx3 MARRONx2 MOSCUROx6 MARRONx3 AMARILLOx15
+*AMARILLOx16 MARRONx9 MOSCUROx1 MARRONx3 MOSCUROx1 MARRONx3 AMARILLOx15
+*AMARILLOx16 MARRONx16 AMARILLOx16 
+*AMARILLOx17 MARRONx15 AMARILLOx16
+*AMARILLOx17 MARRONx15 AMARILLOx16
+*AMARILLOx17 MARRONx8 MOSCUROx2 MARRONx5 AMARILLOx16
+*AMARILLOx17 MARRONx4 MOSCUROx2 MARRONx1 MOSCUROx2 MMOSCUROx2 MARRONx3 AMARILLOx17
+*AMARILLOx18 MARRONx2 MOSCUROx6 MMOSCUROx2 MOSCUROx1 MARRONx2 AMARILLOx17
+*AMARILLOx18 MARRONx1 MOSCUROx7 MMOSCUROx3 MOSCUROx1 MARRONx1 AMARILLOx17
+*AMARILLOx18 MOSCUROx4 MARRONx1 MOSCUROx3 MMOSCUROx4 AMARILLOx18
+*AMARILLOx17 MMOSCUROx4 MOSCUROx5 MMOSCUROx4 MARRONx1 AMARILLOx17
+*AMARILLOx16 NEGROx2 MMOSCUROx4 MOSCUROx3 NEGROx3 MMOSCUROx1 MARRONx1 MOSCUROx1 AMARILLOx17
+*AMARILLOx15 NEGROx3 BLANCOx1 MMOSCUROx4 MOSCUROx1 MMOSCUROx1 NEGROx2 MMOSCUROx1 MARRONx2 BLANCOx1 MMOSCUROx1 AMARILLOx16
+*AMARILLOx14 NEGROx4 MARRONx2 MOSCUROx4 MMOSCUROx2 MARRONx3 BLANCOx2 MMOSCUROx1 MOSCUROx2 AMARILLOx14
+*AMARILLOx13 NEGROx5 MARRONx3 MOSCUROx3 MARRONx5 BLANCOx2 MMOSCUROx1 MOSCUROx3 AMARILLOx13
+*AMARILLOx10 MOSCUROx1 MMOSCUROx1 NEGROx7 MARRONx2 BLANCOx1 MOSCUROx2 MARRONx4 BLANCOx3 MMOSCUROx2 MOSCUROx3 MMOSCUROx1 MARRONx1 AMARILLOx10
+*AMARILLOx8 NEGROx12 MARRONx1 BLANCOx3 MARRONx3 BLANCOx3 MMOSCUROx3 MOSCUROx2 MMOSCUROx5 AMARILLOx8
+*AMARILLOx5 NEGROx10 MARRONx2 NEGROx3 MARRONx1 BLANCOx3 MARRONx3 BLANCOx3 MMOSCUROx12 MOSCUROx1 MARRONx1 AMARILLOx4
+*AMARILLOx2 MOSCUROx1 NEGROx11 MARRONx3 NEGROx4 BLANCOx3 MARRONx3 BLANCOx3 MMOSCUROx15 AMARILLOx3
+*AMARILLOx2 NEGROx12 MOSCUROx2 MARRONx1 NEGROx4 BLANCOx3 MARRONx3 NEGROx1 BLANCOx2 MMOSCUROx15 AMARILLOx3
+*AMARILLOx2 NEGROx11 MARRONx1 MOSCUROx2 MARRONx1 NEGROx4 MMOSCUROx1 BLANCOx2 MOSCUROx2 MARRONx1 BLANCOx3 MMOSCUROx15 MARRONx1 AMARILLOx2
+*AMARILLOx1 MARRONx1 NEGROx10 MARRON x5 NEGROx4 BLANCOx3 MOSCUROx1 MMOSCUROx1 MARRONx1 BLANCOx2 MMOSCUROx16 MOSCUROx1 AMARILLOx2
+*AMARILLOx1 NEGROx11 MARRONx5 BLANCOx7 NEGROx3 BLANCOx2 MMOSCUROx16 MOSCUROx1 AMARILLOx2
+*AMARILLOx1 NEGROx10 MARRONx8 BLANCOx4 MMOSCUROx2 NEGROx3 BLANCOx1 MMOSCUROx16 MOSCUROx1 AMARILLOx2
+*AMARILLOx1 NEGROx10 MARRONx10 BLANCOx1 MMOSCUROx3 NEGROx4 MMOSCUROx16 MOSCUROx2 AMARILLOx1
+*AMARILLOx1 NEGROx9 MOSCUROx1 MARRONx10 NEGROx2 MMOSCUROx2 NEGROx4 MMOSCUROx16 MOSCUROx2 AMARILLOx1
+*AMARILLOx1 NEGROx9 MARRONx10 NEGROx4 MMOSCUROx1 MARRONx1 NEGROx2 MMOSCUROx17 MOSCUROx2 AMARILLOx1`;
+        
+
+/*
+        txt = txt.replaceAll('AMARILLO', 'E');
+        txt = txt.replaceAll('MARRON',   '7');
+        txt = txt.replaceAll('NEGRO',    '0');
+        txt = txt.replaceAll('BLANCO',   'F');
+        txt = txt.replaceAll('MMOSCURO', '0');
+        txt = txt.replaceAll('MOSCURO',  '8');
+        
+*/
+
+        txt = txt.replaceAll('AMARILLO', 'C_A');
+        txt = txt.replaceAll('MARRON',   'C_M');
+        txt = txt.replaceAll('NEGRO',    'C_N');
+        txt = txt.replaceAll('BLANCO',   'C_B');
+        txt = txt.replaceAll('MMOSCURO', 'C_MM');
+        txt = txt.replaceAll('MOSCURO',  'C_MO');
+
+        var t2 = txt.split('*');
+
+        var t3 = new Array();
+
+        for (let i = 0; i < t2.length; i++) {
+            var fila = t2[i].split(' ');
+            t3.push(new Array());
+            for (let j = 0; j < fila.length; j++) {
+                var aux = fila[j].split('x');
+                var color = aux[0];
+                var times = aux[1];
+                for (let time = 0; time < times; time++) {
+                    t3[i].push(color);    
+                }
+                
+            }
+            
+        }
+
+        
+        /*
+        for (let i = 0; i < t3.length/2+1; i++) {
+            var line1 = "FILA_"+i+" DW";
+            for (let j = 0; j < t3.length; j++) {
+                line1 += " "+t3[i][j]+"_FONDO_"+t3[i+1][j];
+                
+                if(j!=t3.length-1) line1 += ","
+            }
+            
+            print(line1+"<br><br>")
+        }
+
+        */
+
+
+        
+        var result = `
+                `   ;
+
+        
+        var inc = 0;
+        for (let i = 0; i < t3.length; i+=2) {
+            result += "FILA_"+(inc++)+" DW ";
+            for (let j = 0; j < t3.length; j++) {                
+                var color1 = t3[i][j];
+                var color2 = t3[i+1][j];
+
+                result += color1+color2;
+
+                if(j!=t3.length-1) result += ", "
+            }
+
+        
+        result += `
+        <br><br>
+            `;
+            //print(line1+"<br><br>")
+        }
+
+
+        print(result);
+
+
+
+        function print(txt){
+            document.getElementById("r").innerHTML += txt;
+        }
+        
+    </script>
+
+    
+
+</body>
+</html>
+
+
