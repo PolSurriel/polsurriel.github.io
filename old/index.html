@@ -1,0 +1,99 @@
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <script>
+  window.isMobileDevice = function () {
+    return (typeof window.orientation !== "undefined") || (navigator.userAgent.indexOf('IEMobile') !== -1);
+  };
+  </script>
+  
+<script defer src=libraries/p5.sound.min.js></script>
+
+
+  <!-- PLEASE NO CHANGES BELOW THIS LINE (UNTIL I SAY SO) -->
+  <script type="text/javascript" src="libraries/hammer.min.js"></script>
+  <script type="text/javascript" src="libraries/p5.min.js"></script>
+  <script type="text/javascript" src="./logic/Camera.js"></script>
+  <script type="text/javascript" src="./logic/Collider2D.js"></script>
+  <script type="text/javascript" src="./logic/UMI.js"></script>
+  <script type="text/javascript" src="./logic/Vector2D.js"></script>
+  <script type="text/javascript" src="./logic/FollowerReference.js"></script>
+  <script type="text/javascript" src="./Objects/RealObject.js"></script>
+  <script type="text/javascript" src="./Objects/LogicObject.js"></script>
+  <script type="text/javascript" src="./Objects/Particle.js"></script>
+  <script type="text/javascript" src="./Objects/Player.js"></script>
+  <script type="text/javascript" src="./Objects/Enemy.js"></script>
+  <script type="text/javascript" src="./Objects/EnemyAway.js"></script>
+  <script type="text/javascript" src="./Objects/EnemyProjectile.js"></script>
+  <script type="text/javascript" src="./Objects/EnemyLine.js"></script>
+  <script type="text/javascript" src="./Objects/EnemyWave.js"></script>
+  <script type="text/javascript" src="./Objects/Sound.js"></script>
+  <script type="text/javascript" src="./Objects/Projectile.js"></script>
+  <script type="text/javascript" src="./Objects/LineShoot.js"></script>
+  <script type="text/javascript" src="./Objects/Wave.js"></script>
+  <script type="text/javascript" src="./Objects/Cursor.js"></script>
+  <script type="text/javascript" src="./Objects/Hexagon.js"></script>
+  <script type="text/javascript" src="./Objects/Ball.js"></script>
+  <script type="text/javascript" src="./logic/Wiggle.js"></script>
+  
+  <script type="text/javascript" src="./variables_globales.js"></script>
+  <script type="text/javascript" src="./funciones_globales.js"></script>
+  <script type="text/javascript" src="./logic/UserEvents.js"></script>
+  <script type="text/javascript" src="./room.js"></script>
+  <script type="text/javascript" src="./world.js"></script>
+
+  <script type="text/javascript" src="sketch_digitalhellheim.js"></script>
+  <!-- OK, YOU CAN MAKE CHANGES BELOW THIS LINE AGAIN -->
+
+  <!-- This line removes any default padding and style.
+       You might only need one of these values set. -->
+  <style> body { padding: 0; margin: 0; } 
+  
+  </style>
+</head>
+
+<body id="screen">
+    
+</body>
+
+<script>
+  setTimeout(() => {
+
+    var es_chrome = navigator.userAgent.toLowerCase().indexOf('chrome') > -1;
+    if(!es_chrome){
+      document.getElementById('p5_loading').innerHTML = '';
+      alert("Este juego utiliza características compatibles sólo con Google Chrome");
+    }
+
+  }, 1000);
+
+
+  
+
+
+if(isMobileDevice()){
+  
+  var myElement = document.getElementById('screen');
+
+  // create a simple instance
+  // by default, it only adds horizontal recognizers
+  window.touchPad = new Hammer(myElement);
+
+  // let the pan gesture support all directions.
+  // this will block the vertical scrolling on a touch-device while on the element
+  touchPad.get('pan').set({ direction: Hammer.DIRECTION_ALL });
+
+  // listen to events...
+  touchPad.on("panleft panright panup pandown tap press", function(e) {
+    touchPadEvent(e);
+
+
+  });
+  
+
+}
+  
+</script>
+</html>
