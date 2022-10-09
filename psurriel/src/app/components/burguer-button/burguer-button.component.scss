@@ -1,0 +1,62 @@
+#burguer-button{
+    padding-left: 5px;
+    padding-right: 5px;
+    display: flex;
+    justify-content: space-evenly;
+    flex-direction: column;
+    align-items: center;
+    width: 25px;
+    height: 25px;
+
+    transition: background-color 0.5s ease, transform 0.5s ease;
+    border-radius: 10px;
+
+}
+
+.burguer-opened-container{
+    //background-color: aliceblue;
+    transform: rotate(180deg);
+}
+
+
+#burguer-button input {
+    width: 25px;
+    height: 25px;
+    position: absolute;
+    margin: 0;
+    cursor: pointer;
+    z-index: 2;
+    opacity: 0;
+
+}
+
+
+
+#burguer-button span {
+    border-radius: 10px;
+    width: 20px;
+    height: 2px;
+    position: relative;
+    background-color: white;
+
+    transform-origin: 0px 1px;
+    transition: transform 0.5s cubic-bezier(0.77,0.2,0.05,1.0),
+    background-color 0.5s cubic-bezier(0.77,0.2,0.05,1.0),
+              opacity 0.55s ease;
+}
+
+#burguer-button input:checked ~ span {
+    //background-color: black;
+}
+
+#burguer-button input:checked ~ #burguer-top {
+
+    transform: rotate(360 + 25.9deg) translate(0px, 0px);
+
+}
+#burguer-button input:checked ~ #burguer-bottom {
+
+    transform: rotate(360 + -25.9deg) translate(0px, 0px);
+
+}
+

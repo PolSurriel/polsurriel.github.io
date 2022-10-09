@@ -1,0 +1,24 @@
+<svg viewBox="0 0 800 500" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="100%" id="blobSvg">
+  <g transform="translate(172.01033210754395, 13.969284057617188)">
+      <defs>
+          <linearGradient id="gradient" x1="0%" y1="0%" x2="0%" y2="100%">
+            <stop offset="0%" [style]="'stop-color: '+gradientStart+';'"></stop>
+            <stop offset="100%" [style]="'stop-color: '+gradientEnd+';'"></stop>
+          </linearGradient>
+        </defs>
+      <path fill="url(#gradient)">
+      <animate 
+      attributeName="d" 
+      [attr.dur]="duration+'s'" 
+      repeatCount="indefinite"
+      [attr.values]="svgPathValues"
+      calcMode="spline"
+      keySplines="0.15 0 0.85 1; 0.15 0 0.85 1"
+      ></animate>
+      <!--
+        Edit splines from: https://franzheidl.github.io/keysplines/
+      -->
+
+    </path>
+  </g>
+</svg>

@@ -1,0 +1,79 @@
+
+
+
+$bg-grad:linear-gradient(
+    45deg, 
+    rgba(2,0,36,1) 0%, 
+    rgba(65,9,121,1) 35%, 
+    rgba(0,129,255,1) 100%
+);
+$blured-blobs-grad:linear-gradient(
+    45deg, 
+    rgba(117, 19, 93, 0.73) 0%,
+    rgba(245, 246, 252, 0.52) 100%, 
+
+);
+$blobs-grad:linear-gradient(
+    45deg, 
+    rgba(117, 19, 93, 0.73) 0%,
+    rgba(245, 246, 252, 0.52) 100%, 
+
+);
+  
+
+.fullscreen { 
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    position: fixed;
+    
+}
+
+#container{
+    
+    // Gradient editor: https://cssgradient.io/
+    
+    background: $bg-grad;
+    
+    z-index: -100;
+}
+
+#blurlayer{
+
+    background-color: rgba(255, 255, 255, 0.09);
+    backdrop-filter: blur(10px);
+    z-index: -90;
+}
+
+#blurBlobsGradient{
+    z-index: -94;
+    mix-blend-mode: multiply;
+    background: $blured-blobs-grad;
+    
+}
+
+#blobsGradient{
+    z-index: -84;
+    mix-blend-mode: multiply;
+    background: $blobs-grad;
+    
+}
+
+#bluredshapes{
+    z-index: -95;
+    /*background: 
+    linear-gradient(to bottom, rgba(245, 246, 252, 0.52), rgba(117, 19, 93, 0.73));
+    */
+}
+
+#unbluredshapes{
+    z-index: -85;
+}
+
+.blob {
+    position: absolute;
+    left: 0px;
+    top: 0px;
+
+}

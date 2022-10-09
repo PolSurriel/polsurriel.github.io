@@ -1,0 +1,11 @@
+<div class="container">
+    <div id="headerLogo">Pol Surriel</div>
+  
+    <app-burguer-button (clickEventEmmiter)="onBurguerClicked($event, burguerMenu)"></app-burguer-button>
+    <div id="section-menu" class="closed" #burguerMenu>
+      <div class="section-menu-item"> <a href="#projects">Projects</a></div>
+      <div class="section-menu-item">References</div>
+      <div class="section-menu-item">Posts</div>
+      <div class="section-menu-item">Contact</div>
+    </div>
+</div>

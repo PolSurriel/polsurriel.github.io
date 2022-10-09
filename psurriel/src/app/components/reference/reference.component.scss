@@ -1,0 +1,50 @@
+
+.avatar{
+    border-radius: 50%;
+    width: 100px;
+    height: 100px;
+}
+
+.card{
+    display: flex;
+    max-width: 450px;
+
+    border-radius: 20px;
+    padding: 20px;
+
+    margin-bottom: 20px;
+    padding-right: 30px;
+
+    background-color: rgba(48, 48, 48, 0.424);
+    backdrop-filter: blur(7px);
+}
+
+p{
+    margin: 0px;
+}
+
+.cardText{
+    margin-left: 15px;
+    display: flex;
+    flex-direction: column;
+}
+
+
+.refName{
+    font-size: 25px;
+    font-weight:bold;
+
+}
+.refCharge{
+    font-size: 15px;
+
+}
+.refContext{
+    font-size: 12px;
+    font-style: oblique;
+}
+.description{
+    margin-top: 17px;
+    text-align: justify;
+
+}

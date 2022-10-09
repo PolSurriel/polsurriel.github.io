@@ -1,0 +1,31 @@
+<div class="bgcontainer">
+
+
+  <div class="container">
+    <div class="projectArrow leftArrow" (click)="onPrevClicked()"><</div>
+    <div id="slidesContainer">
+      <h1 id="projects">PROJECTS</h1>
+
+      <app-project-slide>
+        <div id="clothVideoContainer">
+          <div id="clothVideo">
+            <app-cloth-video></app-cloth-video>
+          </div>
+        </div>
+      </app-project-slide>
+
+      <app-project-slide>
+        <div id="robotArmContainer">
+          <app-robot-arm></app-robot-arm>
+        </div>
+      </app-project-slide>
+
+      <app-project-slide></app-project-slide>
+      <app-project-slide></app-project-slide>
+      <app-project-slide></app-project-slide>
+      <app-project-slide></app-project-slide>
+    </div>
+    <div class="projectArrow rightArrow" (click)="onNextClicked()">></div>
+
+  </div>
+</div>

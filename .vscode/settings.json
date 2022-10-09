@@ -1,0 +1,21 @@
+{
+    "files.exclude": {
+        "**/.git": true,
+        "**/.svn": true,
+        "**/.hg": true,
+        "**/CVS": true,
+        "**/.DS_Store": true,
+        "**/Thumbs.db": true,
+        "[!p]*/**": true,
+        "p[!s]*/**": true,
+        "ps[!u]*/**": true,
+        "psu[!r]*/**": true,
+        "psur[!r]*/**": true,
+        "psurr[!i]*/**": true,
+        "psurri[!e]*/**": true,
+        "psurrie[!l]*/**": true,
+        "psurriel/[!s]*/**": true,
+        "psurriel/s[!r]*/**": true,
+        "psurriel/sr[!c]*/**": true
+    }
+}

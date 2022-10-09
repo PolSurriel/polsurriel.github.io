@@ -1,0 +1,158 @@
+
+.bgcontainer{
+    background: rgb(63,94,251);
+    background: radial-gradient(circle, rgba(63,94,251,1) 0%, rgb(114, 31, 48) 100%);
+    border-bottom: 1.5px solid white;
+}
+
+#projects{
+    width: 100%;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+
+    margin-top: -80px;
+    margin-bottom: 20px;
+}
+
+#clothVideoContainer{
+    display: flex;
+    justify-content: end;
+    background-color: red;
+    height: 0px;
+    width: 100%;
+
+}
+
+#clothVideo{
+
+    z-index: 2;
+    margin-top: -60px;
+    margin-right: -75px;
+
+    transform: scale(0.9);
+
+}
+
+#robotArmContainer{
+
+    margin-left: -21px;
+    margin-top: 105px;
+
+}
+
+.container{
+    z-index: 100;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    align-items: center;
+    overflow: hidden;
+}
+
+
+
+#slidesContainer{
+    padding-top: 100px;
+    height: 400px;
+    width: 100%;
+    overflow: hidden;
+}
+
+.projectArrow{
+
+
+    position:absolute;
+
+    font-size: 100px;
+    transform: scaleY(2);
+    cursor: pointer;
+    user-select: none;
+    z-index: 10;
+}
+
+.leftArrow{
+    left:10%;
+}
+
+.rightArrow{
+    right:10%;
+}
+
+
+
+
+@media all and (max-width: 1420px) {
+    .leftArrow{
+        left:5%;
+    }
+    
+    .rightArrow{
+        right:5%;
+    }
+    
+}
+
+@media all and (max-width: 1330px) {
+    .leftArrow{
+        left:2%;
+    }
+    
+    .rightArrow{
+        right:2%;
+    }
+    
+}
+
+@media all and (max-width: 1170px) {
+    .leftArrow{
+        left:0%;
+    }
+    
+    .rightArrow{
+        right:0%;
+    }
+    
+}
+
+
+
+@media all and (max-width: 1120px) {
+
+    #slidesContainer{
+        height: fit-content;
+    }
+    
+
+    .projectArrow{
+        display: none;    
+    }
+
+    #clothVideo {
+        margin-top: -80px;
+        margin-right: -79px;
+    
+        transform: scale(0.8);
+    
+    }   
+
+ 
+}
+
+
+
+@media all and (max-width: 970px) {
+    #clothVideo {
+        margin-top: -80px;
+        margin-right: -80px;
+    
+        transform: scale(0.6);
+    
+    }   
+
+    .container{
+
+    }
+}
+
+

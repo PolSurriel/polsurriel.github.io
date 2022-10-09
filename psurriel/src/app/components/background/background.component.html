@@ -1,0 +1,26 @@
+<div id="container" class="fullscreen"></div>
+<div id="blurlayer" class="fullscreen"></div>
+<div id="blurBlobsGradient" class="fullscreen"></div>
+<div id="blobsGradient" class="fullscreen"></div>
+<div id="bluredshapes" class="fullscreen">
+    <div *ngFor="let blob of bluredBlobs">
+        <div 
+        class="blob" 
+        [attr.style]="'left:'+blob.x+'px; top:'+blob.y+'px; transform: scale('+blob.scale+')'">
+            <app-blob gradientStart="white" gradientEnd="white"></app-blob>
+        </div>
+    </div>
+    
+</div>
+
+<div id="unbluredshapes" class="fullscreen">
+    <div *ngFor="let blob of blobs">
+        <div 
+        class="blob" 
+        [attr.style]="'left:'+blob.x+'px; top:'+blob.y+'px; transform: scale('+blob.scale+')'">
+            <app-blob gradientStart="black" gradientEnd="black"></app-blob>
+        </div>
+    </div>
+    
+</div>
+

@@ -1,0 +1,92 @@
+#base{
+    transform: scale(0.4);
+    width: 0px;
+    height: 0px;
+}
+
+
+.joint{
+    position: absolute;
+    display: inline;
+    transform-origin: 50% 90%;
+    transition: transform 1s ease
+
+}
+
+#arm0{
+    margin-left: 100px;
+    margin-top: -550px;
+    transform: rotate(45deg);
+}
+
+#arm1{
+    margin-left: -120px;
+    margin-top: -255px;
+    transform: rotate(45deg);
+
+}
+
+#arm2{
+    margin-left: -153px;
+    margin-top: -320px;
+    transform: rotate(45deg);
+}
+
+
+#base-img{
+    position: relative;
+    z-index: 4;
+
+    transform: rotate(90deg) translate(-40px,70px);
+
+}
+
+#arm0-img{
+    position: relative;
+
+    z-index: 3;
+}
+#arm1-img{
+    position: relative;
+
+    z-index: 2;
+}
+
+@keyframes fingAnim1 {
+    from {transform: rotate(8deg);}
+    50%  {transform: rotate(-8deg);}
+    to {transform: rotate(8deg);}
+}
+
+@keyframes fingAnim2 {
+    from {transform: rotate(-8deg);}
+    50%  {transform: rotate(8deg);}
+    to {transform: rotate(-8deg);}
+}
+
+.finguers{
+    position: absolute;
+    margin-top: -403px;
+
+    transform-origin: 50% 37%;
+
+    animation-iteration-count: infinite;
+    animation-duration: 4s;
+}
+
+#fing1{
+    position: absolute;
+    z-index: -1;
+    animation-name: fingAnim1;
+}
+
+#fing2{
+    position: absolute;
+    z-index: -1;
+    animation-name: fingAnim2;
+}
+
+
+
+
+
