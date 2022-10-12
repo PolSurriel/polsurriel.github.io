@@ -2,6 +2,7 @@ import { Component, DebugElement, HostListener, OnInit } from '@angular/core';
 import { RangeValueAccessor } from '@angular/forms';
 import { repeat } from 'rxjs';
 import { DebugPoints } from 'src/debugTools/DebugPoints';
+import { GithubButtonComponent } from '../github-button/github-button.component';
 
 @Component({
   selector: 'app-robot-arm',

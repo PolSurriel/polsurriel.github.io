@@ -1,0 +1,14 @@
+<div class="container">
+  <img [attr.src]="imageUrl" alt="">  
+  <div class="postInfo">
+    <div class="postContext">
+        <p>{{tag}}</p>
+        <p>{{publishedDate}}</p>
+    </div>
+    <h1>{{title}}</h1>
+    <p class="content">
+      <ng-content></ng-content>
+    </p>
+  </div>
+
+</div>

@@ -1,0 +1,46 @@
+.container{
+    display: flex;
+    max-width: 900px;
+    background-color: rgba(96, 0, 141, 0.339);
+    padding: 10px;
+    border-radius: 10px;
+    backdrop-filter: blur(20px);
+}
+
+img{
+    width: 125px;
+    height: 125px;
+}
+
+.postInfo{
+    margin-left: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+.postInfo * {
+    margin: 0px;
+}
+
+.postContext {
+    display: flex;
+    justify-content: space-between;
+    opacity: 0.7;
+    font-size: 12px;
+}
+
+h1{
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.content{
+    font-size: 15px;
+    height: 70px;
+    overflow: hidden;
+    mask-image: linear-gradient(
+        to bottom,
+        white 0%,
+        transparent 100%
+    );
+}

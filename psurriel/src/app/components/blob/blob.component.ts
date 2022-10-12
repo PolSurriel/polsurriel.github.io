@@ -8,8 +8,9 @@ import { repeat } from 'rxjs';
 })
 export class BlobComponent implements OnInit {
 
-  @Input() gradientStart : string = "rgb(76, 161, 175)" 
-  @Input() gradientEnd : string = "rgb(196, 224, 229)" 
+  @Input() opacity : string = "1" 
+  @Input() gradientStart : string = "black" // "rgb(76, 161, 175)" 
+  @Input() gradientEnd : string = "black" // "rgb(196, 224, 229)" 
 
 /**
  * Blob generator: https://passionhacks.com/blob-maker/
@@ -51,9 +52,16 @@ export class BlobComponent implements OnInit {
       Math.random() * BlobComponent.svgPaths.length
     ) 
     
+    let beginIndex = selectIndex()
     let begin = BlobComponent.svgPaths[selectIndex()]
+
+    let middleIndex : number
+    do{
+      middleIndex = selectIndex()
+    }while(middleIndex == beginIndex)
     
-    return  begin + ";" + BlobComponent.svgPaths[selectIndex()]+";" + begin
+
+    return  begin + ";" + BlobComponent.svgPaths[middleIndex]+";" + begin
 
   }
 

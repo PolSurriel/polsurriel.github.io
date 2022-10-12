@@ -1,0 +1,24 @@
+.container{
+    height: 300px;
+    position: relative;
+    border-radius: 27px;
+    overflow:hidden;
+
+
+}
+.inner{
+    position: absolute;
+
+    border-radius: 27px;
+    height: 300px;
+    width: 100%;
+    
+}
+
+.gradientBG{
+    background: linear-gradient(
+        135deg, 
+    rgb(250, 97, 255) 16%, 
+    rgb(125, 78, 255) 100%);
+}
+

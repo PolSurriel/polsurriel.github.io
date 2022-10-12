@@ -6,18 +6,36 @@
 }
 
 #headerLogo{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    text-align: right;
+}
+
+#headerLogo p{
     margin: 10px;
+    font-size: 25px;
+    font-weight: bolder;
+    text-align: right;
+    
+}
+
+#headerLogo span{
+    width: 100%;
+    text-align: right;
+    margin-top: -20px;    
 }
 
 #section-menu{
     display: flex;
-    transition: transform 0.5s cubic-bezier(0.77,0.2,0.05,1.0),
+    transition: transform 0.5s cubic-bezier(0.77,0.2,0.05,1.0);
+    margin:10px
 }
 
 .section-menu-item{
 
-    font-size: 20px;
-    margin-right: 10px;
+    font-size: 30px;
+    margin-right: 20px;
     opacity: 1;
 
     cursor: pointer;
@@ -25,12 +43,14 @@
 }
 
 .section-menu-item:hover{
-    transition: transform 0.2s ease !important;
-    transform: translate(0px,2px);
+    opacity: 0.7;
+    transition: opacity 0.2s ease !important;
+
 }
 
 app-burguer-button{
     display: none;
+
 
 }
 
@@ -52,7 +72,7 @@ a{
     text-decoration: none;
 }
 
-@media only screen and (max-width: 650px) {
+@media all and (max-width: 880px) {
     app-burguer-button{
         z-index: 12;
         display: block;
@@ -70,6 +90,7 @@ a{
     
 
     #section-menu{
+        margin: 0px;
         background-color: rgba(0, 0, 0, 0.25);
         position: fixed;
         flex-direction: column;

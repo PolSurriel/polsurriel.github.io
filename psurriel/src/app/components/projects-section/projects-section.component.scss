@@ -17,7 +17,7 @@
 
 #clothVideoContainer{
     display: flex;
-    justify-content: end;
+    justify-content: flex-end;
     background-color: red;
     height: 0px;
     width: 100%;
@@ -35,10 +35,10 @@
 }
 
 #robotArmContainer{
-
+    position: relative;
+    z-index: 1;
     margin-left: -21px;
     margin-top: 105px;
-
 }
 
 .container{
@@ -48,8 +48,8 @@
     width: 100%;
     align-items: center;
     overflow: hidden;
+    position: unset !important;
 }
-
 
 
 #slidesContainer{
@@ -153,6 +153,17 @@
     .container{
 
     }
+}
+
+
+@media all and (max-width:405px){
+    #clothVideo {
+        margin-top: -80px;
+        margin-right: -80px;
+    
+        transform: scale(0.5);
+    
+    }  
 }
 
 

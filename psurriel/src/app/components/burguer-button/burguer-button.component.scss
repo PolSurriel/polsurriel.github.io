@@ -1,3 +1,5 @@
+$scale: 1.5;
+
 #burguer-button{
     padding-left: 5px;
     padding-right: 5px;
@@ -11,6 +13,12 @@
     transition: background-color 0.5s ease, transform 0.5s ease;
     border-radius: 10px;
 
+    transform: scale(1.5);
+    margin-right: 10px;
+    margin-top:10px;
+
+
+    
 }
 
 .burguer-opened-container{

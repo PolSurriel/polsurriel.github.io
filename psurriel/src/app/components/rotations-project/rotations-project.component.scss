@@ -1,0 +1,64 @@
+
+
+.container{
+    height: 256px;
+    position: relative;
+    border-radius: 27px;
+    margin-top: -105px;
+
+}
+.inner{
+    position: absolute;
+
+    border-radius: 27px;
+    height: 300px;
+    width: 100%;
+
+}
+
+.openButton{
+    height: 68px;
+}
+
+.videoBG {
+    display: flex;
+    justify-content: flex-end;
+    overflow: hidden;
+}
+
+.videoBG video{
+    width: auto !important;
+    height: 490px !important;
+    mask-image: linear-gradient(
+        to right,
+        transparent,
+        white
+    );
+}
+
+.gradientBG{
+    background: linear-gradient(
+        45deg,
+        rgb(131, 0, 0),
+        red
+    );
+}
+
+.content{
+
+    width: 100%;
+
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-end;
+    flex-direction: column;
+    text-align: right;
+
+}
+
+.content *{
+    margin-right: 20px;
+}
+

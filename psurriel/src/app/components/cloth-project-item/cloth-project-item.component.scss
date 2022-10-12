@@ -1,0 +1,269 @@
+/*
+.container{
+    width: 100%;
+    height: 300px;
+    border-radius: 27px;
+    background: linear-gradient(
+        135deg,
+        rgb(72, 181, 72) 0%,
+        rgb(0, 154, 171) 20%,
+        rgb(0, 95, 98) 100%
+    );
+  margin-top: -35px;
+  
+    
+}
+
+
+.aux{
+    width: 180px;
+    height: 55px;
+    margin: 0px;
+    z-index: 1;
+    border-radius: 20px;
+    margin-left: -15px;
+    background-color: rgb(13, 13, 13);
+    mix-blend-mode: screen;
+    cursor: pointer;
+    margin-top: 130px;
+}
+.aux:hover{
+    cursor: pointer;
+}
+
+.githublink{
+    display: flex;
+    background-color: rgb(0, 0, 0);
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 20px;
+
+    padding-top: 0px;
+    padding-bottom: 0px;
+    padding-left: 15px;
+    padding-right: 15px;
+
+    width: 150px;
+    cursor: pointer;
+
+
+}
+.githubButtonContainer{
+    padding-top: 160px;
+    padding-left: 28px;
+}
+
+.githublink:hover{
+    
+    cursor: pointer;
+}
+
+.githublink img{
+    padding: 0px;
+    width: 30px;
+    height: 30px;
+    margin-right: 8px;
+}
+
+.bg{
+    
+    background-image: url("./../../../assets/img/projects/cpplogoedited.png");
+    background-size: 50px;
+    width: 100%;
+    height: 300px;
+    margin-top: -300px;
+    //mix-blend-mode:overlay;
+}
+
+h2 {
+    font-size: 18px;
+    max-width: 500px;
+    text-align: justify;
+    opacity: 0.9;
+    margin-top: -20px;
+    margin-left: 27px;
+}
+
+h1{
+    margin-top: 35px;
+    padding-top: 10px;
+    margin-left: 25px;
+}
+
+@media all and (max-width:792px){
+    h2{
+        max-width: 400px;
+    }
+}
+
+@media all and (max-width:688px){
+    h2{
+        max-width: 340px;
+    }
+}
+
+@media all and (max-width:627px){
+    h2{
+        max-width: 300px;
+        margin-top: -10px;
+        font-size: 15px;
+    }
+
+    .githublink{
+        margin-top: 20px;
+        margin-left: 20px;
+    }
+
+    h1{
+        max-width: 300px;
+    }
+}
+
+@media all and (max-width:550px){
+    h2{
+        max-width: 200px;
+        margin-top: -10px;
+        font-size: 15px;
+    }
+
+    .githublink{
+        margin-top: 20px;
+        margin-left: 20px;
+    }
+
+    h1{
+        max-width: 300px;
+    }
+}
+
+
+.githublink:hover .aux{
+
+    background-color: rgb(49, 49, 49);
+}
+
+@media all and (max-width:450px){
+    h2{
+        max-width: 300px;
+        margin-top: 0px;
+        font-size: 12px;
+    }
+    .githublink{
+        margin-top: 0px;
+    }
+    h1{
+        font-size: 30px;
+        max-width: 100px;
+    }
+}
+
+@media all and (max-width:400px){
+    h2{
+        display: none;
+    }
+    .githublink{
+        margin-top: 0px;
+    }
+    h1{
+        padding-top: 30px;
+        font-size: 30px;
+        max-width: 100px;
+    }
+}
+
+*/
+
+
+
+
+.container{
+    height: 256px;
+    position: relative;
+    border-radius: 27px;
+
+}
+.inner{
+    position: absolute;
+
+    border-radius: 27px;
+    height: 300px;
+    width: 100%;
+    
+}
+
+.gradientBG{
+    background: linear-gradient(
+        135deg,
+        rgb(72, 181, 72) 0%,
+        rgb(0, 154, 171) 20%,
+        rgb(0, 95, 98) 100%
+    );
+
+}
+
+.logoBG{
+    background-image: url("./../../../assets/img/projects/cpplogoedited.png");
+    background-size: 50px;
+    mix-blend-mode:overlay;
+    opacity: 0.2;
+}
+
+.content{
+    width: 70%;
+    padding-left: 15px;
+    padding-top: 15px;
+
+}
+
+
+h2 {
+    font-size: 18px;
+    max-width: 500px;
+    text-align: justify;
+    opacity: 0.9;
+}
+
+h1{
+    margin: 0px;
+}
+
+
+@media all and (max-width:780px){
+
+    .content{
+        width: 60%;
+    
+    }
+
+}
+
+@media all and (max-width:570px){
+
+
+    .content{
+        width: 90%;
+    
+    }
+
+    h1{
+        max-width: 100px;
+    }
+    
+    h2{
+        font-size: 15px;
+        
+    }
+
+}
+
+@media all and (max-width:451px){
+
+    .openButton{
+        padding-top: 30px;
+    }
+
+    h2{
+        display: none;
+        
+    }
+}
