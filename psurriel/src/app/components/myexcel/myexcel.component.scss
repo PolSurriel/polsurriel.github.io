@@ -16,9 +16,38 @@
 }
 
 .gradientBG{
+    
     background: linear-gradient(
         135deg, 
-    rgb(250, 97, 255) 16%, 
-    rgb(125, 78, 255) 100%);
+        rgb(68, 112, 255) 16%, 
+        rgb(10, 26, 253) 100%
+        //rgb(12, 24, 191) 100%
+    );
+}
+
+.content {
+    height: 200px !important;
+    opacity: 0.8;
+    //mix-blend-mode:lighten;
+    //mix-blend-mode:hard-light;
+    mix-blend-mode:color-dodge;
+
+}
+
+.layer2{
+    
+    display: flex;
+    flex-direction: column;
+    width: 95%;
+    padding-left: 15px;
+    justify-content: flex-end;
+    height: 300px;
+    align-items: flex-end;
+    
+}
+
+.layer2 *{
+    z-index: 1;
+    
 }
 

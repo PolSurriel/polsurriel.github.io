@@ -1,0 +1,11 @@
+<!--
+I've added a little offset to the dropdown menu to improve the UX.
+By this way you don't have to move the mouse to the first option.
+
+So you can execute the first option just by double clicking!!
+-->
+<div id="container" [ngStyle]="{top:yPosition-7+'px', left:xPosition-7 + 'px'}">
+    <ul>
+        <li *ngFor="let option of options; index as i" (click)="onOptionClicked(i)">{{option}}</li>
+    </ul>
+</div>

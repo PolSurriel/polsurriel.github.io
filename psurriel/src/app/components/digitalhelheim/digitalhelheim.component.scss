@@ -1,0 +1,58 @@
+.container{
+    height: 300px;
+    position: relative;
+    border-radius: 27px;
+    overflow:hidden;
+
+
+}
+.inner{
+    position: absolute;
+
+    border-radius: 27px;
+    height: 300px;
+    width: 100%;
+    
+}
+
+.gradientBG{
+    background: linear-gradient(135deg, rgba(81,17,255,1) 16%, rgba(152,80,0,1) 86%, rgba(127,0,0,1) 100%);
+}
+
+.svgItem{
+    height: 310px;
+}
+
+
+
+@keyframes particleAnim {
+    from {
+        margin-top: 0px;
+        opacity: 1;
+    }
+    to {
+        opacity: 0;
+        margin-top: 100px;
+    }   
+  }
+
+.particle{
+    width: 5px;
+    height: 10px;
+    border-radius: 100%;
+    background-color: red;
+    animation-name: particleAnim;
+    animation-duration: 0.3s;
+    animation-iteration-count: infinite;
+    animation-timing-function:linear;
+    position: absolute;
+}
+
+.particleContainer{
+    position: relative;
+
+    transform-origin: center top;
+    width: 100px;
+    margin-left: 100px;
+    height: 100px;
+}

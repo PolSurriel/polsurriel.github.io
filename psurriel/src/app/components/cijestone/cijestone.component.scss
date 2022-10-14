@@ -1,0 +1,68 @@
+.container{
+    height: 300px;
+    position: relative;
+    border-radius: 27px;
+    overflow:hidden;
+
+
+}
+.inner{
+    position: absolute;
+
+    border-radius: 27px;
+    height: 300px;
+    width: 100%;
+    
+}
+
+.content{
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-end;
+    margin-top: -45px;
+
+}
+
+
+.opentext{
+
+    text-shadow: 1px 1px 3px black;
+}
+
+.openProject{
+    cursor: pointer;
+    margin-left: 75px;
+    width: fit-content;
+    height: 25px;
+    border-radius: 15px;
+    padding: 10px;
+    padding-left: 15px;
+    padding-right: 15px;
+    background:linear-gradient(
+        135deg, 
+        rgb(255, 183, 0) 0%, 
+        rgb(255, 183, 0) 10%, 
+        rgb(255, 246, 189) 15%,
+        rgb(255, 183, 0) 25%, 
+        rgb(147, 142, 15) 100%
+    );
+    box-shadow: 1px 1px 10px rgb(255, 183, 0);
+}
+
+.videoBG{
+    margin-top: -100px;
+
+}
+
+.videoBG video{
+    height: 490px !important;
+
+    margin: auto;
+    top:0;
+    bottom:0;
+
+}
+
+.gradientBG{
+    background: linear-gradient(135deg, rgba(81,17,255,1) 16%, rgba(152,80,0,1) 86%, rgba(127,0,0,1) 100%);
+}

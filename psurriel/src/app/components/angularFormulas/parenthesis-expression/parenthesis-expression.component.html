@@ -1,0 +1,6 @@
+<div class="container"
+(mousedown)="root!!.onPressedEventHandler($event, parentElement)"
+(touchstart)="root!!.onPressedEventHandler($event, parentElement)"
+>
+    <math-expression [expression]="parentElement!!.expression!!" [root]="root!!"></math-expression>
+</div>

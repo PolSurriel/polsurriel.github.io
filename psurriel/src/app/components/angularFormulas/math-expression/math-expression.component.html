@@ -1,0 +1,22 @@
+<div class = "container">
+  <div *ngFor="let element of expression!!.elements;" 
+    [id]="element.htmlID"
+    [ngClass]="{'separator':isSeparator(element)}"
+    >
+    <!-- *ngIf="element.katex !== ''"  -->
+      <ng-katex 
+        [equation]="element.katex" 
+        (mousedown)="root!!.onPressedEventHandler($event, element)"
+        (touchstart)="root!!.onPressedEventHandler($event, element)"
+      ></ng-katex>
+      <sqrt-expression *ngIf="isSQRT(element)" [root]="this" [sqrtElement]="castElementToSQRT(element)" ></sqrt-expression>
+      <frac-expression *ngIf="isFrac(element)" [root]="this" [fracElement]="castElementToFrac(element)"></frac-expression>
+      <power-expression *ngIf="isPower(element)" [root]="this" [power]="extractPower(element)"></power-expression>
+      <parenthesis-expression *ngIf="isParenthesis(element)" [root]="this" [parentElement]="castElementToParenthesis(element)"></parenthesis-expression>   
+    </div>
+    <div
+      *ngIf="isRoot" 
+      #freespaceContainer
+      class="free-space-container">
+    </div>
+</div>

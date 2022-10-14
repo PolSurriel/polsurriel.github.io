@@ -1,0 +1,109 @@
+$cellwidth : 40px;
+
+/*
+tr:nth-child(even){background-color: #f2f2f2;}
+*/
+
+td{
+    border: 1px solid rgb(127, 176, 255);
+    margin: 0;
+    min-width: $cellwidth;
+    padding: 0px;
+    border-spacing: 0px;
+}
+
+
+input{
+    background-color: rgb(129, 129, 129);
+}
+.evenInput{
+    background-color: #4a4a4a;
+}
+
+
+.widthConstrainedCellLetter { 
+    width: $cellwidth;
+}
+
+th {
+    font-weight: normal;
+    overflow-y:hidden;
+}
+
+.columnSizeEditor{
+    width: 2px;
+    height: 20px;
+    float: right;
+}
+
+
+
+
+table{
+    border-collapse: collapse;
+    
+
+}
+
+.cellLetter{
+    background-color:rgb(67, 67, 67);
+}
+
+.cellLetter:hover{
+    cursor: pointer;
+}
+
+*{
+    user-select: none;
+}
+
+/*Wow! It seems that... for images and tables height:0 means 100%*/
+.addColumnContainer{
+    height: 0;
+    min-width: 10px;
+}
+
+.addButton {
+    background-color: rgb(90, 129, 255);
+}
+
+.addButton:hover {
+    background-color: rgb(0, 153, 255);
+    cursor: pointer;
+}
+
+
+.addRowButton{
+    width: 100%;
+}
+
+.addColumnButton{
+    height: 100%;
+    width: 100%;
+}
+
+
+td input{
+    padding: 0;
+
+    overflow: hidden;
+    width: 100%;
+
+    border:none;
+    outline:none;
+    border-spacing: 0px;
+}
+
+
+
+td:focus-within, input:focus-within{
+    background-color: rgb(0, 123, 185) !important;
+}
+
+
+*{
+    font-family: Arial, Helvetica, sans-serif;
+    text-align: center;
+    
+}
+

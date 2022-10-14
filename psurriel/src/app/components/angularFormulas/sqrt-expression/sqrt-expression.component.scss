@@ -1,0 +1,54 @@
+* {
+}
+
+.container{
+    display: flex;
+}
+
+
+.sqrtrightcontainer{
+    display: flex;
+    width: 5px;
+}
+
+.sqrtright{
+    background: 
+    linear-gradient(to top left,
+        rgba(255, 255, 255, 0) 0%,
+        rgba(255, 255, 255, 0) calc(50% - 0.5px),
+        rgb(255, 255, 255) 50%,
+        rgba(255, 255, 255, 0) calc(50% + 0.5px),
+        rgba(255, 255, 255, 0) 100%);
+    width: 5px;
+    height: 100%;
+}
+
+
+.sqrtleftcontainer{
+    margin-left: 2px;
+    display: flex;
+    align-items: flex-end;
+
+}
+
+
+.sqrtleft{
+    background: 
+    linear-gradient(to top right,
+        rgba(255, 255, 255, 0) 0%,
+        rgba(255, 255, 255, 0) calc(50% - 0.5px),
+        rgb(255, 255, 255) 50%,
+        rgba(255, 255, 255, 0) calc(50% + 0.5px),
+        rgba(255, 255, 255, 0) 100%);
+    width: 5px;
+    height: 10px;
+
+}
+
+            
+
+.sqrt-content{
+    border-top: 0.4px solid white;
+    padding-right: 4px;
+    padding-left: 2px;
+}

@@ -1,0 +1,71 @@
+.container{
+    height: 300px;
+    position: relative;
+    border-radius: 27px;
+    overflow:hidden;
+
+
+}
+.inner{
+    position: absolute;
+
+    border-radius: 27px;
+    height: 300px;
+    width: 100%;
+    
+}
+
+.boardTexture{
+    background-image: url("./../../../assets/img/projects/boardtexture.jpg");
+    background-size: 100% auto;
+}
+
+.blackPatch{
+    position: absolute;
+    background-color: rgb(16, 16, 16);
+    width: 100px;
+    margin-top: 150px;
+    margin-left: -50px;
+    height: 200px;
+    border-radius: 100px;
+}
+
+.videoBG video {
+    height: 490px !important;
+    min-width: 500px;
+    margin-top: -190px;
+    border-radius: 100px;
+}
+.videoBG{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    mix-blend-mode:screen;
+    background-color: rgb(16, 16, 16);
+
+}
+
+h1{
+    margin: 0;
+    margin-bottom: 15px;
+    margin-top: 10px;
+}
+
+.content{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    margin-left: 15px;
+}
+
+
+.gradientBG{
+    background: linear-gradient(135deg,
+    rgb(32, 60, 12) 20%,
+    rgb(13, 97, 21) 56%,  
+    rgb(13, 97, 21) 96%,
+      rgb(32, 60, 12) 100%);
+
+      opacity: 0.3;
+    
+}

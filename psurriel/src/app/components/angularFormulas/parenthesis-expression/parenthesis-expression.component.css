@@ -1,0 +1,9 @@
+.container{
+    display: flex;
+    border: solid 1px white;
+    border-radius: 10px / 20px;
+    border-top:none;
+    border-bottom: none;
+    padding: 5px;
+
+}

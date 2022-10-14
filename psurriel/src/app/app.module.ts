@@ -1,3 +1,4 @@
+import { FormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
@@ -11,6 +12,8 @@ import { ClothProjectItemComponent } from './components/cloth-project-item/cloth
 import { ClothVideoComponent } from './components/cloth-video/cloth-video.component';
 import { ContactComponent } from './components/contact/contact.component';
 import { DigitalhelheimComponent } from './components/digitalhelheim/digitalhelheim.component';
+import { DropdownMenuComponent } from './components/excel/dropdown-menu/dropdown-menu.component';
+import { TableEditorComponent } from './components/excel/table-editor/table-editor.component';
 import { GithubButtonComponent } from './components/github-button/github-button.component';
 import { HangmanComponent } from './components/hangman/hangman.component';
 import { HeaderComponent } from './components/header/header.component';
@@ -27,8 +30,15 @@ import { ReferencesSectionComponent } from './components/references-section/refe
 import { RobotArmComponent } from './components/robot-arm/robot-arm.component';
 import { RotationsProjectComponent } from './components/rotations-project/rotations-project.component';
 import { ShipButtonComponent } from './components/ship-button/ship-button.component';
+import { FormulasComponent } from './components/formulas/formulas.component';
 import { SurrealboostComponent } from './components/surrealboost/surrealboost.component';
-import { FormulasComponent } from './formulas/formulas.component';
+import { FracExpressionComponent } from './components/angularFormulas/frac-expression/frac-expression.component';
+import { MathExpressionComponent } from './components/angularFormulas/math-expression/math-expression.component';
+import { ParenthesisExpressionComponent } from './components/angularFormulas/parenthesis-expression/parenthesis-expression.component';
+import { PowerExpressionComponent } from './components/angularFormulas/power-expression/power-expression.component';
+import { SqrtExpressionComponent } from './components/angularFormulas/sqrt-expression/sqrt-expression.component';
+
+import { KatexComponent, KatexModule } from 'ng-katex';
 
 @NgModule({
   declarations: [	
@@ -58,11 +68,21 @@ import { FormulasComponent } from './formulas/formulas.component';
     HangmanComponent,
     PelletsComponent,
     DigitalhelheimComponent,
-    MegamanComponent
+    MegamanComponent,
+    DropdownMenuComponent,
+    TableEditorComponent,
+    FracExpressionComponent,
+    MathExpressionComponent,
+    ParenthesisExpressionComponent,
+    PowerExpressionComponent,
+    SqrtExpressionComponent
+    
    ],
   imports: [
     BrowserModule,
     AppRoutingModule,
+    FormsModule,
+    KatexModule
     
   ],
   providers: [],

@@ -1,0 +1,76 @@
+
+<app-dropdown-menu 
+*ngIf="dropdownActive" [mode]="dropdownMode"
+[yPosition]="dropdownColumnY"
+[xPosition]="dropdownColumnX"
+(closeMenu)="onDropDownCloses()"
+(deleteSelectedColumn)="onDeleteSelectedColumn()"
+(deleteSelectedRow)="onDeleteSelectedRow()"
+(copyColumnToClipboard)="onCopyColumnToClipBoard()"
+(copyRowToClipboard)="onCopyRowToClipBoard()"
+>
+</app-dropdown-menu>
+
+<div id="tableContainer">
+
+    <table id="editable-table">
+        <tr>
+            <!-- TOP-LEFT EDGE CELL -->
+            <td></td>
+            
+            <!-- COLUMN LETTER INDICATOR -->
+            <th class="cellLetter" [ngClass]="{'widthConstrainedCellLetter': !fillAllWidth}"  *ngFor="let _ of [].constructor(dynamicTableController.maxJ); index as i" [id]="'letter_column'+i" (click)="openColumnDropdown(i, $event)">{{dynamicTableController.numericIndexToAlphabetIndex(i)}}
+                <div class="columnSizeEditor"
+               ><!-- 
+
+                   (mouseover)="onMouseOverColumnResizer()"
+                   (mouseout)="onMouseOutColumnResizer()"
+                   (mousedown)="onClickColumnResizer(i, $event)"
+                   >
+                -->
+
+                </div>
+            </th>
+
+            <!-- ADD COLUMN BUTTON -->
+            <td [attr.rowspan]="dynamicTableController.maxI+1" class="addColumnContainer">
+                <button (click)="onAddColumnClicked()" class="addButton addColumnButton">+</button>
+            </td>
+        </tr>
+        
+        <tr *ngFor="let row of dynamicTableController.tableContent; index as i"> 
+            
+            
+            <!-- ROW LETTER INDICATOR -->
+            <td (click)="openRowDropdown(i, $event)" [id]="'letter_row'+i" class="rowIndex cellLetter">{{dynamicTableController.numericIndexToAlphabetIndex(i)}}</td>
+            
+            
+            <!-- INPUTS -->
+            <td *ngFor="let value of row; index as j; trackBy: trackByFn">
+                <!--IMPORTANT: The odd/even condition is inversed because
+                    the first 'td' is the colum indicator!
+                -->
+                <input
+                (keydown)="onKeyDownAndCellFocused(i,j, $event)"
+                [id]="'cell_'+i+'_'+j"
+                type="text" 
+                [value]="value"
+                [class]="i%2==1?'oddInput':'evenInput'" 
+                autocomplete="off"
+                
+                [(ngModel)]="dynamicTableController.tableContent[i][j]"
+                > 
+            </td>
+        </tr>
+        
+        <!-- ADD ROW BUTTON -->
+        <tr>
+            <td [attr.colspan]="dynamicTableController.maxJ+1">
+                <button (click)="onAddRowClicked()" class="addButton addRowButton">+</button>
+            </td>
+            
+        </tr>
+        
+    </table>
+
+</div>
