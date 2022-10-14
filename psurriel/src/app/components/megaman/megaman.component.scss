@@ -1,20 +1,163 @@
 .container{
     height: 300px;
     position: relative;
-    border-radius: 27px;
     overflow:hidden;
+    z-index: 5;
 
 
 }
+
+
+.content{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items:  flex-end;
+}
+
+.content *{
+    margin-right: 25px;
+
+}
+
+h1{
+    text-align: right;
+    max-width: 400px;
+}
+
+.imageBG img{
+
+    height: 300px;
+    margin-right: 25px;
+    mix-blend-mode:color-burn;
+    opacity: 0.7;
+
+}
+
+.imageBG {
+    display: flex;
+    justify-content: flex-end;
+    background-image: url("../../../assets/img/projects/charsbg.png");
+    background-size: 300px;
+    opacity: 0.6;
+    mix-blend-mode:screen;
+
+}
+
+
 .inner{
     position: absolute;
 
-    border-radius: 27px;
+    border-radius: 25px;
     height: 300px;
     width: 100%;
     
 }
 
+img{
+    user-select: none;
+    user-zoom: none;  
+}
+
 .gradientBG{
-    background: linear-gradient(135deg, rgba(81,17,255,1) 16%, rgba(152,80,0,1) 86%, rgba(127,0,0,1) 100%);
+    background: linear-gradient(
+        135deg, 
+        #FF74B1 16%,
+        #FFA1CF 56%,
+        #92e1c9 100%
+    );
+}
+ 
+.tableTitles{
+    margin-top: 30px;
+    margin-left: 15px;
+    display: flex;
+    border-radius: 10px;
+
+    width: 400px;
+    justify-content: center;
+    padding-right: 10px;
+
+}
+
+.openButton{
+    background: linear-gradient(135deg,
+    rgb(0, 109, 128),
+    rgb(33, 196, 196));
+    padding: 15px;
+    padding-left: 20px;
+    padding-right: 20px;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.content * {
+    z-index: 1;
+}
+
+ 
+h1 {
+    text-shadow: 2px 2px rgba(0, 0, 0, 0.561);
+}
+
+.postit img{
+    position: absolute;
+    width: 40px;
+    height: 40px;
+
+}
+
+
+.postit{
+    width: fit-content;
+    height: 0px;
+}
+
+img:hover {
+    cursor:grab !important;
+}
+
+
+
+.horizontalLine{
+    width: 415px;
+    height: 6px;
+    background-color: white;
+
+    border-radius: 10px;
+    margin-left: 15px;
+
+
+}
+
+.verticalLine{
+    width: 6px;
+    height: 10px;
+
+}
+.lineshape{
+    position: absolute;
+    width: 6px;
+    height: 240px;
+    background-color: white;
+    border-radius: 10px;
+}
+
+.titleWord{
+    margin:14px;
+    margin-left: 50px;
+    margin-right: 50px
+}
+
+.noteColumn{
+    width: 140px;
+    height: 170px;
+}
+
+.notesColumns{
+    margin-left: 5px;
+    width: 430px;
+    display: flex;
+    justify-content: center;
+    
 }

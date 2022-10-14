@@ -29,6 +29,8 @@
     text-shadow: 1px 1px 3px black;
 }
 
+
+
 .openProject{
     cursor: pointer;
     margin-left: 75px;
@@ -65,4 +67,26 @@
 
 .gradientBG{
     background: linear-gradient(135deg, rgba(81,17,255,1) 16%, rgba(152,80,0,1) 86%, rgba(127,0,0,1) 100%);
+}
+
+@media all and (max-width:515px) {
+    .content, .videoBG video{
+        margin-left: -30px;
+    }
+    
+}
+
+@media all and (max-width:450px) {
+    .content, .videoBG video{
+        margin-left: -50px;
+    }
+    
+}
+@media all and (max-width:450px) {
+    .videoBG video{
+        height: 400px !important;
+        margin-left: -30px;
+
+    }
+    
 }

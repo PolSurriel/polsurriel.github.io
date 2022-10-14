@@ -19,6 +19,10 @@
     background: linear-gradient(135deg, rgba(81,17,255,1) 16%, rgba(152,80,0,1) 86%, rgba(127,0,0,1) 100%);
 }
 
+h1, h2 {
+    text-shadow: 2px 2px rgba(0, 0, 0, 0.561);
+}
+
 .bg{
     background-image: url("./../../../assets/img/projects/synapse.jpg");
     background-size: auto 300px;
@@ -109,4 +113,18 @@ h2 {
         margin-left: -240px;
     }
 
+}
+
+@media all and (max-width:513px){
+    h2{
+        font-size: 18px;
+        margin-right: 5px;
+    }
+}
+
+@media all and (max-width:385px){
+    h2{
+        font-size: 15px;
+        margin-right: 5px;
+    }
 }

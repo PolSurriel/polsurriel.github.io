@@ -1,7 +1,7 @@
 .container{
     height: 300px;
     position: relative;
-    border-radius: 27px;
+    border-radius: 25px;
     overflow:hidden;
 
 
@@ -9,18 +9,65 @@
 .inner{
     position: absolute;
 
-    border-radius: 27px;
+    border-radius: 25px;
     height: 300px;
     width: 100%;
     
 }
 
 .gradientBG{
-    background: linear-gradient(135deg, rgba(81,17,255,1) 16%, rgba(152,80,0,1) 86%, rgba(127,0,0,1) 100%);
+    
+    background: linear-gradient(
+        135deg, rgb(41, 17, 255) 16%, rgb(71, 152, 0) 86%);
+        
+}
+.rayos{
+    margin-left: -250px;
+    mix-blend-mode:screen;
+}
+
+.imageBG{
+
+    background-size: 872px;
+    background-image: url("../../../assets/img/projects/circuitsAnim.gif");
+    //mix-blend-mode:color-burn;
+    mix-blend-mode:difference;
+    
+    
+    //mix-blend-mode:hard-light;
+    //mix-blend-mode:soft-light;
+
+}
+
+.content{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: flex-end;
+}
+
+.content * {
+    margin-right: 15px;
+
 }
 
 .svgItem{
     height: 310px;
+}
+
+h1{
+    margin: 0px;
+    margin-top: 10px;
+}
+h2{
+    margin:0px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.title{
+    display: flex;
+    align-items: center;
 }
 
 
@@ -40,7 +87,7 @@
     width: 5px;
     height: 10px;
     border-radius: 100%;
-    background-color: red;
+    background-color: rgb(255, 255, 255);
     animation-name: particleAnim;
     animation-duration: 0.3s;
     animation-iteration-count: infinite;
@@ -48,11 +95,34 @@
     position: absolute;
 }
 
+
+
+
 .particleContainer{
-    position: relative;
+    position: absolute;
 
     transform-origin: center top;
-    width: 100px;
-    margin-left: 100px;
-    height: 100px;
+    width: fit-content;
+    margin-left: 300px;
+    height: 300px;
+
+}
+
+.reversedY{
+    position: absolute;
+    transform: scaleY(-1);
+    height: 300px;
+
+}
+
+h2{
+    margin-left: 15px;
+}
+
+h1{
+    margin-left: 15px;
+}
+
+h1, h2 {
+    text-shadow: 2px 2px rgba(0, 0, 0, 0.561);
 }

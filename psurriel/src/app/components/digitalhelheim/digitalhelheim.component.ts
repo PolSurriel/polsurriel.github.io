@@ -11,6 +11,10 @@ export class DigitalhelheimComponent implements OnInit {
 
   svgElements : any
 
+  particleContainers : any
+  particles : any
+
+
   constructor() { }
 
   ngOnInit() {
@@ -39,6 +43,23 @@ export class DigitalhelheimComponent implements OnInit {
 
 
     }, 100)
+    this.setupParticles()
+  }
+
+  setupParticles(){
+    this.particleContainers = document.getElementsByClassName("particleContainer")
+    this.particles = document.getElementsByClassName("particle")
+
+    for (let i = 0; i < this.particles.length; i++) {
+      let angle = Math.random()*120 - 60
+      let duration = Math.max(Math.random(), 0.2) 
+      let delay = Math.max(Math.random(), 0.2) 
+      this.particleContainers[i].style.transform = "rotate("+(angle)+"deg)"
+      this.particles[i].style.animationDuration = duration+"s"      
+      this.particles[i].style.animationDelay = delay+"s"      
+    }
+  
+
   }
 
 }

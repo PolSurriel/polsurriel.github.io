@@ -1,9 +1,68 @@
 <div class="container">
 
   <div class="inner gradientBG"></div>
-  <div class="inner blackBG"></div>
-  <div class="inner content">
+  <div class="inner imageBG">
 
   </div>
+  <div class="inner content">
+
+    <div class="openButton">
+      Open project
+    </div>
+    <h1>
+      Excels of a PhaserJS project management.
+    </h1>
+
+  </div>
+  <div class="inner table">
+
+    <div class="tableTitles">
+      <div class="titleWord">ToDo</div>
+      <div class="verticalLine"><div class="lineshape"></div></div>
+      <div class="titleWord">Doing</div>
+      <div class="verticalLine"><div class="lineshape"></div></div>
+      <div class="titleWord">Done</div>
+    </div>
+     
+    <div class="horizontalLine"></div>
+
+    <div class="notesColumns">
+      <div class="noteColumn">
+        <div class="postit">
+          <img  draggable="false" (mouseup)="onClickOutPostIt($event)" (mousedown)="onClickPostit($event)" style="margin-top: 20px; margin-left: 60px;" src="assets\img\projects\bluepostit.png" alt="">
+        </div>
+
+        <div class="postit">
+          <img  draggable="false" (mouseup)="onClickOutPostIt($event)" (mousedown)="onClickPostit($event)" src="assets\img\projects\greenpostit.png" style="margin-top: 60px; margin-left: 20px;" alt="">
+        </div>
+
+        
+
+      </div>
+      <div class="noteColumn">
+
+        <div class="postit" >
+          <img  draggable="false" (mouseup)="onClickOutPostIt($event)" (mousedown)="onClickPostit($event)" style="margin-top: 40px; margin-left: 30px;" src="assets\img\projects\yellowpostit.png" alt="">
+        </div>
+
+
+
+      </div>
+      <div class="noteColumn">
+
+        <div class="postit" >
+          <img  draggable="false" (mouseup)="onClickOutPostIt($event)" (mousedown)="onClickPostit($event)" style="margin-top: 80px; margin-left: 10px;" src="assets\img\projects\pinkpostit.png" alt="">
+        </div>
+
+        <div class="postit" >
+          <img  draggable="false" (mouseup)="onClickOutPostIt($event)" (mousedown)="onClickPostit($event)" style="margin-top: 40px; margin-left: 40px;" src="assets\img\projects\hardpinkpostit.png" alt="">
+        </div>
+      </div>
+    </div>
+
+
+  </div>
+  
+  
 
 </div>

@@ -1,4 +1,4 @@
-import { Input } from '@angular/core';
+import { Input, ChangeDetectionStrategy   } from '@angular/core';
 import { Component, OnInit, HostListener } from '@angular/core';
 import { DynamicTableControllerService } from 'src/app/services/dynamic-table-controller.service';
 
@@ -10,6 +10,7 @@ enum DropDownMode{
 
 
 @Component({
+  changeDetection: ChangeDetectionStrategy.OnPush,
   selector: 'app-table-editor',
   templateUrl: './table-editor.component.html',
   styleUrls: ['./table-editor.component.scss']
