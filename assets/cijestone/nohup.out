@@ -1,0 +1,22 @@
+events.js:174
+      throw er; // Unhandled 'error' event
+      ^
+
+Error: listen EACCES: permission denied 0.0.0.0:80
+    at Server.setupListenHandle [as _listen2] (net.js:1263:19)
+    at listenInCluster (net.js:1328:12)
+    at Server.listen (net.js:1415:7)
+    at Function.listen (/home/ubuntu/web/node_modules/express/lib/application.js:618:24)
+    at Object.<anonymous> (/home/ubuntu/web/server.js:22:18)
+    at Module._compile (internal/modules/cjs/loader.js:778:30)
+    at Object.Module._extensions..js (internal/modules/cjs/loader.js:789:10)
+    at Module.load (internal/modules/cjs/loader.js:653:32)
+    at tryModuleLoad (internal/modules/cjs/loader.js:593:12)
+    at Function.Module._load (internal/modules/cjs/loader.js:585:3)
+Emitted 'error' event at:
+    at emitErrorNT (net.js:1307:8)
+    at process._tickCallback (internal/process/next_tick.js:63:19)
+    at Function.Module.runMain (internal/modules/cjs/loader.js:834:11)
+    at startup (internal/bootstrap/node.js:283:19)
+    at bootstrapNodeJSCore (internal/bootstrap/node.js:623:3)
+The server is running on http://localhost/:80
