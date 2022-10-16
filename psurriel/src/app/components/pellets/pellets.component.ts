@@ -19,12 +19,28 @@ export class PelletsComponent implements OnInit {
 
     this.shadowElement = document.getElementById("shadow")!!
     this.pelletslightElement = document.getElementById("pelletslight")!!
+  }
+
+  mouseLeave(){
+
+    this.shadowElement!!.style.animation  = this.previousAnimationShadow
+    this.pelletslightElement!!.style.animation  = this.previousAnimationLight
 
     
+  }
+
+  previousAnimationShadow : any
+  previousAnimationLight : any
+
+  mouseEnter(){
+    this.previousAnimationLight = this.pelletslightElement!!.style.animation
+    this.previousAnimationShadow = this.shadowElement!!.style.animation
+    this.shadowElement!!.style.animation  = "none"
+    this.pelletslightElement!!.style.animation  = "none"
 
   }
 
-  @HostListener('document:mousemove', ['$event']) 
+  //@HostListener('document:mousemove', ['$event']) 
   onMouseMove(event :any) {
     let mousePos = {x:event.clientX,y:event.clientY}
     this.updateLightRotation(mousePos)
@@ -37,24 +53,19 @@ export class PelletsComponent implements OnInit {
     this.shadowCenter = {x:bounds.x, y:bounds.y + bounds.height*0.5}
 
 
-    let dir = {x:this.shadowCenter.x - this.lightPos.x, y:this.shadowCenter.y - this.lightPos.y}
-    let magnitude = Math.sqrt(dir.x*dir.x + dir.y*dir.y)
-
-    dir.x /= magnitude
-    dir.y /= magnitude
-
-    dir.x += this.lightDir.x * 1
-    dir.y += this.lightDir.y * 1
+    let dir = {x:0, y:0}
+    dir.x = this.lightDir.x * 1
+    dir.y = this.lightDir.y * 0.3
 
 
-    let angle = Math.atan2(dir.y, dir.x)*180/Math.PI
+    let angle = Math.atan2(dir.y, dir.x)*180/Math.PI +10
 
     this.shadowElement!!.style.transform= "rotate("+angle+"deg)"
 
   }
 
   updateLightRotation(mousePos:any){
-    
+
     let containerBounds = this.pelletslightElement?.parentElement?.getBoundingClientRect()
     this.lightPos = {
       x:containerBounds!!.x + 55,

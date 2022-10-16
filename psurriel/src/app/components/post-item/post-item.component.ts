@@ -11,6 +11,7 @@ export class PostItemComponent implements OnInit {
   @Input() publishedDate : string = ""
   @Input() tag : string = ""
   @Input() imageUrl : string = ""
+  @Input() link : string = ""
 
   constructor() { }
 

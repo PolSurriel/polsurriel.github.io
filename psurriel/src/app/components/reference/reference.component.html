@@ -1,11 +1,18 @@
 
 <div class="card">
-  <img class="avatar" [attr.src]="refImgUrl" alt="">
-  <div class="cardText">
-    <p class="refName">{{refName}}</p>
-    <p class="refCharge">{{refCharge}}</p>
-    <p class = "refContext">{{refContext}}</p>
+  <div class="info">
 
+    <img  draggable="false" class="avatar" [attr.src]="refImgUrl" alt="">
+    <div class="cardText">
+      <p class="refName">{{refName}}</p>
+      <p class="refCharge">{{refCharge}}</p>
+      <p class = "refContext">{{refContext}}</p>
+
+      <p class="description pcDescription">{{refContent}}</p>
+    </div>
+  </div>
+
+  <div class="mobileDescription">
     <p class="description">{{refContent}}</p>
   </div>
 </div>

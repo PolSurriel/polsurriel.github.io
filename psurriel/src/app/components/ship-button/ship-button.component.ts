@@ -69,6 +69,8 @@ export class ShipButtonComponent implements OnInit {
 
   onButtonClicked(){
 
+    
+
     if(this.launched){
       return
     }

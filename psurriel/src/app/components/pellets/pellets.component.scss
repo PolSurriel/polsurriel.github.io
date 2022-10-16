@@ -26,6 +26,20 @@
     width: 880px;
 }
 
+@keyframes shadowRotation {
+    from {
+        transform: rotate(15deg);
+    }
+    50%{
+        transform: rotate(6deg);
+
+    }
+    to {
+        transform: rotate(15deg);
+
+    }
+  }
+
 .shadowBG{
     width: 900px;
     background-image: url("../../../assets/img/projects/pelletsshadowbg.png");
@@ -33,6 +47,7 @@
     transform-origin: center left;
     transform: rotate(10deg) scaleX(0.45); 
     opacity: 0.7;
+    animation: shadowRotation 3s ease 0s infinite;
 }
  
 .shadow{
@@ -40,13 +55,32 @@
 
 }
 
+@keyframes lightRotation {
+    from {
+        transform: rotate(-60deg);
+    }
+    50%{
+        transform: rotate(-100deg);
+
+    }
+    to {
+        transform: rotate(-60deg);
+
+    }
+  }
+
+
+
+  
+
 .light img{
     width: fit-content;
     margin-top: -940px;
     margin-left: -950px;
     transform-style: preserve-3d;
     transform-origin: center;
-    transform: rotate(-80deg);   
+    //transform: rotate(-80deg);   
+    animation: lightRotation 3s ease 0s infinite;
 
 }
 
@@ -103,8 +137,11 @@ h1, h2 {
 @media all and (max-width:520px){
 
     .effectContainer{
-        margin-left: -300px;        
+        margin-left: -300px;
+                
     }
+
+
 }
 
 h2{

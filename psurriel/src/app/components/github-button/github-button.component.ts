@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-github-button',
@@ -7,6 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class GithubButtonComponent implements OnInit {
 
+  @Input() link : string = ""
 
   public static mouseInGithubButton : boolean = false 
 

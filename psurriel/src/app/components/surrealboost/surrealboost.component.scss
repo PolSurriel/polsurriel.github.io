@@ -70,6 +70,8 @@ h2 {
     //mix-blend-mode:darken;
 }
 
+
+
 .openButton{
     font-size: 20px;
     text-align: center;
@@ -115,16 +117,22 @@ h2 {
 
 }
 
+
 @media all and (max-width:513px){
     h2{
-        font-size: 18px;
+        font-size: 15px;
         margin-right: 5px;
     }
 }
 
 @media all and (max-width:385px){
     h2{
-        font-size: 15px;
+        font-size: 12px;
         margin-right: 5px;
     }
+}
+
+h2{
+    text-align: justify;
+    margin-right: 15px;
 }

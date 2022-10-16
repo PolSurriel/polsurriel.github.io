@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { last } from 'rxjs';
+import { last, of } from 'rxjs';
 
 @Component({
   selector: 'app-digitalhelheim',
@@ -14,10 +14,26 @@ export class DigitalhelheimComponent implements OnInit {
   particleContainers : any
   particles : any
 
+  showVFXDiscarded = false
 
   constructor() { }
 
-  ngOnInit() {
+
+  resolutionSupportsAnimation() : boolean{
+    return window.screen.width>550 && !this.showVFXDiscarded
+  }
+
+  ngOnInit(){
+
+  }
+
+  ngAfterViewInit() {
+    
+    if(!this.resolutionSupportsAnimation()){
+      this.showVFXDiscarded = true
+      return
+    }
+
     this.svgElements = document.getElementsByClassName("svgItem")!!
 
 

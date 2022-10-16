@@ -8,9 +8,15 @@ import { repeat } from 'rxjs';
 })
 export class BlobComponent implements OnInit {
 
+  @Input() index : number = 0 
   @Input() opacity : string = "1" 
   @Input() gradientStart : string = "black" // "rgb(76, 161, 175)" 
   @Input() gradientEnd : string = "black" // "rgb(196, 224, 229)" 
+
+
+   resolutionSupportsAnimation() : boolean{
+    return window.screen.width>550
+  }
 
 /**
  * Blob generator: https://passionhacks.com/blob-maker/
@@ -18,7 +24,7 @@ export class BlobComponent implements OnInit {
  * REQUIRED COMPLEXITY = 6
  * 
  */
-  private static readonly svgPaths : Array<string>= [
+  svgPaths : Array<string>= [
     "M450.5,305Q421,360,378.5,399.5Q336,439,283,413Q230,387,170,399Q110,411,70,363Q30,315,39,253Q48,191,81,142Q114,93,172,101Q230,109,282,87Q334,65,391,94Q448,123,464,186.5Q480,250,450.5,305Z",
     "M388,294Q387,338,350.5,364Q314,390,270,403Q226,416,189,389.5Q152,363,140.5,324.5Q129,286,115,246Q101,206,96,136Q91,66,159,79.5Q227,93,265.5,112.5Q304,132,333.5,155Q363,178,376,214Q389,250,388,294Z",
     "M435.39262,289.78732Q373.3088,329.57465,352.07975,378.74437Q330.85071,427.9141,278.95194,418.79754Q227.05317,409.68098,162.67077,417.40899Q98.28836,425.13699,70.99082,367.67994Q43.69328,310.2229,79.19224,260.21779Q114.6912,210.21268,111.79754,148.63803Q108.90388,87.06339,161.63292,45.272Q214.36197,3.48061,260.23415,65.10738Q306.10634,126.73415,357.19631,137.62271Q408.28628,148.51126,452.88136,199.25563Q497.47644,250,435.39262,289.78732Z",
@@ -49,11 +55,11 @@ export class BlobComponent implements OnInit {
   public getRanfomBlobSVGPath() : string {
 
     let selectIndex = ()=> Math.floor(
-      Math.random() * BlobComponent.svgPaths.length
+      Math.random() * this.svgPaths.length
     ) 
     
     let beginIndex = selectIndex()
-    let begin = BlobComponent.svgPaths[selectIndex()]
+    let begin = this.svgPaths[selectIndex()]
 
     let middleIndex : number
     do{
@@ -61,7 +67,7 @@ export class BlobComponent implements OnInit {
     }while(middleIndex == beginIndex)
     
 
-    return  begin + ";" + BlobComponent.svgPaths[middleIndex]+";" + begin
+    return  begin + ";" + this.svgPaths[middleIndex]+";" + begin
 
   }
 

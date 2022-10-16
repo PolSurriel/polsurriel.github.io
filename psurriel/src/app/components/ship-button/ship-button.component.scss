@@ -49,6 +49,10 @@ rgb(253, 188, 253) 100%
         ease;
 }
 
+*{
+    user-select: none!important;
+}
+
 
 .button span{
     opacity: 1;
@@ -563,6 +567,7 @@ rgb(253, 188, 253) 100%
 .container:hover, .launched {
     width: 300px;
     height: fit-content;
+
 }
 
 .button span{

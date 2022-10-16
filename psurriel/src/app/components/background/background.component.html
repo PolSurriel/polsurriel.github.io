@@ -3,22 +3,22 @@
 <div id="blurBlobsGradient" class="fullscreen"></div>
 <div id="blobsGradient" class="fullscreen"></div>
 <div id="bluredshapes" class="fullscreen">
-    <div *ngFor="let blob of bluredBlobs">
+    <div *ngFor="let blob of bluredBlobs; let i = index">
         <div 
         class="blob" 
         [attr.style]="'left:'+blob.x+'px; top:'+blob.y+'px; transform: scale('+blob.scale+')'">
-            <app-blob  gradientStart="white" gradientEnd="white"></app-blob>
+            <app-blob [index]="i" gradientStart="white" gradientEnd="white"></app-blob>
         </div>
     </div>
     
 </div>
 
 <div id="unbluredshapes" class="fullscreen">
-    <div *ngFor="let blob of blobs">
+    <div *ngFor="let blob of blobs; let j = index">
         <div 
         class="blob" 
         [attr.style]="'left:'+blob.x+'px; top:'+blob.y+'px; transform: scale('+blob.scale+')'">
-            <app-blob opacity="0.5" gradientStart="white" gradientEnd="white"></app-blob>
+            <app-blob [index]="j" opacity="0.5" gradientStart="white" gradientEnd="white"></app-blob>
         </div>
     </div>
     

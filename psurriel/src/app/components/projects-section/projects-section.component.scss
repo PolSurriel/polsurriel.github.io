@@ -15,6 +15,14 @@
     margin-bottom: 20px;
 }
 
+@media all and (max-width:570px) {
+    #projects{
+        margin-bottom: 70px;
+        font-size: 50px;
+
+    }
+}
+
 #clothVideoContainer{
     display: flex;
     justify-content: flex-end;
@@ -39,6 +47,13 @@
     z-index: 1;
     margin-left: -21px;
     margin-top: 105px;
+}
+
+
+@media all and (max-width:550px) {
+    #robotArmContainer{
+        display: none;
+    }   
 }
 
 .container{

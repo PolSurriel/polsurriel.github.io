@@ -12,8 +12,9 @@ viewBox="0 0 800 500" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/s
             <stop offset="100%" [style]="'stop-color: '+gradientEnd+';'"></stop>
           </linearGradient>
         </defs>
-      <path fill="url(#gradient)">
+      <path fill="url(#gradient)" [attr.d]="svgPaths[index]">
       <animate 
+      *ngIf="resolutionSupportsAnimation()"
       attributeName="d" 
       [attr.dur]="duration+'s'" 
       repeatCount="indefinite"

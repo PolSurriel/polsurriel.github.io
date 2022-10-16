@@ -15,6 +15,8 @@ export class BackgroundComponent implements OnInit {
   bluredBlobs : Array<any> = []
   blobs : Array<any> = []
 
+ 
+  
   private generateBlobSettings(numberOfBlobs : number) : Array<any>{
     let result = []
 

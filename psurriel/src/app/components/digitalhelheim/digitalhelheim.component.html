@@ -3,7 +3,7 @@
   <div class="inner gradientBG"></div>
   <div class="inner imageBG"></div>
   
-<div class="rayos inner">
+<div class="rayos inner" *ngIf="resolutionSupportsAnimation()">
 
   <div class="inner">
     <svg class="svgItem" xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svgjs="http://svgjs.dev/svgjs" viewBox="0 0 800 400">
@@ -130,7 +130,7 @@
 </div>
 
   <div class="inner content">
-    <app-github-button></app-github-button>
+    <app-github-button link="https://github.com/PolSurriel/DigitalHelheimOnline.git"></app-github-button>
     <h1>
       Digital Helheim
     </h1>

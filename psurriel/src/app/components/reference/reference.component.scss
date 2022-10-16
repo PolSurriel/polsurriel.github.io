@@ -48,3 +48,35 @@ p{
     text-align: justify;
 
 }
+
+
+.mobileDescription{
+    display: none;
+}
+
+.info{
+    display: flex;
+}
+
+@media all and (max-width:500px){
+
+    .avatar{
+        width: 60px;
+        height: 60px;
+        margin-top: 10px;
+    }
+
+    .pcDescription{
+        display: none;
+    }
+
+    .card{
+        flex-wrap: wrap;
+    }
+
+    .mobileDescription{
+        display: block;
+        width: 100%;
+    }
+
+}

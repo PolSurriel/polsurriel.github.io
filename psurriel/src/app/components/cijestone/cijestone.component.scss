@@ -84,9 +84,11 @@
 }
 @media all and (max-width:450px) {
     .videoBG video{
-        height: 400px !important;
-        margin-left: -30px;
-
+        height: 300px !important;
+        margin-left: -20px;
+    }
+    .videoBG{
+        margin-top: 0px;
     }
     
 }

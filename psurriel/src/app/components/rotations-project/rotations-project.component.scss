@@ -1,5 +1,7 @@
 
 
+
+
 .container{
     height: 256px;
     position: relative;
@@ -7,6 +9,13 @@
     margin-top: -105px;
 
 }
+
+@media all and (max-width:550px) {
+    .container{
+        margin-top: 0px;
+    }   
+}
+
 .inner{
     position: absolute;
 
